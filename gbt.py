@@ -16,7 +16,7 @@ class GBT():
     return final model
     '''
 
-    def __init__(self,num_estimators,loss,learning_rate=0.01,max_depth=5,min_split=2):
+    def __init__(self,num_estimators,learning_rate=0.01,max_depth=5,min_split=2):
         '''
         Multiple regression trees are needed to gradually correct the errors of the previous tree through each tree.
         Ultimately, the weak classifier becomes stronger.
@@ -24,12 +24,12 @@ class GBT():
         self.learning_rate = learning_rate
         self.max_depth = max_depth
         self.min_split = min_split
-        self.loss = loss
         self.num_estimators = num_estimators
+        self.models = []
     def fit(self,X,y):
         y_pred = np.zeros(len(y))              # to store new prediction values
         for _ in range(self.num_estimators):
-            tree = RgressionTree()
+            tree = RegressionTree()
             # for mean squared error (MSE):
             # L(yi, f(xi)) = 1/2 * (yi - f(xi))^2
             # 
@@ -45,13 +45,17 @@ class GBT():
             # rim = yi - fm-1(xi)
             gamma = self.learning_rate * tree.predict(X)
             y_pred += gamma
-            # output? = ?
+            self.models.append(tree)
 
-        pass
-    def predict():
-        pass
 
-class RgressionTree():
+    def predict(self,X):
+
+        y_pred = np.zeros(len(X))
+        for model in self.models: # to sum the donation of every tree
+            y_pred += self.learning_rate * model.predict(X)
+        return y_pred
+
+class RegressionTree():
     def __init__(self,max_depth=5,min_split=2):
         pass
     def fit(self,X,y):
