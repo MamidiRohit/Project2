@@ -16,15 +16,36 @@ class GBT():
     return final model
     '''
 
-    def __init__(self,loss,learning_rate=0.01,max_depth=5,min_split=2):
+    def __init__(self,num_estimators,loss,learning_rate=0.01,max_depth=5,min_split=2):
+        '''
+        Multiple regression trees are needed to gradually correct the errors of the previous tree through each tree.
+        Ultimately, the weak classifier becomes stronger.
+        '''
         self.learning_rate = learning_rate
         self.max_depth = max_depth
         self.min_split = min_split
         self.loss = loss
+        self.num_estimators = num_estimators
     def fit(self,X,y):
-        y_pred = np.zeros(len(y))#用于存储新的预测值
-        for i in range():
+        y_pred = np.zeros(len(y))              # to store new prediction values
+        for _ in range(self.num_estimators):
             tree = RgressionTree()
+            # for mean squared error (MSE):
+            # L(yi, f(xi)) = 1/2 * (yi - f(xi))^2
+            # 
+            # its partial derivative is:
+            # ∂L/∂f(xi) = f(xi) - yi
+            # 
+            # after substituting into the gradient formula:
+            # rim = yi - fm-1(xi)
+            residual = y - y_pred
+            tree.fit(X,residual)
+            # when I use Mean Squared Error (MSE) to calculate, the output γ of each tree essentially represents the current residual value.
+            # because, for MSE, the gradient is given by:
+            # rim = yi - fm-1(xi)
+            gamma = self.learning_rate * tree.predict(X)
+            y_pred += gamma
+            # output? = ?
 
         pass
     def predict():
