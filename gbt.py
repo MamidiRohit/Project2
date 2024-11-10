@@ -74,7 +74,22 @@ class RegressionTree():
             # we use MSE , therefore return mean(y) 
             if depth >= self.max_depth or len(y) < self.min_samples_split:
                 return {"leaf_value": np.mean(y)}
-            pass
+            
+            best_spilt_point = 1
+
+            # there is no optimal split point, the tree does not need to split anymore
+            if not best_spilt_point:
+                
+                return {"leaf_value": np.mean(y)}
+            
+            left_subtree = build_tree(depth)
+            right_subtree = build_tree(depth)
+
+            return {
+
+                "left": left_subtree,
+                "right": right_subtree
+            }
 
 
 
