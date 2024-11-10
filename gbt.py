@@ -1,5 +1,5 @@
 import numpy as np
-
+import pandas as pd
 
 class GBT():
     '''
@@ -26,6 +26,8 @@ class GBT():
         self.min_split = min_split
         self.num_estimators = num_estimators
         self.models = []
+
+        
     def fit(self,X,y):
         y_pred = np.zeros(len(y))              # to store new prediction values
         for _ in range(self.num_estimators):
@@ -57,14 +59,39 @@ class GBT():
 
 class RegressionTree():
     def __init__(self,max_depth=5,min_split=2):
-        pass
+        self.max_depth = max_depth
+        self.min_samples_split = min_split
+        self.tree = None
+
     def fit(self,X,y):
+        def build_tree(depth):
+            '''
+            Since it is a regression tree, the function that builds the tree will call itself, 
+            so it is written as a separate function instead of using the fit function.
+            
+            '''
+            # if the current depth reaches the maximum depth or the number of samples is less than the minimum number of splits, return the mean number of leaf
+            # we use MSE , therefore return mean(y) 
+            if depth >= self.max_depth or len(y) < self.min_samples_split:
+                return {"leaf_value": np.mean(y)}
+            pass
+
+
+
+
+        self.tree = build_tree(depth=0)
         pass
+
     def predict(self,X):
         pass
+
     def regErr():
         pass
+
     def createTree():
         pass
+
     def split():
         pass
+
+
