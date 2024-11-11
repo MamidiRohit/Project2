@@ -116,7 +116,7 @@ class RegressionTree():
                 if len(left_y) == 0 or len(right_y) == 0:
                     continue
 
-                current_error = 1
+                current_error = self.regErr(left_y, right_y, mode=1)
                 if current_error < best_error:
                     best_error = current_error
                     best_split = {
@@ -131,15 +131,30 @@ class RegressionTree():
         return best_split                
 
     def predict(self,X):
-        pass
 
-    def regErr():
-        pass
+        predictions = []
 
-    def createTree():
-        pass
+        for i in X:
+            node = self.tree
+            
+            # loop through the tree until a leaf node is reached
+            while "leaf_value" not in node:
+                feature_index = node["feature_index"]
+                split_value = node["split_value"]
+                
+                # according to the feature value and segmentation value of the current sample,
+                # decide whether to move left or right
+                if i[feature_index] <= split_value:
+                    node = node["left"]
+                else:
+                    node = node["right"]
+            predictions.append(node["leaf_value"])
+        return np.array(predictions)
 
-    def split():
-        pass
-
+    def regErr(self, left_y, right_y, mode=1):
+        if mode == 1:
+            # calculate the mse
+            left_mse = np.var(left_y) * len(left_y) if len(left_y) > 0 else 0
+            right_mse = np.var(right_y) * len(right_y) if len(right_y) > 0 else 0
+            return (left_mse + right_mse) / (len(left_y) + len(right_y))
 
