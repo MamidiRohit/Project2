@@ -101,7 +101,8 @@ class RegressionTree():
         
         for index in range(n_features):
             values = X[:,index]
-            dynamic_spilt = np.unique(values)#获取当前特征所有可能的分割点（去重后的特征取值）。
+            # all possible segmentation points of the current feature
+            dynamic_spilt = np.unique(values)
 
             for value in dynamic_spilt:
 
