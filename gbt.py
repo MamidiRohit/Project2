@@ -64,7 +64,7 @@ class RegressionTree():
         self.tree = None
 
     def fit(self,X,y):
-        def build_tree(depth):
+        def build_tree(X,y,depth):
             '''
             Since it is a regression tree, the function that builds the tree will call itself, 
             so it is written as a separate function instead of using the fit function.
@@ -82,8 +82,8 @@ class RegressionTree():
                 
                 return {"leaf_value": np.mean(y)}
             
-            left_subtree = build_tree(depth)
-            right_subtree = build_tree(depth)
+            left_subtree = build_tree(X,y,depth)
+            right_subtree = build_tree(X,y,depth)
 
             return {
 
@@ -91,11 +91,43 @@ class RegressionTree():
                 "right": right_subtree
             }
 
-
-
-
         self.tree = build_tree(depth=0)
-        pass
+
+    def find_best_split_point(self,X,y):
+
+        _, n_features = X.shape
+        best_split = None
+        best_error = float('inf')
+        
+        for index in range(n_features):
+            values = X[:,index]
+            dynamic_spilt = np.unique(values)#获取当前特征所有可能的分割点（去重后的特征取值）。
+
+            for value in dynamic_spilt:
+
+                left_indices = X[:index] <= value
+                right_indices = X[:index] > value
+
+                left_X, right_X = X[left_indices], X[right_indices]
+                left_y, right_y = y[left_indices], y[right_indices]
+                
+                # Ensure both sides have at least one sample
+                if len(left_y) == 0 or len(right_y) == 0:
+                    continue
+
+                current_error = 1
+                if current_error < best_error:
+                    best_error = current_error
+                    best_split = {
+                        "feature_index": index,
+                        "split_value": value,
+                        "left_X": left_X,
+                        "left_y": left_y,
+                        "right_X": right_X,
+                        "right_y": right_y
+                    }
+
+        return best_split                
 
     def predict(self,X):
         pass
