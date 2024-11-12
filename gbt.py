@@ -30,6 +30,10 @@ class GBT():
 
         
     def fit(self,X,y):
+        # convert X and y to numpy arrays
+        X = np.array(X)
+        y = np.array(y)
+
         y_pred = np.zeros(len(y))              # to store new prediction values
         if self.criterion != 'mas':
             self.criterion = 'mse'
@@ -87,9 +91,10 @@ class RegressionTree():
             if not best_spilt_point:
                 
                 return {"leaf_value": np.mean(y)}
-            
-            left_subtree = build_tree(X,y,depth)
-            right_subtree = build_tree(X,y,depth)
+                
+            left_subtree = build_tree(best_spilt_point["left_X"], best_spilt_point["left_y"], depth + 1)
+            right_subtree = build_tree(best_spilt_point["right_X"], best_spilt_point["right_y"], depth + 1)
+
 
             return {
                 "feature_index":best_spilt_point["feature_index"],
@@ -113,12 +118,12 @@ class RegressionTree():
 
             for value in dynamic_spilt:
 
-                left_indices = X[:index] <= value
-                right_indices = X[:index] > value
+                left_indices = X[:,index] <= value
+                right_indices = X[:,index] > value
+
 
                 left_X, right_X = X[left_indices], X[right_indices]
                 left_y, right_y = y[left_indices], y[right_indices]
-                
                 # Ensure both sides have at least one sample
                 if len(left_y) == 0 or len(right_y) == 0:
                     continue
@@ -173,10 +178,11 @@ if __name__ == "__main__":
     # read the train files
 
 
-    #X = 
-    #y = 
+    X = [[1],[2],[3],[4]]
+    y = [1,2,3,4]
 
-    model = gbt_model = GBT() 
-    #model.fit(X,y)
+    model = gbt_model = GBT(num_estimators = 3,max_depth=3,min_split=2) 
+    model.fit(X,y)
 
-    #prediction = model.predict(X)
+    prediction = model.predict(X)
+    print(prediction)
