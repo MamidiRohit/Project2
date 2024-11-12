@@ -16,7 +16,7 @@ class GBT():
     return final model
     '''
 
-    def __init__(self,num_estimators,learning_rate=0.01,max_depth=5,min_split=2):
+    def __init__(self,num_estimators,max_depth=5,min_split=2,learning_rate=0.01,criterion = 'mse'):
         '''
         Multiple regression trees are needed to gradually correct the errors of the previous tree through each tree.
         Ultimately, the weak classifier becomes stronger.
@@ -25,13 +25,18 @@ class GBT():
         self.max_depth = max_depth
         self.min_split = min_split
         self.num_estimators = num_estimators
+        self.criterion = criterion
         self.models = []
 
         
     def fit(self,X,y):
         y_pred = np.zeros(len(y))              # to store new prediction values
+        if self.criterion != 'mas':
+            self.criterion = 'mse'
         for _ in range(self.num_estimators):
-            tree = RegressionTree()
+
+            
+            tree = RegressionTree(max_depth=self.max_depth,min_split=self.min_split, criterion = self.criterion) # needs to write the parameters
             # for mean squared error (MSE):
             # L(yi, f(xi)) = 1/2 * (yi - f(xi))^2
             # 
@@ -58,9 +63,10 @@ class GBT():
         return y_pred
 
 class RegressionTree():
-    def __init__(self,max_depth=5,min_split=2):
+    def __init__(self,max_depth=5,min_split=2, criterion = 'mse'):
         self.max_depth = max_depth
         self.min_samples_split = min_split
+        self.criterion = criterion
         self.tree = None
 
     def fit(self,X,y):
@@ -75,7 +81,7 @@ class RegressionTree():
             if depth >= self.max_depth or len(y) < self.min_samples_split:
                 return {"leaf_value": np.mean(y)}
             
-            best_spilt_point = 1
+            best_spilt_point = self.find_best_split_point(X,y)
 
             # there is no optimal split point, the tree does not need to split anymore
             if not best_spilt_point:
@@ -86,12 +92,13 @@ class RegressionTree():
             right_subtree = build_tree(X,y,depth)
 
             return {
-
+                "feature_index":best_spilt_point["feature_index"],
+                "split_value":best_spilt_point["split_value"],
                 "left": left_subtree,
                 "right": right_subtree
             }
 
-        self.tree = build_tree(depth=0)
+        self.tree = build_tree(X,y,depth=0)
 
     def find_best_split_point(self,X,y):
 
@@ -152,9 +159,24 @@ class RegressionTree():
         return np.array(predictions)
 
     def regErr(self, left_y, right_y, mode=1):
-        if mode == 1:
-            # calculate the mse
+        if mode == 'mae':
+            left_mae = np.mean(np.abs(left_y - np.mean(left_y))) * len(left_y) if len(left_y) > 0 else 0
+            right_mae = np.mean(np.abs(right_y - np.mean(right_y))) * len(right_y) if len(right_y) > 0 else 0
+            return (left_mae + right_mae) / (len(left_y) + len(right_y))
+        else:
+            # calculate the mse, cause it is default
             left_mse = np.var(left_y) * len(left_y) if len(left_y) > 0 else 0
             right_mse = np.var(right_y) * len(right_y) if len(right_y) > 0 else 0
             return (left_mse + right_mse) / (len(left_y) + len(right_y))
 
+if __name__ == "__main__":
+    # read the train files
+
+
+    #X = 
+    #y = 
+
+    model = gbt_model = GBT() 
+    #model.fit(X,y)
+
+    #prediction = model.predict(X)
