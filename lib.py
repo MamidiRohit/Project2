@@ -7,11 +7,21 @@ References:
 """
 import numpy as np
 import csv
-from params import params
+import json
 from sklearn.linear_model import *
-from sklearn import datasets
+
 
 # Collection of auxiliary functions
+
+"""
+    Parameter setting read
+"""
+
+
+def get_param(file_path: str) -> dict:
+    with open(file_path, "r", encoding="utf-8") as file:
+        return json.load(file)
+
 
 """
     Model selections
@@ -40,7 +50,7 @@ def get_model(model_type: str):
 def get_metric(metric_type: str):
     """
     get_metric()
-    This function returns the metric function for the given metric_type defined in 'params.py'.
+    This function returns the metric function for the given metric_type defined in 'param.py'.
     If no metric_type is defined, it returns default setting as MSE.
     :param metric_type: the type of metric to use [options] "MSE(default)", "Accuracy score"
     :return: a metric function to apply.
@@ -80,44 +90,8 @@ def read_csv(file_name: str) -> tuple:
     return X, y
 
 
-def generate_synthetic_data(size: int, dimension: int, noise_std: float, random_state: int, test_ratio: float) -> tuple:
-    """
-    generate_synthetic_data()
-    This function generates data based on randomly assigned weights, bias, and noise deviations.
-    If the model tracks the assigned weights and deviations similarly from that function,
-    the model is assumed to have been trained correctly.
-
-    :param size: Number of samples to generate
-    :param dimension: Number of features to generate
-    :param noise_std: Set noise scale to test durability of the trained model
-    :param test_ratio: test ratio from the created dataset
-    :param random_state: random seed
-    :returns
-        train_x, train_y, test_x, test_y: train and test set
-    """
-    # Setup random seed
-    np.random.seed(random_state)
-
-    # random sample
-    X = np.random.rand(size, dimension)
-
-    # create weights, bias, and noise
-    weights = np.random.randn(dimension)
-    bias = np.random.rand()
-    noise_std = np.random.normal(0, noise_std, size=size)
-
-    # create label
-    y = np.dot(X, weights) + (bias + noise_std)
-
-    # Split data into train and test
-    test_size = int(test_ratio * size)
-    train_X, test_X = X[:test_size], X[test_size:]
-    train_y, test_y = y[:test_size], y[test_size:]
-    return train_X, train_y, test_X, test_y
-
-
-def generate_multi_collinear_data(size: int, dimension: int, correlation: float, noise_std: float, random_state: int,
-                                  test_ratio: float) -> tuple:
+def generate_data(size: int, dimension: int, correlation: float, noise_std: float, random_state: int,
+                  test_ratio: float) -> tuple:
     """
     generate_multi_collinear_data()
     This is a function that generates data with multi_collinearity
@@ -131,7 +105,9 @@ def generate_multi_collinear_data(size: int, dimension: int, correlation: float,
     :param random_state: random seed
     :param test_ratio: test ratio from the created dataset
     :returns:
-        train_x, train_y, test_x, test_y: train and test set
+        X: Dataset with features
+        y: Dataset with labels
+        train_X, train_y, test_X, test_y: Split dataset by split_dataset() function
     """
     if random_state:
         np.random.seed(random_state)
@@ -154,45 +130,51 @@ def generate_multi_collinear_data(size: int, dimension: int, correlation: float,
     # create y (Add noise to multi-collinearity)
     y = X.dot(weights) + bias + (bias + noise_std)
 
+    # Split dataset into train and test
+    train_X, train_y, test_X, test_y = split_dataset(X, y, test_ratio)
+    return X, y, train_X, train_y, test_X, test_y
+
+
+def split_dataset(X: np.ndarray, y: np.ndarray, test_ratio: float) -> tuple:
+    """
+    split_dataset()
+    This function splits the dataset into training and test sets
+    :param X: Dataset with features
+    :param y: Dataset labels
+    :param test_ratio: size of the test set
+    :return:
+        train_X: train dataset
+        train_y: train dataset label
+        test_X: test dataset
+        test_y: test dataset label
+    """
     # Split data into train and test
-    test_size = int(test_ratio * size)
+    test_size = int(test_ratio * X.shape[0])
     train_X, test_X = X[:test_size], X[test_size:]
     train_y, test_y = y[:test_size], y[test_size:]
     return train_X, train_y, test_X, test_y
 
 
-def get_data(data_type: str) -> tuple:
+def get_data(data_type: str, args: dict) -> tuple:
     """
     get_data()
-    This function loads training and test from chosen data type(high order function)
-    :param data_type: the type of data to use [data options] 'iris'(default), 'file' ,'multi_collinear', 'synthetic'
-    :return: tuples of data from executed functions
+    This function loads dataset chosen data type
+    :param data_type: the type of data to use [data options] 'iris'(default), 'file' ,'generate'
+    :param args: a parameter setting of the dataset
+    :returns: tuples produced by chosen function. Specific details as below:
+        X: Dataset with features
+        y: Dataset with labels
+        train_X: train dataset
+        train_y: train dataset label
+        test_X: test dataset
+        test_y: test dataset label
     """
-
-    print(f"Data Type: {data_type}")
-
-    if data_type == "kaggle":
-        args = params["data"]["kaggle"]
-        housing = datasets.fetch_california_housing()
-        X, y = housing.data, housing.target
-
-        # Split data into train and test
-        test_size = int(args["test_ratio"] * X.shape[0])
-        train_X, test_X = X[:test_size], X[test_size:]
-        train_y, test_y = y[:test_size], y[test_size:]
-        return train_X, train_y, test_X, test_y
-    elif data_type == 'file':
-        args = params["data"]["file"]
-        print(f"Data Parameters:\n{args}")
-        return read_csv(**args)
-    elif data_type == 'multi-collinear':
-        args = params["data"]["multi-collinear"]
-        print(f"Data Parameters:\n{args}")
-        return generate_multi_collinear_data(**args)
-    else:
-        args = params["data"]["synthetic"]
-        print(f"Data Parameters:\n{args}")
-        return generate_synthetic_data(**args)  # default is normal file generation
+    if data_type == 'file':
+        X, y = read_csv(**args)
+        train_X, train_y, test_X, test_y = split_dataset(X, y, args["test_ratio"])
+        return X, y, train_X, train_y, test_X, test_y
+    else:  # (Default) Generate data
+        return generate_data(**args)
 
 
 """
@@ -239,10 +221,7 @@ def AIC(y: np.ndarray, X: np.ndarray, y_pred: np.ndarray):
     # Number of feature including a residual
     k = X.shape[1] + 1
 
-    # Mean squared error
-    MSE = np.sum((y - y_pred) ** 2) / n
-
     # Log likelihood formula: log_likelihood = - n/2*log(2*π) - n/2*log(MSE)  - n/2
-    log_likelihood = - n / 2 * np.log(2 * np.pi) - n / 2 - n * np.log(MSE) / 2
+    log_likelihood = - n / 2 * np.log(2 * np.pi) - n / 2 - n * np.log(MSE(y, y_pred)) / 2
 
     return 2 * k - 2 * log_likelihood  # AIC = 2*k - 2*log_likelihood

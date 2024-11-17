@@ -1,0 +1,36 @@
+{
+    "test": {
+        "general": {
+            "activate": {"k_fold_CV": true, "bootstrapping": true},
+            "model": "LinearRegression",
+            "metric": "MSE",
+            "data": "generate"
+        },
+        "k_fold_cross_validation": {
+            "k": [5],
+            "shuffle": true
+        },
+        "bootstrapping": {
+            "size": [50],
+            "epochs": [100]
+        }
+    },
+    "data": {
+        "file": [
+            {
+                "file_name": "small_test.csv",
+                "test_ratio": 0.25
+            }
+        ],
+        "generate": [
+            {
+                "size": 100,
+                "dimension": 10,
+                "correlation": 0,
+                "noise_std": 0.0,
+                "random_state": 42,
+                "test_ratio": 0.25
+            }
+        ]
+    }
+}
