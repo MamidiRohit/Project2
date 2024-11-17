@@ -1,5 +1,10 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+#from sklearn.datasets import fetch_california_housing
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+import pickle
 
 class GBT():
     '''
@@ -66,6 +71,8 @@ class GBT():
             y_pred += self.learning_rate * model.predict(X)
         return y_pred
 
+
+
 class RegressionTree():
     def __init__(self,max_depth=5,min_split=2, criterion = 'mse'):
         self.max_depth = max_depth
@@ -91,7 +98,7 @@ class RegressionTree():
             if not best_spilt_point:
                 
                 return {"leaf_value": np.mean(y)}
-                
+
             left_subtree = build_tree(best_spilt_point["left_X"], best_spilt_point["left_y"], depth + 1)
             right_subtree = build_tree(best_spilt_point["right_X"], best_spilt_point["right_y"], depth + 1)
 
@@ -174,15 +181,82 @@ class RegressionTree():
             right_mse = np.var(right_y) * len(right_y) if len(right_y) > 0 else 0
             return (left_mse + right_mse) / (len(left_y) + len(right_y))
 
+
+def visualizing():
+    pass
+
+
+def plot_gbt_predictions(X, y, model, feature_index=0):
+    """ Plot the true values vs. GBT predictions for a specific feature. """
+    # Use the specified feature for visualization
+    X_feature = X[:, feature_index]
+    X_plot = np.linspace(X_feature.min(), X_feature.max(), 100).reshape(-1, 1)
+
+    # Expand dimensions of X_plot to match the input shape for the model
+    X_plot_full = np.zeros((X_plot.shape[0], X.shape[1]))
+    X_plot_full[:, feature_index] = X_plot[:, 0]
+
+    # Get predictions from the model
+    predictions = model.predict(X_plot_full)
+
+    # Plot the actual data points
+    plt.scatter(X_feature, y, color='blue', label='Actual Data', alpha=0.5)
+
+    # Plot the GBT predictions
+    plt.plot(X_plot, predictions, color='red', label='GBT Predictions')
+
+    plt.xlabel(f'Feature {feature_index}')
+    plt.ylabel('Target Value')
+    plt.title('GBT Model Prediction vs Actual')
+    plt.legend()
+    plt.show()
+
+
+
 if __name__ == "__main__":
-    # read the train files
+
+    # load the Iris dataset
+    data = load_iris()
+    X, y = data.data, data.target
+
+    # split into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    #model = GBT(num_estimators=200, max_depth=4, min_split=15, learning_rate=0.05, criterion='mse')
+    #model = GBT(num_estimators=50, max_depth=4, min_split=10, learning_rate=0.05, criterion='mse')
+    model = model = GBT(num_estimators=20, max_depth=3, min_split=10, learning_rate=0.1, criterion='mse')
+    model.fit(X_train, y_train)
+
+    y_pred = model.predict(X_test)
+
+    print("predict value of y:", y_pred)
+    print("true value of y:", y_test)
+    
 
 
-    X = [[1],[2],[3],[4]]
-    y = [1,2,3,4]
 
-    model = gbt_model = GBT(num_estimators = 3,max_depth=3,min_split=2) 
-    model.fit(X,y)
+    # save model
+    with open('gbt_iris_20_3_10_01.pkl', 'wb') as f:
+        pickle.dump(model, f)
 
-    prediction = model.predict(X)
-    print(prediction)
+    print("success!")
+    plt.figure(figsize=(10, 6))
+
+    # plot the true values with blue circular markers
+    plt.scatter(range(len(y_test)), y_test, color='blue', label='True Values', marker='o')
+
+    # plot the predicted values with red cross markers
+    plt.scatter(range(len(y_test)), y_pred, color='red', label='Predicted Values', alpha=0.6, marker='x')
+
+    # set labels
+    plt.xlabel('Sample Index')
+    plt.ylabel('Target Value (Class Labels)')
+    plt.title('GBT Predictions vs True Values on Iris Dataset')
+    plt.legend()
+
+    # save the plot as an image file
+    plt.savefig('GBT_Predictions_Iris.png')
+
+    plt.show()
+
+
