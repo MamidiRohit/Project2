@@ -128,8 +128,8 @@ print(f"R-squared: {r_squared:.4f}")
 | `tol` | float | 1e-5 | Tolerance for early stopping. |
 | `subsample` | float | 0.5 | Fraction of samples used for training. |
 
-
-**Project Questions**
+---
+**Answers to Project 2**
 
 **1. What does the model you have implemented do, and when should it be used?**
 
