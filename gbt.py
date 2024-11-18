@@ -6,6 +6,8 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 import pickle
 from sklearn.metrics import accuracy_score
+import os
+
 class GBT():
     '''
     parameters:
@@ -183,59 +185,95 @@ class RegressionTree():
             return (left_mse + right_mse) / (len(left_y) + len(right_y))
 
 
-if __name__ == "__main__":
 
+
+def train_and_save_model():
     # load the Iris dataset
     data = load_iris()
     X, y = data.data, data.target
-
-    # split into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    #model = GBT(num_estimators=200, max_depth=4, min_split=15, learning_rate=0.05, criterion='mse')
-    #model = GBT(num_estimators=50, max_depth=4, min_split=10, learning_rate=0.05, criterion='mse')
-    model = model = GBT(num_estimators=20, max_depth=3, min_split=10, learning_rate=0.1, criterion='mse')
+    # train the GBT model
+    model = GBT(num_estimators=20, max_depth=3, min_split=10, learning_rate=0.1, criterion='mse')
     model.fit(X_train, y_train)
 
+    # predict and calculate accuracy
     y_pred = model.predict(X_test)
     y_pred_class = np.round(y_pred).astype(int)
-
-    # clip the values to be within the valid class range (0, 1, 2)
     y_pred_class = np.clip(y_pred_class, 0, 2)
-
-    # calculate the accuracy score
     accuracy = accuracy_score(y_test, y_pred_class)
 
-    # print the predicted and true values, as well as the accuracy
-    print("Predicted values of y", y_pred)
     print("Predicted values of y (rounded to nearest class):", y_pred_class)
     print("True values of y:", y_test)
     print("Classification Accuracy:", accuracy)
 
-
-
     # save model
-    with open('gbt_iris_20_3_10_01.pkl', 'wb') as f:
+    with open('gbt_iris_model.pkl', 'wb') as f:
         pickle.dump(model, f)
+    print("Model saved successfully!")
 
-    print("success!")
+    # plot the predictions vs true values
     plt.figure(figsize=(10, 6))
-
-    # plot the true values with blue circular markers
     plt.scatter(range(len(y_test)), y_test, color='blue', label='True Values', marker='o')
-
-    # plot the predicted values with red cross markers
     plt.scatter(range(len(y_test)), y_pred, color='red', label='Predicted Values', alpha=0.6, marker='x')
-
-    # set labels
     plt.xlabel('Sample Index')
     plt.ylabel('Target Value (Class Labels)')
     plt.title('GBT Predictions vs True Values on Iris Dataset')
     plt.legend()
-
-    # save the plot as an image file
     plt.savefig('GBT_Predictions_Iris.png')
-
     plt.show()
+
+def load_and_plot_model():
+    # load the model from file
+    if not os.path.exists('./gbt_iris_20_3_10_01.pkl'):
+        print("No saved model found. Please22 train the model first.")
+        return
+
+    with open('./gbt_iris_20_3_10_01.pkl', 'rb') as f:
+        model = pickle.load(f)
+
+    data = load_iris()
+    X, y = data.data, data.target
+
+    # predict with the loaded model
+    y_pred = model.predict(X)
+    y_pred_class = np.round(y_pred).astype(int)
+    y_pred_class = np.clip(y_pred_class, 0, 2)
+
+    # print the accuracy
+    accuracy = accuracy_score(y, y_pred_class)
+    print("Classification Accuracy on the whole dataset:", accuracy)
+
+    # plot the predictions vs true values
+    plt.figure(figsize=(10, 6))
+    plt.scatter(range(len(y)), y, color='blue', label='True Values', marker='o')
+    plt.scatter(range(len(y)), y_pred, color='red', label='Predicted Values', alpha=0.6, marker='x')
+    plt.xlabel('Sample Index')
+    plt.ylabel('Target Value (Class Labels)')
+    plt.title('GBT Predictions vs True Values on Iris Dataset (Loaded Model)')
+    plt.legend()
+    plt.show()
+
+
+
+if __name__ == "__main__":
+    while True:
+        print("\nSelect an option:")
+        print("1. Train Iris dataset, test it on test set and save model")
+        print("2. Load saved model and plot predictions")
+        print("3. Exit")
+
+        choice = input("Enter your choice (1/2/3): ")
+
+        if choice == '1':
+            train_and_save_model()
+        elif choice == '2':
+            load_and_plot_model()
+        elif choice == '3':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please enter 1, 2, or 3.")
+
 
 
