@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 import pickle
-
+from sklearn.metrics import accuracy_score
 class GBT():
     '''
     parameters:
@@ -131,7 +131,7 @@ class RegressionTree():
 
                 left_X, right_X = X[left_indices], X[right_indices]
                 left_y, right_y = y[left_indices], y[right_indices]
-                # Ensure both sides have at least one sample
+                # ensure both sides have at least one sample
                 if len(left_y) == 0 or len(right_y) == 0:
                     continue
 
@@ -171,6 +171,7 @@ class RegressionTree():
         return np.array(predictions)
 
     def regErr(self, left_y, right_y, mode=1):
+
         if mode == 'mae':
             left_mae = np.mean(np.abs(left_y - np.mean(left_y))) * len(left_y) if len(left_y) > 0 else 0
             right_mae = np.mean(np.abs(right_y - np.mean(right_y))) * len(right_y) if len(right_y) > 0 else 0
@@ -180,37 +181,6 @@ class RegressionTree():
             left_mse = np.var(left_y) * len(left_y) if len(left_y) > 0 else 0
             right_mse = np.var(right_y) * len(right_y) if len(right_y) > 0 else 0
             return (left_mse + right_mse) / (len(left_y) + len(right_y))
-
-
-def visualizing():
-    pass
-
-
-def plot_gbt_predictions(X, y, model, feature_index=0):
-    """ Plot the true values vs. GBT predictions for a specific feature. """
-    # Use the specified feature for visualization
-    X_feature = X[:, feature_index]
-    X_plot = np.linspace(X_feature.min(), X_feature.max(), 100).reshape(-1, 1)
-
-    # Expand dimensions of X_plot to match the input shape for the model
-    X_plot_full = np.zeros((X_plot.shape[0], X.shape[1]))
-    X_plot_full[:, feature_index] = X_plot[:, 0]
-
-    # Get predictions from the model
-    predictions = model.predict(X_plot_full)
-
-    # Plot the actual data points
-    plt.scatter(X_feature, y, color='blue', label='Actual Data', alpha=0.5)
-
-    # Plot the GBT predictions
-    plt.plot(X_plot, predictions, color='red', label='GBT Predictions')
-
-    plt.xlabel(f'Feature {feature_index}')
-    plt.ylabel('Target Value')
-    plt.title('GBT Model Prediction vs Actual')
-    plt.legend()
-    plt.show()
-
 
 
 if __name__ == "__main__":
@@ -228,10 +198,19 @@ if __name__ == "__main__":
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
+    y_pred_class = np.round(y_pred).astype(int)
 
-    print("predict value of y:", y_pred)
-    print("true value of y:", y_test)
-    
+    # clip the values to be within the valid class range (0, 1, 2)
+    y_pred_class = np.clip(y_pred_class, 0, 2)
+
+    # calculate the accuracy score
+    accuracy = accuracy_score(y_test, y_pred_class)
+
+    # print the predicted and true values, as well as the accuracy
+    print("Predicted values of y", y_pred)
+    print("Predicted values of y (rounded to nearest class):", y_pred_class)
+    print("True values of y:", y_test)
+    print("Classification Accuracy:", accuracy)
 
 
 
