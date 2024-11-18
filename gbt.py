@@ -1,12 +1,12 @@
+import os
 import numpy as np
 import pandas as pd
+import pickle
 import matplotlib.pyplot as plt
-#from sklearn.datasets import fetch_california_housing
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
-import pickle
-from sklearn.metrics import accuracy_score
-import os
+from sklearn.metrics import accuracy_score, r2_score
+from sklearn.metrics import mean_squared_error
 
 class GBT():
     '''
@@ -15,7 +15,6 @@ class GBT():
     init fuction needs learning rate η, and the maximum depth d of the decision tree model
     
     initialize the model : let F0(x) = 0
-    then, need a loop , in the loop performing:
         calculate the residuals of the loss function rmi: rmi = yi - Fm-1(xi), where xi and yi are the features and target value of the i-th sample, respectively
         train a regression tree Gm(X) and predict the residual value for each xi
         minimize the mean square error of each node to find regression coefficients of leaf nodes
@@ -186,7 +185,6 @@ class RegressionTree():
 
 
 
-
 def train_and_save_model():
     # load the Iris dataset
     data = load_iris()
@@ -223,6 +221,7 @@ def train_and_save_model():
     plt.savefig('GBT_Predictions_Iris.png')
     plt.show()
 
+
 def load_and_plot_model():
     # load the model from file
     if not os.path.exists('./gbt_iris_20_3_10_01.pkl'):
@@ -247,7 +246,7 @@ def load_and_plot_model():
     accuracy = accuracy_score(y_test, y_pred_class)
     print("Classification Accuracy on the test dataset:", accuracy)
 
-    # Plot the predictions vs true values for the test set
+    # plot the predictions vs true values for the test set
     plt.figure(figsize=(10, 6))
     plt.scatter(range(len(y_test)), y_test, color='blue', label='True Values', marker='o')
     plt.scatter(range(len(y_test)), y_pred, color='red', label='Predicted Values', alpha=0.6, marker='x')
@@ -258,26 +257,85 @@ def load_and_plot_model():
     plt.show()
 
 
+def train_concrete_model(file_path='./Concrete_Data.xls'):
+    # load the dataset
+    if not os.path.exists(file_path):
+        print(f"{file_path} file not found. Please ensure it is in the correct directory.")
+        return
+    
+    dataset_name = os.path.basename(file_path).split('.')[0]  # extract the base name without extension
+    print(f"Loading dataset: {file_path}")
+
+    data = pd.read_excel(file_path)
+    X = data.iloc[:, :-1].values  # all columns except the last one are features
+    y = data.iloc[:, -1].values   # the last column is the target variable
+    
+    # split the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # train the GBT model
+    model = GBT(num_estimators=40, max_depth=5, min_split=10, learning_rate=0.08, criterion='mse')
+    model.fit(X_train, y_train)
+
+    # predict and calculate RMSE and R² Score
+    y_pred = model.predict(X_test)
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+    r2 = r2_score(y_test, y_pred)  # R² Score
+
+    # print evaluation metrics
+    print(f"Evaluation Metrics for Dataset '{dataset_name}':")
+    print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+    print(f"R² Score: {r2:.2f}")
+
+    # save the model with the appropriate name
+    model_file_name = f'gbt_{dataset_name}_model.pkl'
+    with open(model_file_name, 'wb') as f:
+        pickle.dump(model, f)
+    print(f"Model saved successfully as '{model_file_name}'")
+
+    # plot predictions vs true values
+    plt.figure(figsize=(10, 6))
+    plt.scatter(range(len(y_test)), y_test, color='blue', label='True Values', marker='o')
+    plt.scatter(range(len(y_test)), y_pred, color='red', label='Predicted Values', alpha=0.6, marker='x')
+    plt.xlabel('Sample Index')
+    plt.ylabel('Target Value (Compressive Strength)')
+    plt.title(f'GBT Predictions vs True Values on Dataset: {dataset_name}')
+    plt.legend()
+    plot_file_name = f'GBT_Predictions_{dataset_name}.png'
+    plt.savefig(plot_file_name)
+    plt.show()
+    print(f"Prediction plot saved as '{plot_file_name}'")
+
+
 if __name__ == "__main__":
     while True:
         print("\nSelect an option:")
         print("1. Train Iris dataset, test it on test set and save model")
-        print("2. Load saved model and plot predictions")
-        print("3. Exit")
+        print("2. Load saved Iris model and plot predictions")
+        print("3. Train default Concrete_Data.xls dataset, test it, and save model")
+        print("4. Train custom dataset (input file name), test it, and save model")
+        print("q. Exit")
 
-        choice = input("Enter your choice (1/2/3): ")
+        choice = input("Enter your choice (1/2/3/4/q): ")
 
         if choice == '1':
             train_and_save_model()
         elif choice == '2':
             load_and_plot_model()
         elif choice == '3':
+            train_concrete_model()  # default Concrete_Data.xls
+        elif choice == '4':
+            print("Please modify the GBT parameters in the code if needed before proceeding!")
+            file_name = input("Enter the dataset file name (including extension, e.g., 'your_data.xls'): ")
+            train_concrete_model(file_path=file_name)  # custom dataset
+        elif choice == 'q':
             print("Exiting...")
             break
         else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+            print("Invalid choice. Please enter 1, 2, 3, 4, or q.")
             print("Using default choice 1")
             train_and_save_model()
+
 
 
 
