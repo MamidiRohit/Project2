@@ -1,10 +1,11 @@
 {
+    "description": "Test designed for program execution verification and optimal settings for unit data sets.",
     "test": {
         "general": {
             "activate": {"k_fold_CV": true, "bootstrapping": true},
             "model": "LinearRegression",
-            "metric": "MSE",
-            "data": "generate"
+            "metric": "R2",
+            "data": "file"
         },
         "k_fold_cross_validation": {
             "k": [5],
@@ -18,7 +19,7 @@
     "data": {
         "file": [
             {
-                "file_name": "small_test.csv",
+                "file_name": "./data/housing.csv",
                 "test_ratio": 0.25
             }
         ],

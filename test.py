@@ -1,3 +1,5 @@
+# import sys
+
 from modelSelection import *
 
 
@@ -24,8 +26,9 @@ def test_AIC(model, train_X: np.ndarray, train_y: np.ndarray, test_X: np.ndarray
     print(f"\t(Comparison) AIC Score: {AIC(X=test_X, y=test_y, y_pred=y_pred)}")
 
 
-def main():
-    param = get_param('./params/param_multi.json')
+def main(file_path: str):
+
+    param = get_param(file_path)
     # Init params
     print(f"{'*' * 52} Global Setting {'*' * 52}")
     args_g = param["test"]["general"]
@@ -72,4 +75,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # args = sys.argv
+    args = ["QuickStart", "./params/param_single.json"]
+    if len(args) > 1:
+        main(args[1])
+    else:
+        print("[Warning] No parameter configuration(file Path with param_*.json) has provided!")
+        print("[Info] Termination program...")

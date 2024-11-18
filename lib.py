@@ -5,11 +5,10 @@ References:
     2. Log likelihood formula - StatLect "Log-likelihood"
       [LINK] https://www.statlect.com/glossary/log-likelihood
 """
-import numpy as np
-import csv
 import json
-from sklearn.linear_model import *
 
+import numpy as np
+from sklearn.linear_model import *
 
 # Collection of auxiliary functions
 
@@ -50,7 +49,7 @@ def get_model(model_type: str):
 def get_metric(metric_type: str):
     """
     get_metric()
-    This function returns the metric function for the given metric_type defined in 'param.py'.
+    This function returns the metric function for the given metric_type defined in 'param.txt'.
     If no metric_type is defined, it returns default setting as MSE.
     :param metric_type: the type of metric to use [options] "MSE(default)", "Accuracy score"
     :return: a metric function to apply.
@@ -61,6 +60,8 @@ def get_metric(metric_type: str):
         return MSE
     elif metric_type == "Accuracy score":
         return accuracy_score
+    elif metric_type == "R2":
+        return R2
     else:  # Invalid type described
         print(f"[Warning] Invalid metric type has given. Uses default metric type as 'MSE'")
         return MSE
@@ -71,23 +72,28 @@ def get_metric(metric_type: str):
 """
 
 
-def read_csv(file_name: str) -> tuple:
+def read_csv(file_name: str, test_ratio: float) -> tuple:
     """
-    read_data()
+    read_csv()
     This function reads the data from the given csv file
+    * This function accepts the following valid file format:
+        a dataset with either a single or multiple features and a single label,
+        where all values excluding the header are numeric.
     :param file_name: name of the file to read
-    :return: X, y
+    :param test_ratio: test ratio from the created dataset
+    :return:
+        X: Dataset with features
+        y: Dataset with labels
+        train_X, train_y, test_X, test_y: Split dataset by split_dataset() function
     """
-    data = []
-    with open(file_name, "r") as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            data.append(row)
+    data = np.loadtxt(file_name, delimiter=',', skiprows=1)  # Skip header
 
-    X = np.array([[float(v) for k, v in datum.items() if k.startswith('x')] for datum in data])
-    y = np.array([[float(v) for k, v in datum.items() if k == 'y'] for datum in data])
+    X = data[:, :-1]
+    y = data[:, -1]
 
-    return X, y
+    # Split dataset into train and test
+    train_X, train_y, test_X, test_y = split_dataset(X, y, test_ratio)
+    return X, y, train_X, train_y, test_X, test_y
 
 
 def generate_data(size: int, dimension: int, correlation: float, noise_std: float, random_state: int,
@@ -170,9 +176,7 @@ def get_data(data_type: str, args: dict) -> tuple:
         test_y: test dataset label
     """
     if data_type == 'file':
-        X, y = read_csv(**args)
-        train_X, train_y, test_X, test_y = split_dataset(X, y, args["test_ratio"])
-        return X, y, train_X, train_y, test_X, test_y
+        return read_csv(**args)
     else:  # (Default) Generate data
         return generate_data(**args)
 
@@ -225,3 +229,25 @@ def AIC(y: np.ndarray, X: np.ndarray, y_pred: np.ndarray):
     log_likelihood = - n / 2 * np.log(2 * np.pi) - n / 2 - n * np.log(MSE(y, y_pred)) / 2
 
     return 2 * k - 2 * log_likelihood  # AIC = 2*k - 2*log_likelihood
+
+
+def R2(y: np.ndarray, y_pred: np.ndarray) -> float:
+    """
+    R2()
+    This function calculates the coefficient of determination (R2) between given data (actual y and predicted y).
+    The higher the value of R², the higher the explanatory power of the model.
+    Formula used:
+        R² = 1 - (∑((y_i - y_pred_i)²) / ∑((y_i - y_mean)²))
+    where:
+        y_i      : actual weight of ith feature
+        y_pred_i : predicted weight of ith feature
+        y_mean   : mean of the actual weight features
+
+    :param y: Actual weights
+    :param y_pred: Predicted weights
+    :return: R2 score between two weights
+    """
+    # Average of actual weights
+    y_mean = np.mean(y)
+    r_2 = 1 - np.sum((y - y_pred) ** 2) / np.sum((y - y_mean) ** 2)  # R2 = 1 - SSR/SST
+    return float(r_2)

@@ -5,12 +5,13 @@
 """
 
 params = {
+    "description":
     "test": {
         "general": {
             "activate": {"k_fold_CV": True, "bootstrapping": True},  # True to execute the target test
             "model": "LinearRegression",  # [options] "LinearRegression(default)", "LogisticRegression"
-            "metric": "MSE",  # [options] "MSE(default)", "Accuracy score"
-            "data": "generate",  # [options] 'kaggle'(default), 'file', 'generate'
+            "metric": "MSE",  # [options] "MSE", "Accuracy score"
+            "data": "generate",  # [options] file', 'generate'
         },
         "k_fold_cross_validation": {
             "k": [5],  # Number of folds
