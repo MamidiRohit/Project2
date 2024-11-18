@@ -27,3 +27,21 @@ In your README, answer the following questions:
 See sections 7.10-7.11 of Elements of Statistical Learning and the lecture notes. Pay particular attention to Section 7.10.2.
 
 As usual, above-and-beyond efforts will be considered for bonus points.
+
+## Dataset Information
+
+This project utilizes two datasets:
+
+1. **Concrete Dataset**:  
+   The dataset is made publicly available by its authors and can be reused without restrictions, provided the following copyright notice and citation are retained:
+
+   **Copyright Notice**:  
+   Prof. I-Cheng Yeh  
+
+   **Citation**:  
+   I-Cheng Yeh, "Modeling of strength of high performance concrete using artificial neural networks," *Cement and Concrete Research*, Vol. 28, No. 12, pp. 1797-1808 (1998).
+
+   By including this dataset in this project, we acknowledge and respect the rights of the original authors and adhere to the guidelines for its use.
+
+2. **Iris Dataset**:  
+   This project also uses the open-source Iris dataset provided by the `scikit-learn` library. The Iris dataset is a well-known benchmark dataset for classification and regression tasks in machine learning.
