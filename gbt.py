@@ -235,25 +235,27 @@ def load_and_plot_model():
     data = load_iris()
     X, y = data.data, data.target
 
-    # predict with the loaded model
-    y_pred = model.predict(X)
+    # split the data into training and testing sets (test set is 1/3 of the total data)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3, random_state=42)
+
+    # predict
+    y_pred = model.predict(X_test)
     y_pred_class = np.round(y_pred).astype(int)
     y_pred_class = np.clip(y_pred_class, 0, 2)
 
-    # print the accuracy
-    accuracy = accuracy_score(y, y_pred_class)
-    print("Classification Accuracy on the whole dataset:", accuracy)
+    # calculate and print the accuracy
+    accuracy = accuracy_score(y_test, y_pred_class)
+    print("Classification Accuracy on the test dataset:", accuracy)
 
-    # plot the predictions vs true values
+    # Plot the predictions vs true values for the test set
     plt.figure(figsize=(10, 6))
-    plt.scatter(range(len(y)), y, color='blue', label='True Values', marker='o')
-    plt.scatter(range(len(y)), y_pred, color='red', label='Predicted Values', alpha=0.6, marker='x')
-    plt.xlabel('Sample Index')
+    plt.scatter(range(len(y_test)), y_test, color='blue', label='True Values', marker='o')
+    plt.scatter(range(len(y_test)), y_pred, color='red', label='Predicted Values', alpha=0.6, marker='x')
+    plt.xlabel('Sample Index (Test Set)')
     plt.ylabel('Target Value (Class Labels)')
-    plt.title('GBT Predictions vs True Values on Iris Dataset (Loaded Model)')
+    plt.title('GBT Predictions vs True Values on Test Set (Loaded Model)')
     plt.legend()
     plt.show()
-
 
 
 if __name__ == "__main__":
@@ -274,6 +276,8 @@ if __name__ == "__main__":
             break
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
+            print("Using default choice 1")
+            train_and_save_model()
 
 
 
