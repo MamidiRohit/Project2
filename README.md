@@ -1,3 +1,15 @@
+<h1>Student Name and A#</h1>
+<p>Harlee Ramos A20528450</p>
+<p>Andres Orozco A20528634</p>
+
+<p>This document contains two parts. The information on how to run the program and the answers to the Project 2 questions.</p>
+
+
+<h2>How to run the BoostingTree model:</h2>
+
+
+
+
 # Project 2
 
 Select one of the following two options:
