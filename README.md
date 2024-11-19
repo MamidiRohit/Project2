@@ -120,6 +120,8 @@ The project includes handling two datasets:
 
 ## Q4.Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?
 
+---
+
 - ## Visualization
 
 ### **1.GBT Predictions vs True Values on Concrete Data**
@@ -150,7 +152,6 @@ The plot was generated as part of the `train_concrete_model()` function in the G
    - Represents the compressive strength values (both true and predicted).
    - Higher values indicate stronger concrete, while lower values indicate weaker concrete.
 
----
 
 ### **Interpretation of the Plot**
 
@@ -162,7 +163,6 @@ The plot was generated as part of the `train_concrete_model()` function in the G
 - However, there are also several discrepancies where the predicted values deviate significantly from the true values, indicating that the model may struggle with certain samples.
 - These deviations suggest that there is room for improvement, potentially through hyperparameter tuning, more advanced feature engineering, or trying alternative models.
 
----
 
 ### **Evaluation Metrics (RMSE and R² Score)**
 
@@ -176,7 +176,6 @@ The `train_concrete_model()` function calculates the following metrics:
    - Indicates how well the model explains the variance in the target variable.
    - A value close to 1 means the model explains most of the variance, while a value closer to 0 indicates poor explanatory power.
 
----
 
 ### **Conclusion**
 
@@ -191,11 +190,7 @@ This plot provides a visual representation of the GBT model's performance on the
 
 ![GBT_Predictions_Iris](GBT_Predictions_Iris.png)
 
-### **Explanation of the Plot**
-
 This plot, generated from the `train_and_save_model()` function in the above Gradient Boosted Trees (GBT) implementation, compares the **true class labels** and **predicted class labels** for the **Iris dataset**.
-
----
 
 ### **Key Features of the Plot**
 
@@ -218,8 +213,6 @@ This plot, generated from the `train_and_save_model()` function in the above Gra
      - `2` = Virginica
    - The closer the red crosses (predicted values) are to the blue dots (true values), the better the model's performance.
 
----
-
 ### **Interpretation of the Plot**
 
 - **Perfect Matches**:
@@ -228,8 +221,6 @@ This plot, generated from the `train_and_save_model()` function in the above Gra
 - **Misclassifications**:
   - For some samples, the red crosses (predictions) do not align with the blue dots (true values), which shows that the model misclassified those samples.
 
----
-
 ### **Evaluation Metrics**
 
 In this specific use case, the following evaluation metric is calculated:
@@ -237,8 +228,6 @@ In this specific use case, the following evaluation metric is calculated:
 - **Accuracy Score**:
   - Measures the proportion of correctly classified samples.
   - The closer the predicted values are to the true values, the higher the accuracy.
-
----
 
 ### **Conclusion**
 
