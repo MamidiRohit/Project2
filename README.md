@@ -122,7 +122,7 @@ The project includes handling two datasets:
 
 - ## Visualization
 
-### **GBT Predictions vs True Values on Concrete Data**
+### **1.GBT Predictions vs True Values on Concrete Data**
 
 ![GBT Predictions vs True Values](GBT_Predictions_Concrete_Data.png)
 
@@ -185,9 +185,9 @@ This plot provides a visual representation of the GBT model's performance on the
 - Exploring more features.
 - Trying alternative machine learning models.
 
+---
 
-
-### **GBT_Predictions_Iris**
+### **2.GBT_Predictions_Iris**
 
 ![GBT_Predictions_Iris](GBT_Predictions_Iris.png)
 
