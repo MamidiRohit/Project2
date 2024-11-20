@@ -4,9 +4,10 @@ References:
       [LINK] https://en.wikipedia.org/wiki/Akaike_information_criterion
     2. Log likelihood formula - StatLect "Log-likelihood"
       [LINK] https://www.statlect.com/glossary/log-likelihood
+    3. R2 score formula: Wikipedia - Coefficient of determination
+      [LINK] https://en.wikipedia.org/wiki/Coefficient_of_determination
 """
 import json
-
 import numpy as np
 from sklearn.linear_model import *
 
@@ -18,22 +19,28 @@ from sklearn.linear_model import *
 
 
 def get_param(file_path: str) -> dict:
+    """
+    get_param()
+    This function reads parameter settings from a JSON file.
+    :param file_path: Path to the JSON file containing parameter settings.
+    :return: A dictionary of parameters.
+    """
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
 
 """
-    Model selections
+    Model selection functions
 """
 
 
 def get_model(model_type: str):
     """
     get_model()
-    This function returns the model object for the given model_type defined in 'params,py'.
-    If no model_type is defined, it returns default model object as LinearRegression.
-    :param model_type: the type of model to use [options] "LinearRegression(default)", "LogisticRegression"
-    :return: a model object to train.
+    This function returns a model object based on the given model_type.
+    If an invalid model_type is provided, it defaults to LinearRegression.
+    :param model_type: The type of model to use. Options: "LinearRegression" (default), "LogisticRegression".
+    :return: A model object.
     """
     print(f"Model Type: {model_type}")
 
@@ -42,17 +49,17 @@ def get_model(model_type: str):
     elif model_type == "LogisticRegression":
         return LogisticRegression(max_iter=1000)
     else:  # Invalid type described
-        print(f"[Warning] Invalid model type has given. Uses default model type as 'LinearRegression'")
+        print(f"[Warning] Invalid model type given. Defaulting to 'LinearRegression'.")
         return LinearRegression()
 
 
 def get_metric(metric_type: str):
     """
     get_metric()
-    This function returns the metric function for the given metric_type defined in 'param.txt'.
-    If no metric_type is defined, it returns default setting as MSE.
-    :param metric_type: the type of metric to use [options] "MSE(default)", "Accuracy score"
-    :return: a metric function to apply.
+    This function returns the metric function corresponding to the given metric_type.
+    Defaults to MSE if an invalid type is provided.
+    :param metric_type: The type of metric to use. Options: "MSE" (default), "Accuracy score", "R2".
+    :return: A metric function.
     """
     print(f"Metric Type: {metric_type}")
 
@@ -63,30 +70,24 @@ def get_metric(metric_type: str):
     elif metric_type == "R2":
         return R2
     else:  # Invalid type described
-        print(f"[Warning] Invalid metric type has given. Uses default metric type as 'MSE'")
+        print(f"[Warning] Invalid metric type given. Defaulting to 'MSE'.")
         return MSE
 
 
 """
-    Data import/create functions
+    Data import and generation functions
 """
 
 
 def read_csv(file_name: str, test_ratio: float) -> tuple:
     """
     read_csv()
-    This function reads the data from the given csv file
-    * This function accepts the following valid file format:
-        a dataset with either a single or multiple features and a single label,
-        where all values excluding the header are numeric.
-    :param file_name: name of the file to read
-    :param test_ratio: test ratio from the created dataset
-    :return:
-        X: Dataset with features
-        y: Dataset with labels
-        train_X, train_y, test_X, test_y: Split dataset by split_dataset() function
+    This function reads data from a CSV file and splits it into training and test sets.
+    :param file_name: The name of the CSV file to read.
+    :param test_ratio: The proportion of data to use for the test set.
+    :return: A tuple containing the full dataset (X, y) and the split datasets (train_X, train_y, test_X, test_y).
     """
-    data = np.loadtxt(file_name, delimiter=',', skiprows=1)  # Skip header
+    data = np.loadtxt(file_name, delimiter=',', skiprows=1)  # Skip the header row
 
     X = data[:, :-1]
     y = data[:, -1]
@@ -99,41 +100,36 @@ def read_csv(file_name: str, test_ratio: float) -> tuple:
 def generate_data(size: int, dimension: int, correlation: float, noise_std: float, random_state: int,
                   test_ratio: float) -> tuple:
     """
-    generate_multi_collinear_data()
-    This is a function that generates data with multi_collinearity
-    The data produced from this function is intended to measure the ElasticNet model's ability
-    to handle multi_collinearity, which is a critical feature of the model
-
-    :param size: Number of samples to generate
-    :param dimension: Number of features to generate
-    :param correlation: Correlation coefficient between features (1 is the worst)
-    :param noise_std: Set noise scale to test durability of the trained model
-    :param random_state: random seed
-    :param test_ratio: test ratio from the created dataset
-    :returns:
-        X: Dataset with features
-        y: Dataset with labels
-        train_X, train_y, test_X, test_y: Split dataset by split_dataset() function
+    generate_data()
+    This function generates synthetic data with multi-collinearity, designed for testing models like ElasticNet.
+    :param size: Number of samples to generate.
+    :param dimension: Number of features to generate.
+    :param correlation: Correlation coefficient between features (1 indicates perfect correlation).
+    :param noise_std: Standard deviation of noise added to the data.
+    :param random_state: Random seed for reproducibility.
+    :param test_ratio: The proportion of data to use for the test set.
+    :return: A tuple containing the full dataset (X, y) and the split datasets (train_X, train_y, test_X, test_y).
     """
     if random_state:
         np.random.seed(random_state)
 
-    # random base sample (1st feature)
+    # TODO: Update Multi-collinearity function part
+    # Generate the base feature
     X_base = np.random.rand(size, 1)
 
-    # Create another feature based on the data for the first feature
+    # Create correlated features
     X = X_base + correlation * np.random.randn(size, dimension) * noise_std
 
     # Increase the correlation between each feature (e.g. through linear combination)
     for i in range(1, dimension):
         X[:, i] = correlation * X_base[:, 0] + (1 - correlation) * np.random.randn(size)
 
-    # create weights, bias, and noise
+    # Generate weights, bias, and noise
     weights = np.random.randn(dimension)
     bias = np.random.rand()
     noise_std = np.random.normal(0, noise_std, size=size)
 
-    # create y (Add noise to multi-collinearity)
+    # Create the target variable y
     y = X.dot(weights) + bias + (bias + noise_std)
 
     # Split dataset into train and test
@@ -144,15 +140,11 @@ def generate_data(size: int, dimension: int, correlation: float, noise_std: floa
 def split_dataset(X: np.ndarray, y: np.ndarray, test_ratio: float) -> tuple:
     """
     split_dataset()
-    This function splits the dataset into training and test sets
-    :param X: Dataset with features
-    :param y: Dataset labels
-    :param test_ratio: size of the test set
-    :return:
-        train_X: train dataset
-        train_y: train dataset label
-        test_X: test dataset
-        test_y: test dataset label
+    This function splits the dataset into training and test sets based on the given test_ratio.
+    :param X: Features.
+    :param y: Labels.
+    :param test_ratio: Proportion of the dataset to use as the test set.
+    :return: Training and test sets (train_X, train_y, test_X, test_y).
     """
     # Split data into train and test
     test_size = int(test_ratio * X.shape[0])
@@ -164,20 +156,14 @@ def split_dataset(X: np.ndarray, y: np.ndarray, test_ratio: float) -> tuple:
 def get_data(data_type: str, args: dict) -> tuple:
     """
     get_data()
-    This function loads dataset chosen data type
-    :param data_type: the type of data to use [data options] 'iris'(default), 'file' ,'generate'
-    :param args: a parameter setting of the dataset
-    :returns: tuples produced by chosen function. Specific details as below:
-        X: Dataset with features
-        y: Dataset with labels
-        train_X: train dataset
-        train_y: train dataset label
-        test_X: test dataset
-        test_y: test dataset label
+    This function loads or generates a dataset based on the data_type.
+    :param data_type: The type of dataset to use. Options: "file" (from CSV) or "generate" (synthetic data).
+    :param args: Arguments specific to the chosen data type.
+    :return: Dataset tuples (X, y, train_X, train_y, test_X, test_y).
     """
     if data_type == 'file':
         return read_csv(**args)
-    else:  # (Default) Generate data
+    else:  # Default to generated data
         return generate_data(**args)
 
 
@@ -189,63 +175,63 @@ def get_data(data_type: str, args: dict) -> tuple:
 def MSE(y: np.ndarray, y_pred: np.ndarray) -> float:
     """
     MSE()
-    This function calculates a value based on mean squared error (MSE),
-    one of the evaluation indicators for regression models.
-    :param y: desired target values
-    :param y_pred: predicted values
-    :return: mean squared error of the given data
+    This function calculates the Mean Squared Error (MSE) between actual and predicted values.
+    :param y: Actual values.
+    :param y_pred: Predicted values.
+    :return: Mean Squared Error.
     """
     return float(np.mean((y - y_pred) ** 2))
 
 
 def accuracy_score(y: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    accuracy_rate()
-    This function calculates a value based on accuracy rate,
-    which is one of the evaluation metrics for a classification model.
-    :param y: desired target values
-    :param y_pred: predicted values
-    :return: accuracy rate of the model
+    accuracy_score()
+    This function calculates the accuracy score for classification tasks.
+    :param y: Actual labels.
+    :param y_pred: Predicted labels.
+    :return: Accuracy score.
     """
     return float(np.sum(y == y_pred) / len(y))
 
 
 def AIC(y: np.ndarray, X: np.ndarray, y_pred: np.ndarray):
     """
-    aic()
-    This function computes the AIC evaluation for the given model
-    :param y: Actual values
-    :param X: Feature vectors
-    :param y_pred: Predicted values
-    :return: AIC value
+    AIC()
+    This function computes the Akaike Information Criterion (AIC) for the given model.
+    Formula used:
+        * Refer to above references
+        log-likelihood = - n/2*log(2*π) - n/2*log(MSE)  - n/2
+        AIC = 2*k - 2*(log-likelihood)
+            = - (∑((y_i - y_pred_i)²) / ∑((y_i - y_mean)²))
+    :param y: Actual values.
+    :param X: Feature matrix.
+    :param y_pred: Predicted values.
+    :return: AIC value.
     """
-    # Number of samples
+    # Number of samples and features
     n = X.shape[0]
+    k = X.shape[1] + 1  # Include residual as a parameter
 
-    # Number of feature including a residual
-    k = X.shape[1] + 1
-
-    # Log likelihood formula: log_likelihood = - n/2*log(2*π) - n/2*log(MSE)  - n/2
+    # compute Log-likelihood
     log_likelihood = - n / 2 * np.log(2 * np.pi) - n / 2 - n * np.log(MSE(y, y_pred)) / 2
 
-    return 2 * k - 2 * log_likelihood  # AIC = 2*k - 2*log_likelihood
+    # Return AIC value
+    return 2 * k - 2 * log_likelihood
 
 
 def R2(y: np.ndarray, y_pred: np.ndarray) -> float:
     """
     R2()
-    This function calculates the coefficient of determination (R2) between given data (actual y and predicted y).
-    The higher the value of R², the higher the explanatory power of the model.
+    This function calculates the R² score (coefficient of determination) for regression models.
     Formula used:
         R² = 1 - (∑((y_i - y_pred_i)²) / ∑((y_i - y_mean)²))
     where:
         y_i      : actual weight of ith feature
         y_pred_i : predicted weight of ith feature
         y_mean   : mean of the actual weight features
-
-    :param y: Actual weights
-    :param y_pred: Predicted weights
-    :return: R2 score between two weights
+    :param y: Actual values.
+    :param y_pred: Predicted values.
+    :return: R² score.
     """
     # Average of actual weights
     y_mean = np.mean(y)

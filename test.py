@@ -1,9 +1,19 @@
 # import sys
-
 from modelSelection import *
 
 
 def test_k_Fold_CV(model, metric, X: np.ndarray, y: np.ndarray, ks: list[int], shuffle: bool):
+    """
+    test_k_Fold_CV()
+    This function tests the k-fold cross-validation implementation with different values of k.
+
+    :param model: The statistical model to be validated.
+    :param metric: The metric function used to evaluate model performance.
+    :param X: The feature matrix.
+    :param y: The target labels.
+    :param ks: A list of k values to test (number of folds).
+    :param shuffle: Whether to shuffle the data before splitting into folds.
+    """
     for k in ks:
         k_fold_scores, k_fold_avg = k_fold_cross_validation(model, metric, X=X, y=y, k=k, shuffle=shuffle)
         print(f"k-Fold Cross-Validation Scores:\n\t{k_fold_scores}")
@@ -11,6 +21,17 @@ def test_k_Fold_CV(model, metric, X: np.ndarray, y: np.ndarray, ks: list[int], s
 
 
 def test_bootstrapping(model, metric, X: np.ndarray, y: np.ndarray, ss: list[int], epochs_list: list[int]):
+    """
+    test_bootstrapping()
+    This function tests the bootstrapping implementation with different sample sizes and epochs.
+
+    :param model: The statistical model to be tested.
+    :param metric: The metric function used to evaluate model performance.
+    :param X: The feature matrix.
+    :param y: The target labels.
+    :param ss: A list of sample sizes for the bootstrapping training set.
+    :param epochs_list: A list of epoch values to determine the number of iterations for bootstrapping.
+    """
     for s in ss:
         for epochs in epochs_list:
             bootstrap_scores, bootstrap_avg = bootstrapping(model, metric, X=X, y=y, s=s, epochs=epochs)
@@ -21,15 +42,32 @@ def test_bootstrapping(model, metric, X: np.ndarray, y: np.ndarray, ss: list[int
 
 
 def test_AIC(model, train_X: np.ndarray, train_y: np.ndarray, test_X: np.ndarray, test_y: np.ndarray):
+    """
+    test_AIC()
+    This function tests the AIC (Akaike Information Criterion) computation for the given model.
+
+    :param model: The trained statistical model.
+    :param train_X: Training feature matrix.
+    :param train_y: Training labels.
+    :param test_X: Test feature matrix.
+    :param test_y: Test labels.
+    """
     model.fit(train_X, train_y)
     y_pred = model.predict(test_X)
     print(f"\t(Comparison) AIC Score: {AIC(X=test_X, y=test_y, y_pred=y_pred)}")
 
 
 def main(file_path: str):
+    """
+    main()
+    This function is an entry point for the test suite. Loads parameters, initializes models,
+    and tests k-fold cross-validation with AIC performance and bootstrapping.
 
+    :param file_path: Path to the JSON configuration file containing test parameters.
+    """
     param = get_param(file_path)
-    # Init params
+
+    # Initialize global parameters
     print(f"{'*' * 52} Global Setting {'*' * 52}")
     args_g = param["test"]["general"]
     print(f"Description:\n\t{param['description']}")
@@ -44,7 +82,7 @@ def main(file_path: str):
         args = param["data"][args_g["data"]][i]
         print(f"Data Parameters:\n\t{args}")
 
-        # Get dataset
+        # Load dataset
         X, y, train_X, train_y, test_X, test_y = get_data(args_g["data"], args)
 
         print("-" * 121)
@@ -54,16 +92,16 @@ def main(file_path: str):
             print("[Test] K-Fold Cross-Validation")
             args_k = param["test"]["k_fold_cross_validation"]
 
-            # Test K-Fold CV
+            # Perform K-Fold CV testing
             test_k_Fold_CV(model, metric, X, y, ks=args_k["k"], shuffle=args_k["shuffle"])
 
-            # Compare with simple AIC
+            # Compare results with AIC
             test_AIC(model, train_X, train_y, test_X, test_y)
 
             print("-" * 121)
 
         if args_g["activate"]["bootstrapping"]:
-            # bootstrapping
+            # Bootstrapping Testing
             print("[Test] Bootstrapping")
             args_b = param["test"]["bootstrapping"]
             test_bootstrapping(model, metric, X, y, ss=args_b["size"], epochs_list=args_b["epochs"])
@@ -80,5 +118,5 @@ if __name__ == "__main__":
     if len(args) > 1:
         main(args[1])
     else:
-        print("[Warning] No parameter configuration(file Path with param_*.json) has provided!")
-        print("[Info] Termination program...")
+        print("[Warning] No parameter configuration (file path with param_*.json) provided!")
+        print("[Info] Program terminated.")
