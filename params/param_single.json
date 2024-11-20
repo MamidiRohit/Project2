@@ -9,11 +9,15 @@
         },
         "k_fold_cross_validation": {
             "k": [5],
-            "shuffle": true
+            "shuffle": false,
+            "visualize": false,
+            "write": false
         },
         "bootstrapping": {
             "size": [50],
-            "epochs": [100]
+            "epochs": [100],
+            "visualize": false,
+            "write": false
         }
     },
     "data": {

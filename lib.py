@@ -237,3 +237,18 @@ def R2(y: np.ndarray, y_pred: np.ndarray) -> float:
     y_mean = np.mean(y)
     r_2 = 1 - np.sum((y - y_pred) ** 2) / np.sum((y - y_mean) ** 2)  # R2 = 1 - SSR/SST
     return float(r_2)
+
+
+"""
+    Data write & Visualization
+"""
+
+
+def visualize(data: np.ndarray):
+    """TODO Create this function"""
+    pass
+
+
+def write_result(file_path: str, data: np.ndarray):
+    """TODO Create this function"""
+    pass
