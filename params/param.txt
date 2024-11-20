@@ -1,100 +1,106 @@
-# All User parameter can be adjusted from here.
+# All user parameters can be adjusted from this file.
 
 """
  Test configuration
 """
 
 params = {
-    "description":
+    "description": "Configuration settings for testing various model selection methods.",  # Description of the test configuration
     "test": {
         "general": {
-            "activate": {"k_fold_CV": True, "bootstrapping": True},  # True to execute the target test
-            "model": "LinearRegression",  # [options] "LinearRegression(default)", "LogisticRegression"
-            "metric": "MSE",  # [options] "MSE", "Accuracy score"
-            "data": "generate",  # [options] file', 'generate'
+            "activate": {
+                "k_fold_CV": True,  # Set to True to perform k-fold cross-validation.
+                "bootstrapping": True  # Set to True to perform bootstrapping.
+            },
+            "model": "LinearRegression",  # [Options] "LinearRegression" (default), "LogisticRegression".
+            "metric": "MSE",  # [Options] "MSE" (default), "Accuracy score".
+            "data": "generate",  # [Options] "file", "generate".
         },
         "k_fold_cross_validation": {
-            "k": [5],  # Number of folds
-            "shuffle": True  # shuffle: Whether to shuffle the data before the operation
+            "k": [5],  # Number of folds for k-fold cross-validation.
+            "shuffle": True,  # Whether to shuffle the data before splitting into folds.
+            "visualize": False  # Set to True to visualize k-fold cross-validation results (currently not implemented).
         },
         "bootstrapping": {
-            "size": [50],  # The size of a train dataset
-            "epochs": [100]  # The number of trials to perform train/verify its performance
+            "size": [50],  # The size of the training dataset for each bootstrap sample.
+            "epochs": [100],  # The number of bootstrapping iterations to perform.
+            "visualize": False  # Set to True to visualize bootstrapping results (currently not implemented).
         }
     },
+    # For each data parameter "file", "generate": Single mode -> set 1 element Multiple mode -> set N elements
     "data": {
-        # User defined params for data import setting
+        # User-defined parameters for data import settings.
         "file": [
             {
-                "file_name": "small_test.csv",  # File path to read
-                "test_ratio": 0.25  # Portion of the test set from total sample.
+                "file_name": "small_test.csv",  # File path to load data.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
             },
         ],
-        # User defined params data creation setting
+        # User-defined parameters for synthetic data generation settings.
         "generate": [
-            {  # Default dataset with strict linear relationship
-                "size": 100,  # Number of samples to create
-                "dimension": 10,  # Number of features of the data
-                "correlation": 0,  # Correlation coefficient between features
-                "noise_std": 0.0,  # Noise scale to check durability of the model
-                "random_state": 42,  # Random seed
-                "test_ratio": 0.25  # Portion of the test set from total sample.
+            {  # Default dataset with a strict linear relationship (no noise or correlation).
+                "size": 100,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0,  # Correlation coefficient between features (0 means no correlation).
+                "noise_std": 0.0,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
             },
-            {  # Larger dataset with strict linear relationship
-                "size": 500,  # Number of samples to create
-                "dimension": 10,  # Number of features of the data
-                "correlation": 0,  # Correlation coefficient between features
-                "noise_std": 0.00,  # Noise scale to check durability of the model
-                "random_state": 42,  # Random seed
-                "test_ratio": 0.25  # Portion of the test set from total sample.
+            {  # Larger dataset with a strict linear relationship (no noise or correlation).
+                "size": 500,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0,  # Correlation coefficient between features.
+                "noise_std": 0.0,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
             },
-            {  # Default dataset with some noise
-                "size": 100,  # Number of samples to create
-                "dimension": 10,  # Number of features of the data
-                "correlation": 0,  # Correlation coefficient between features
-                "noise_std": 0.01,  # Noise scale to check durability of the model
-                "random_state": 42,  # Random seed
-                "test_ratio": 0.25  # Portion of the test set from total sample.
+            {  # Default dataset with added noise (no correlation between features).
+                "size": 100,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0,  # Correlation coefficient between features.
+                "noise_std": 0.01,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
             },
-            {  # Larger dataset with some noise
-                "size": 500,  # Number of samples to create
-                "dimension": 10,  # Number of features of the data
-                "correlation": 0,  # Correlation coefficient between features
-                "noise_std": 0.01,  # Noise scale to check durability of the model
-                "random_state": 42,  # Random seed
-                "test_ratio": 0.25  # Portion of the test set from total sample.
+            {  # Larger dataset with added noise (no correlation between features).
+                "size": 500,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0,  # Correlation coefficient between features.
+                "noise_std": 0.01,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
             },
-            {  # Default dataset with high correlation
-                "size": 100,  # Number of samples to create
-                "dimension": 10,  # Number of features of the data
-                "correlation": 0.9,  # Correlation coefficient between features
-                "noise_std": 0.0,  # Noise scale to check durability of the model
-                "random_state": 42,  # Random seed
-                "test_ratio": 0.25  # Portion of the test set from total sample.
+            {  # Default dataset with a high correlation between features (no noise).
+                "size": 100,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0.9,  # High correlation coefficient between features.
+                "noise_std": 0.0,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
             },
-            {  # Larger dataset with high correlation
-                "size": 100,  # Number of samples to create
-                "dimension": 10,  # Number of features of the data
-                "correlation": 0.9,  # Correlation coefficient between features
-                "noise_std": 0.0,  # Noise scale to check durability of the model
-                "random_state": 42,  # Random seed
-                "test_ratio": 0.25  # Portion of the test set from total sample.
+            {  # Larger dataset with a high correlation between features (no noise).
+                "size": 500,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0.9,  # High correlation coefficient between features.
+                "noise_std": 0.0,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
             },
-            {  # Default dataset with some noise and high correlation
-                "size": 100,  # Number of samples to create
-                "dimension": 10,  # Number of features of the data
-                "correlation": 0.9,  # Correlation coefficient between features
-                "noise_std": 0.01,  # Noise scale to check durability of the model
-                "random_state": 42,  # Random seed
-                "test_ratio": 0.25  # Portion of the test set from total sample.
+            {  # Default dataset with high correlation and added noise.
+                "size": 100,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0.9,  # High correlation coefficient between features.
+                "noise_std": 0.01,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
             },
-            {  # Larger dataset with some noise and high correlation
-                "size": 100,  # Number of samples to create
-                "dimension": 10,  # Number of features of the data
-                "correlation": 0.9,  # Correlation coefficient between features
-                "noise_std": 0.01,  # Noise scale to check durability of the model
-                "random_state": 42,  # Random seed
-                "test_ratio": 0.25  # Portion of the test set from total sample.
+            {  # Larger dataset with high correlation and added noise.
+                "size": 500,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0.9,  # High correlation coefficient between features.
+                "noise_std": 0.01,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
             }
         ]
     }

@@ -1,5 +1,5 @@
 {
-    "description": "Test designed for program execution verification and optimal settings for unit data sets.",
+    "description": "Configuration settings for testing various model selection methods.",
     "test": {
         "general": {
             "activate": {"k_fold_CV": true, "bootstrapping": true},

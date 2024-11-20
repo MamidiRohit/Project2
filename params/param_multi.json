@@ -1,5 +1,5 @@
 {
-    "description": "A parameter setting for data settings to test multiple generated datasets as batch.\n The primary goal is to observe the differences among datasets with varying sizes and complexities\n (multi-collinearity, noise) using a simple linear regression model.",
+    "description": "Parameter settings for testing multiple generated datasets in batch.\nThe primary goal is to observe differences among datasets with varying sizes and complexities (e.g., multi-collinearity, noise) using a simple linear regression model.",
     "test": {
         "general": {
             "activate": {"k_fold_CV": true, "bootstrapping": true},
@@ -9,11 +9,13 @@
         },
         "k_fold_cross_validation": {
             "k": [5],
-            "shuffle": false
+            "shuffle": false,
+            "visualize": false
         },
         "bootstrapping": {
             "size": [50],
-            "epochs": [100]
+            "epochs": [100],
+            "visualize": false
         }
     },
     "data": {
