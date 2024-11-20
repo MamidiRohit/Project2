@@ -73,7 +73,7 @@ Evaluation metrics include Root Mean Squared Error (RMSE) and R² Score.
   - $\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$
 
 - **Evaluation Metric**: Coefficient of Determination (R² Score)
-  - $R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}$
+  - $R^2$ = $1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}$
 
 ### 4. Features of the Project
 
