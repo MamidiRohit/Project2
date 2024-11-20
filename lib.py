@@ -79,15 +79,15 @@ def get_metric(metric_type: str):
 """
 
 
-def read_csv(file_name: str, test_ratio: float) -> tuple:
+def read_csv(file_path: str, test_ratio: float) -> tuple:
     """
     read_csv()
     This function reads data from a CSV file and splits it into training and test sets.
-    :param file_name: The name of the CSV file to read.
+    :param file_path: The path of the CSV file to read.
     :param test_ratio: The proportion of data to use for the test set.
     :return: A tuple containing the full dataset (X, y) and the split datasets (train_X, train_y, test_X, test_y).
     """
-    data = np.loadtxt(file_name, delimiter=',', skiprows=1)  # Skip the header row
+    data = np.loadtxt(file_path, delimiter=',', skiprows=1)  # Skip the header row
 
     X = data[:, :-1]
     y = data[:, -1]

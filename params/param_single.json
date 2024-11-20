@@ -5,25 +5,24 @@
             "activate": {"k_fold_CV": true, "bootstrapping": true},
             "model": "LinearRegression",
             "metric": "R2",
-            "data": "file"
+            "data": "file",
+            "visualize": false,
+            "write": false,
+            "file_path": "./data/result(k_fold_CV).csv"
         },
         "k_fold_cross_validation": {
             "k": [5],
-            "shuffle": false,
-            "visualize": false,
-            "write": false
+            "shuffle": false
         },
         "bootstrapping": {
             "size": [50],
-            "epochs": [100],
-            "visualize": false,
-            "write": false
+            "epochs": [100]
         }
     },
     "data": {
         "file": [
             {
-                "file_name": "./data/housing.csv",
+                "file_path": "./data/housing.csv",
                 "test_ratio": 0.25
             }
         ],
