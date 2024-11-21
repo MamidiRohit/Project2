@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 
 import sys 
-sys.path.insert(1,"E:\IIT CHICAGO\SEMESTER_1\MACHINE LEARNING\PROJECT_2")
+''' give your root directory path here'''
+sys.path.insert(1,"----Give your root directory path----")
 
 from Models.LinearRegression import LinearRegressionModel
 from Models.LinearRegression import Metrics
