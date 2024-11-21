@@ -428,7 +428,7 @@ Our custom implementation of the Gradient Boosted Tree (GBT) model faces challen
 
 - Downsample the dataset or preprocess it into smaller, manageable chunks.
 
-**Fundamental?:**
+**Fundamental:**
 
 - Partially. Scaling requires significant optimizations, such as histogram-based boosting (used by libraries like XGBoost) and parallel processing for faster split evaluations.
 
@@ -442,7 +442,7 @@ Our custom implementation of the Gradient Boosted Tree (GBT) model faces challen
 
 - Apply feature selection or dimensionality reduction (e.g., PCA) before training.
 
-**Fundamental?:**
+**Fundamental:**
 
 - No. Techniques like feature subsampling (as used in Random Forests) can improve efficiency for high-dimensional data.
 
@@ -458,7 +458,7 @@ Our custom implementation of the Gradient Boosted Tree (GBT) model faces challen
 
 - Convert non-numeric targets to numeric formats (e.g., encode class labels as integers).
 
-**Fundamental?:**
+**Fundamental:**
 
 - No. Extending the implementation to handle multi-label or other target formats is feasible with additional development.
 
@@ -476,7 +476,7 @@ Some inputs pose intrinsic challenges to the decision tree-based structure of th
 
 - Preprocess data to ensure feature consistency across all stages.
 
-**Fundamental?:**
+**Fundamental:**
 
 - Yes. This is a limitation of decision trees and ensemble methods in general.
 
@@ -490,7 +490,7 @@ Some inputs pose intrinsic challenges to the decision tree-based structure of th
 
 - Transition to online learning methods for tree-building, which requires significant redesign.
 
-**Fundamental?:**
+**Fundamental:**
 
 - Yes. Adapting GBT for streaming scenarios would require architectural rework.
 
