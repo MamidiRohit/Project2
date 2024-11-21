@@ -67,7 +67,7 @@ The project includes handling two datasets:
 
   - Built-in dataset from `sklearn.datasets`.
   - Used to classify flower species.
-  - Model predictions are rounded to the nearest class labels.
+  - Model predictions are rounded to the nearest class labels. Since the model is a regression model, it cannot directly output class labels. Instead, an activation function is used to determine the actual class. In our project, as there are more than two classes, we split the predictions into three ranges corresponding to the three classes. The predicted class is determined by identifying which class the prediction is closest to.
   - Classification accuracy is calculated using `accuracy_score`.
 
 **Concrete Data Dataset (Regression):**
@@ -213,7 +213,7 @@ To test the model’s capability in handling classification problems using a sma
 
 **Post-processing:**
 
-- Rounded predicted values to the nearest integer.
+- Rounded predicted values to the nearest integer.Essentially: It is the activation operation to classifies the predictions into corresponding categories by calculating the distance between the predicted values and each category.
 - Clipped predictions to ensure they matched the dataset's class range.
 - Calculated the accuracy score by comparing predicted class labels with true labels.
 
@@ -318,8 +318,14 @@ model.fit(X_train, y_train)
 
 # Predict and evaluate
 y_pred = model.predict(X_test)
+# The following two lines of code essentially perform the activation operation, converting continuous regression outputs into discrete class labels. 
+# This is necessary because the model is originally a regression model that outputs continuous values. 
+# In this case, we are using the Iris dataset with three classes, so the code is tailored to handle three specific class labels.
+# If there are more categories in a different dataset, this logic would need to be modified to accommodate the additional classes.
 y_pred_class = np.round(y_pred).astype(int)
+y_pred_class = np.clip(y_pred_class, 0, 2)
 accuracy = accuracy_score(y_test, y_pred_class)
+
 print(f"Accuracy on Iris Dataset: {accuracy:.2f}")
 ```
 
