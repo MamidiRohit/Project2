@@ -4,7 +4,8 @@ import argparse
 import sys
 
 
-sys.path.insert(1, "E:\IIT CHICAGO\SEMESTER_1\MACHINE LEARNING\PROJECT_2")
+''' give your root directory path here'''
+sys.path.insert(1,"----Give your root directory path----")
 
 from Models.LinearRegression import LinearRegressionModel, Metrics
 from Models.Kfold import CrossVal
