@@ -1,5 +1,12 @@
 import numpy as np
-from gradient_boosting import GradientBoostingTree
+import sys
+import os
+
+# Add the project root to the Python path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
+
+from Model.gradient_boosting import GradientBoostingTree
 
 
 def k_fold_cv(model, X, y, k=5, metric="mse"):
@@ -86,15 +93,20 @@ def grid_search_max_depth(X, y, max_depth_values, n_estimators=100, learning_rat
 
 #         return mse_samples, np.mean(mse_samples)
 
-# def calculate_aic(self):
-#     """
-#     Calculate the Akaike Information Criterion (AIC).
-#     Returns:
-#         aic (float): AIC score for the linear regression model.
-#     """
-#     n, p = self.X.shape
-#     beta = np.linalg.pinv(self.X.T @ self.X) @ self.X.T @ self.y
-#     y_pred = self.X @ beta
-#     rss = np.sum((self.y - y_pred) ** 2)
-#     aic = n * np.log(rss / n) + 2 * p
-#     return aic
+def calculate_aic(X, y):
+    """
+    Calculate the Akaike Information Criterion (AIC) for a linear regression model.
+    
+    Args:
+        X (numpy.ndarray): Feature matrix.
+        y (numpy.ndarray): Target vector.
+    
+    Returns:
+        aic (float): AIC score for the linear regression model.
+    """
+    n, p = X.shape
+    beta = np.linalg.pinv(X.T @ X) @ X.T @ y
+    y_pred = X @ beta
+    rss = np.sum((y - y_pred) ** 2)
+    aic = n * np.log(rss / n) + 2 * p
+    return aic

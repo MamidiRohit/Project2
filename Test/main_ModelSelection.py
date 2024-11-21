@@ -1,9 +1,17 @@
 import numpy as np
 import pandas as pd
-from gradient_boosting import GradientBoostingTree
 import matplotlib.pyplot as plt
 import seaborn as sns
-from ModelSelection import grid_search_max_depth
+import sys
+import os
+
+# Add the project root to the Python path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
+
+# Now import from Model
+from Model.gradient_boosting import GradientBoostingTree
+from Model.ModelSelection import grid_search_max_depth,calculate_aic
 
 def load_dataset(file_path):
     """
@@ -77,7 +85,9 @@ def plot_results(y_true, y_pred):
 
 if __name__ == "__main__":
     # Load and preprocess data
-    X, y = load_dataset("./highly_correlated_dataset.csv")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    dataset_path = os.path.join(current_dir, 'highly_correlated_dataset.csv')
+    X, y = load_dataset(dataset_path)
     X, y = preprocess_data(X, y)
 
     # Split data
@@ -103,19 +113,12 @@ if __name__ == "__main__":
 
 
   # Evaluate Model for Gradient Boosting
-    # mse_samples, mse_mean = bootstrap(B=1000)
-    # aic_value = calculate_aic()
+    aic_value = calculate_aic(X_train,y_train)
     mse, mae, r2 = evaluate_model(y_test, y_pred)
     f1, precision, recall = calculate_f1(y_test, y_pred)
     print(f"Mean Squared Error (MSE): {mse:.4f}")
     print(f"Mean Absolute Error (MAE): {mae:.4f}")
     print(f"R² Score: {r2:.4f}")
-    print(f"F1-Score: {f1:.4f}") 
-    print("Bootstrap Results:")
-    # print(f"Mean MSE: {mse_mean:.4f}")
-    # print(f"MSE 95% Confidence Interval: ({np.percentile(mse_samples, 2.5):.4f}, {np.percentile(mse_samples, 97.5):.4f})")
+    print(f"F1-Score: {f1:.4f}")
+    print(f"AIC-Score: {aic_value:.4f}")
 
-
-
-    # Plot Results
-    plot_results(y_test, y_pred)
