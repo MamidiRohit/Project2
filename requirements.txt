@@ -1,0 +1,6 @@
+numpy
+pytest
+ipython
+pandas
+scikit-learn
+statsmodels
