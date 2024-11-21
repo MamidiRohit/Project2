@@ -1,3 +1,6 @@
+# Project 2 
+By Usha Devaraju
+
 # Gradient Boosting for Regression
 
 This repository contains a custom implementation of a Gradient Boosting model for regression tasks, using decision trees as base learners. The model is designed to be versatile and easily adjustable to fit various regression problems.
