@@ -73,12 +73,3 @@ To enhance model robustness and performance:
 - **Preprocessing Steps**: Implement robust preprocessing steps to handle outliers and noise, such as outlier detection algorithms or robust scaling methods.
 - **Advanced Techniques**: Explore integrating outlier detection algorithms and advanced noise filtering techniques before fitting the model to improve its generalization capabilities.
 
-## Contribution
-
-Contributions are highly appreciated and critical for the ongoing improvement of the model. If you are interested in enhancing functionality, improving efficiency, or extending the usability of this model, you are encouraged to:
-
-- **Fork the Repository**: Create your fork of the repository where you can make your changes.
-- **Make Changes**: Implement your enhancements or fixes.
-- **Create a Pull Request**: Submit a pull request for your changes to be reviewed and potentially merged into the main project.
-
-Your contributions not only help improve the project but also provide valuable learning opportunities through collaboration and feedback.
