@@ -31,6 +31,17 @@ Users can tune the following parameters to optimize the model's performance:
 - `learning_rate`: The step size at each iteration to control overfitting (default is 0.1).
 - `max_depth`: The maximum depth of each decision tree (default is 3).
 
+### Prerequisites
+
+Ensure you have Python installed along with the following libraries:
+- `numpy`
+- `scikit-learn`
+
+To install missing dependencies, use:
+```bash
+pip install numpy scikit-learn
+```
+
 ### Basic Usage Example
 
 ```python
@@ -59,6 +70,16 @@ model.fit(X_train_scaled, y_train)
 predictions = model.predict(X_test_scaled)
 print(predictions)
 ```
+
+## Running Tests
+To test the model on the California Housing dataset, run:
+```python
+python testing.py
+```
+The script will:
+- **Load the dataset.**
+- **Train and test the Gradient Boosting model.**
+- **Output the Mean Squared Error (MSE) of the predictions.**
 
 ## Potential Issues and Workarounds
 
