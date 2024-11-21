@@ -13,6 +13,14 @@
 - **Purnesh Shivarudrappa Vidhyadhara**  
   A20552125
 
+### **Contributions**
+
+- **Hongi Jiang** and **Purnesh Shivarudrappa Vidhyadhara**  
+  Led the development of the core Gradient Boosted Trees (GBT) model. Contributions include designing and implementing the `GBT` and `RegressionTree` classes, ensuring mathematical accuracy in loss functions and gradient calculations, and enabling flexible hyperparameter tuning.
+
+- **Aakash Shivanandappa Gowda** and **Dhyan Vasudeva Gowda**  
+  Focused on optimizing the algorithm and refining the performance of the Gradient Boosted Trees (GBT) model. Additionally, conducted extensive training and testing across various datasets, including the Iris and Concrete Data datasets. Also managed the documentation by preparing the README file and the project report, ensuring clarity and comprehensiveness in presenting the project's objectives, methodology, and outcomes.
+
 ## 1. Overview
 
 This project develops a Gradient Boosted Tree (GBT) using Python. GBT is a powerful machine learning technique for regression and classification tasks, particularly effective for modeling non-linear relationships and uncovering complex patterns in data. It builds an ensemble of decision trees iteratively, optimizing predictive accuracy.
@@ -73,7 +81,7 @@ Evaluation metrics include Root Mean Squared Error (RMSE) and R² Score.
   - $\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$
 
 - **Coefficient of Determination (R² Score):**
-  - $$R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}$$
+  ![alt text](R^2.JPEG)
 
 ### 4. Features of the Project
 
