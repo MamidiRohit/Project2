@@ -71,6 +71,7 @@ CODE:
 import numpy as np
 
 class ModelSelection:
+
     def __init__(self, model, loss_function):
         """
         Initialize the model selector with a given model and loss function.
