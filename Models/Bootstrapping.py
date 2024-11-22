@@ -1,9 +1,8 @@
 import pandas as pd
 import numpy as np
-import os
-import sys
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import sys 
+sys.path.insert(1,"E:\IIT CHICAGO\SEMESTER_1\MACHINE LEARNING\PROJECT_2")
 
 from Models.LinearRegression import LinearRegressionModel
 from Models.LinearRegression import Metrics
@@ -17,6 +16,7 @@ class Bootstrapping:
         n_rows = len(y)
         mse = []
         r2 = []
+        aic = []
 
         for i in range(self.n_iter):
             bs_indis = np.random.choice(range( n_rows),   
@@ -41,11 +41,11 @@ class Bootstrapping:
             mse_score = Metrics.mean_squared_error(y_val,y_preds)
             r2_score= Metrics.r_squared(y_val,y_preds)
             aic_score = Metrics.aic(y_val, y_preds, X_val)
-
+            
             mse.append(mse_score)
             
             r2.append(r2_score)
-
+            
             aic.append(aic_score)
 
             print(f"Iteration {i + 1}/{self.n_iter} - MSE: {mse_score:.4f}, R-Squared: {r2_score:.4f}, AIC: {aic_score:.4f}")
