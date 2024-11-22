@@ -54,12 +54,11 @@ y_train = 'your y training data set'
 x_test = 'your x test data set'
 y_test = 'your y test data set'
 
-model = GradientBoostingTree()
+model = GradientBoostingTree(n_estimators=100, rate=0.1, max_depth=3, min_samples_split=2, tol=10)
 model.fit(x_train, y_train)
 
 model.predict(x_test)
 ```
-
 
 * __Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?__<br />
 
