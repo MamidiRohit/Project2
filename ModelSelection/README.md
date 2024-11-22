@@ -211,10 +211,15 @@ print("First 10 Predictions:", predictions[:10])
 ```
 
 •	For other datasets
+
 Ensure the correct dataset is loaded and is in the correct directory.
+
 Define X and y for the corresponding features and target variables.
+
 Once you've modified the file path, you can use pytest to run all tests, including real-world datasets and synthetic dataset
+
 •	Open a terminal in the directory containing your test script.
+
 •	Run Pytest with the following command: pytest test_datasetname.py
 
  
