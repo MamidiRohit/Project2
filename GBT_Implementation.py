@@ -71,19 +71,6 @@ print(f"Mean Squared Error: {mse_syntheticdata:.4f}")
 print(f"Root Mean Squared Error: {rmse_syntheticdata:.4f}")
 print(f"R² Score: {r2_syntheticdata:.4f} \n")
 
-# Training data evaluation
-train_predictions = model.predict(X_train)
-train_mse = mean_squared_error(y_train, train_predictions)
-train_r2 = r2_score(y_train, train_predictions)
-
-# Test data evaluation
-test_predictions = model.predict(X_test)
-test_mse = mean_squared_error(y_test, test_predictions)
-test_r2 = r2_score(y_test, test_predictions)
-
-print(f"Training MSE: {train_mse}, R²: {train_r2}")
-print(f"Test MSE: {test_mse}, R²: {test_r2} \n")
-
 # Usage example with parameters
 
 model = GradientBoostingRegressor(n_estimators=200, learning_rate=0.05, max_depth=4)
