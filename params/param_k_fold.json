@@ -1,14 +1,14 @@
 {
-    "description": "Single test setting: verification test",
+    "description": "Batch test setting: bootstrapping exclusive test",
     "test": {
         "general": {
-            "activate": {"k_fold_CV": true, "bootstrapping": true},
+            "activate": {"k_fold_CV": true, "bootstrapping": false},
             "model": "LinearRegression",
             "metric": "R2",
-            "data": "file"
+            "data": "generate"
         },
         "k_fold_cross_validation": {
-            "k": [5],
+            "k": [2,5,10,20],
             "shuffle": true
         },
         "bootstrapping": {
@@ -28,14 +28,14 @@
             },
             "write": {
                 "k_fold_CV": {
-                    "activate": false,
-                    "header": [],
-                    "file_path": "./results/k_fold.csv"
+                    "activate": true,
+                    "header": ["size", "dimension", "correlation","noise_std","K-value","shuffled", "Average", "AIC"],
+                    "file_path": "./results/k_fold_only.csv"
                 },
                 "bootstrapping": {
                     "activate": false,
                     "header": [],
-                    "file_path": "./results/bootstrap.csv"
+                    "file_path": ""
                 }
             }
         }
@@ -43,19 +43,35 @@
     "data": {
         "file": [
             {
-                "file_path": "./data/housing.csv",
+                "file_path": "",
                 "test_ratio": 0.25
             }
         ],
-        "generate": [
-            {
-                "size": 200,
+       "generate": [
+           {
+                "size": 500,
                 "dimension": 10,
+                "correlation": 0.0,
+                "noise_std": 0.2,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 500,
+                "dimension": 20,
                 "correlation": 0,
-                "noise_std": 0.01,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 500,
+                "dimension": 20,
+                "correlation": 0.9,
+                "noise_std": 0.5,
                 "random_state": 42,
                 "test_ratio": 0.25
             }
-        ]
+       ]
     }
 }

@@ -1,5 +1,5 @@
 {
-    "description": "Batch test setting: mix-up test",
+    "description": "Batch test setting: size test",
     "test": {
         "general": {
             "activate": {"k_fold_CV": true, "bootstrapping": true},
@@ -18,24 +18,24 @@
         "analysis": {
             "visualize": {
                 "k_fold_CV":{
-                    "label_X": [],
-                    "activate": false
+                    "label_X": ["size", 0],
+                    "activate": true
                 },
                 "bootstrapping": {
-                    "label_X": [],
-                    "activate": false
+                    "label_X": ["size", 0],
+                    "activate": true
                 }
             },
             "write": {
                 "k_fold_CV": {
                     "activate": true,
                     "header": ["size", "dimension", "correlation","noise_std",",K-value","shuffled", "Average", "AIC"],
-                    "file_path": "./results/k_fold_multi.csv"
+                    "file_path": "./results/k_fold_size.csv"
                 },
                 "bootstrapping": {
                     "activate": true,
                     "header": ["size", "dimension", "correlation","noise_std", "sample_size","epochs","Average", "AIC"],
-                    "file_path": "./results/bootstrap_multi.csv"
+                    "file_path": "./results/bootstrap_size.csv"
                 }
             }
         }
@@ -50,63 +50,39 @@
         "generate": [
             {
                 "size": 100,
-                "dimension": 10,
-                "correlation": 0,
-                "noise_std": 0.2,
-                "random_state": 42,
-                "test_ratio": 0.25
-            },
-            {
-                "size": 300,
-                "dimension": 10,
-                "correlation": 0,
-                "noise_std": 0.2,
-                "random_state": 42,
-                "test_ratio": 0.25
-            },
-            {
-                "size": 500,
-                "dimension": 10,
-                "correlation": 0,
-                "noise_std": 0.2,
-                "random_state": 42,
-                "test_ratio": 0.25
-            },
-            {
-                "size": 1000,
-                "dimension": 10,
-                "correlation": 0,
-                "noise_std": 0.2,
-                "random_state": 42,
-                "test_ratio": 0.25
-            },
-            {
-                "size": 1500,
-                "dimension": 10,
-                "correlation": 0,
-                "noise_std": 0.2,
-                "random_state": 42,
-                "test_ratio": 0.25
-            },
-            {
-                "size": 100,
-                "dimension": 10,
+                "dimension": 20,
                 "correlation": 0,
                 "noise_std": 0.5,
                 "random_state": 42,
                 "test_ratio": 0.25
             },
             {
-                "size": 300,
-                "dimension": 10,
+                "size": 200,
+                "dimension": 20,
                 "correlation": 0,
                 "noise_std": 0.5,
                 "random_state": 42,
                 "test_ratio": 0.25
             },
             {
-                "size": 500,
-                "dimension": 10,
+                "size": 400,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 600,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 800,
+                "dimension": 20,
                 "correlation": 0,
                 "noise_std": 0.5,
                 "random_state": 42,
@@ -114,56 +90,48 @@
             },
             {
                 "size": 1000,
-                "dimension": 10,
+                "dimension": 20,
                 "correlation": 0,
                 "noise_std": 0.5,
                 "random_state": 42,
                 "test_ratio": 0.25
             },
             {
-                "size": 1500,
-                "dimension": 10,
+                "size": 1200,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 1400,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 1600,
+                "dimension": 20,
                 "correlation": 0,
                 "noise_std": 0.5,
                 "random_state": 42,
                 "test_ratio": 0.25
             },
                         {
-                "size": 100,
-                "dimension": 10,
-                "correlation": 0.9,
+                "size": 1800,
+                "dimension": 20,
+                "correlation": 0,
                 "noise_std": 0.5,
                 "random_state": 42,
                 "test_ratio": 0.25
             },
-            {
-                "size": 300,
-                "dimension": 10,
-                "correlation": 0.9,
-                "noise_std": 0.5,
-                "random_state": 42,
-                "test_ratio": 0.25
-            },
-            {
-                "size": 500,
-                "dimension": 10,
-                "correlation": 0.9,
-                "noise_std": 0.5,
-                "random_state": 42,
-                "test_ratio": 0.25
-            },
-            {
-                "size": 1000,
-                "dimension": 10,
-                "correlation": 0.9,
-                "noise_std": 0.5,
-                "random_state": 42,
-                "test_ratio": 0.25
-            },
-            {
-                "size": 1500,
-                "dimension": 10,
-                "correlation": 0.9,
+                        {
+                "size": 2000,
+                "dimension": 20,
+                "correlation": 0,
                 "noise_std": 0.5,
                 "random_state": 42,
                 "test_ratio": 0.25

@@ -49,7 +49,7 @@ def k_fold_cross_validation(model, metric, X: np.ndarray, y: np.ndarray, k: int,
         scores.append(score)
 
     # Return the list of scores and their average
-    return scores, np.average(scores)
+    return scores, float(np.average(scores))
 
 
 def bootstrapping(model, metric, X: np.ndarray, y: np.ndarray, s: int, epochs: int):
@@ -90,4 +90,4 @@ def bootstrapping(model, metric, X: np.ndarray, y: np.ndarray, s: int, epochs: i
 
     # Calculate the average score across all iterations
     average_score = np.mean(scores)
-    return scores, average_score
+    return scores, float(average_score)

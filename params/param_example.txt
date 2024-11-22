@@ -13,7 +13,7 @@ params = {
                 "bootstrapping": true  # Set to True to perform bootstrapping.
             },
             "model": "LinearRegression",  # [Options] "LinearRegression" (default), "LogisticRegression".
-            "metric": "MSE",  # [Options] "MSE" (default), "Accuracy score".
+            "metric": "MSE",  # [Options] "MSE" (default), "Accuracy score", "R2".
             "data": "generate",  # [Options] "file", "generate".
             "visualize": false,  # Set to True to visualize k-fold cross-validation results (currently not implemented).
             "write": false, # Set to True to write k-fold cross-validation results (currently not implemented).
@@ -26,6 +26,32 @@ params = {
         "bootstrapping": {
             "size": [50],  # The size of the training dataset for each bootstrap sample.
             "epochs": [100]  # The number of bootstrapping iterations to perform.
+        },
+        "analysis": {
+            "visualize": { # visualization configuration
+                "k_fold_CV": {
+                    # [Options] "size": 0, "dimension": 1, "correlation": 2, "noise_std": 3, K-value": 4
+                    "label_X": ["size", 0], # Selected feature to visualize
+                    "activate": true # Set to True to visualize k-fold cross-validation.
+                },
+                "bootstrapping": {
+                    # [Options] "size": 0, "dimension": 1, "correlation": 2, "noise_std": 3, "sample_size": 4, "epoch": 5
+                    "label_X": ["size", 0], # Selected feature to visualize
+                    "activate": false # Set to True to visualize bootstrapping.
+                }
+            },
+            "write": { # file write configuration
+                "k_fold_CV": {
+                    "activate": true, # Set to True to write a result file for k-fold cross-validation.
+                    "header": ["size", "dimension", "correlation","noise_std",",K-value","shuffled", "Average", "AIC"],  # Header for file.
+                    "file_path": "./results/k_fold.csv" # Original file path
+                },
+                "bootstrapping": {
+                    "activate": false, # Set to True to write a result file for bootstrapping.
+                    "header": ["size", "dimension", "correlation","noise_std", "sample_size","epochs","Average", "AIC"],  # Header for file.
+                    "file_path": "./results/bootstrap.csv"  # Original file path.
+                }
+            }
         }
     },
     # For each data parameter "file", "generate": Single mode -> set 1 element Multiple mode -> set N elements

@@ -7,9 +7,13 @@ References:
     3. R2 score formula: Wikipedia - Coefficient of determination
       [LINK] https://en.wikipedia.org/wiki/Coefficient_of_determination
 """
+import csv
 import json
+import re
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.linear_model import *
+from datetime import datetime
 
 # Collection of auxiliary functions
 
@@ -113,7 +117,6 @@ def generate_data(size: int, dimension: int, correlation: float, noise_std: floa
     if random_state:
         np.random.seed(random_state)
 
-    # TODO: Update Multi-collinearity function part
     # Generate the base feature
     X_base = np.random.rand(size, 1)
 
@@ -244,11 +247,75 @@ def R2(y: np.ndarray, y_pred: np.ndarray) -> float:
 """
 
 
-def visualize(data: np.ndarray):
-    """TODO Create this function"""
-    pass
+def visualize(data: list, target: str, feature: list):
+    # data: ["size", "dimension", "correlation","noise_std", "k-value","epochs","Average", "AIC"]
+
+    # Transform into numpy array
+    data = np.array(data)
+
+    # Split feature label
+    X = data[:, :-2]  # Excluding Average, AIC
+    y_average = data[:, -2]  # Label Average
+    y_AIC = data[:, -1]  # Label Average
+
+    # Pick specific feature parameter
+    i = feature[1]
+    X_i = X[:, i]
+
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6))  # 1 row, 2 columns
+
+    # First plot: Average Score
+    axes[0].scatter(X_i, y_average, color='blue', label=f'Feature {feature[0]} vs Average Score')
+
+    # Fit trend line for Average
+    coeffs_avg = np.polyfit(X_i, y_average, 1)  # slope parameter
+    trend_avg = np.polyval(coeffs_avg, X_i)  # trend line
+
+    # plot graph
+    axes[0].plot(X_i, trend_avg, color='cyan', linestyle='--', label='Trend Line (Average)')
+    axes[0].set_title(f'{target} Average Score: {feature[0]}')
+    axes[0].set_xlabel(f'Feature {feature[0]}')
+    axes[0].set_ylabel('Average Score')
+    axes[0].legend()
+    axes[0].grid(True)
+
+    # Second plot: AIC Score
+    axes[1].scatter(X_i, y_AIC, color='red', label=f'Feature {feature[0]} vs AIC Score')
+
+    # Fit trend line for AIC
+    coeffs_aic = np.polyfit(X_i, y_AIC, 1)  # slope parameter
+    trend_aic = np.polyval(coeffs_aic, X_i)  # trend line
+
+    # plot graph
+    axes[1].plot(X_i, trend_aic, color='cyan', linestyle='--', label='Trend Line (AIC)')
+    axes[1].set_title(f'{target} AIC Score: {feature[0]}')
+    axes[1].set_xlabel(f'Feature {feature[0]}')
+    axes[1].set_ylabel('AIC Score')
+    axes[1].legend()
+    axes[1].grid(True)
+
+    # Adjust layout and display
+    plt.tight_layout()
+    plt.show()
 
 
-def write_result(file_path: str, data: np.ndarray):
-    """TODO Create this function"""
-    pass
+def write(file_path: str, data: list, header: list):
+    """
+    write()
+    This function writes data to a given file with a timestamped file name.
+    :param file_path: The original file path (string).
+    :param data: A list of rows to write into the CSV file. Each row is a list of values.
+    :param header: A list representing the header row of the given file.
+    """
+    # Update file name - Append current time to discriminate
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    new_path = re.sub(
+        r'([^/]+)\.([a-zA-Z0-9]+)$',
+        rf'\1_{timestamp}.\2',
+        file_path
+    )
+    # Write a file to designated path
+    with open(new_path, "wt", newline="", encoding="utf-8") as f:
+        csv_writer = csv.writer(f)
+        csv_writer.writerow(header)
+        csv_writer.writerows(data)
