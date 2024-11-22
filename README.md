@@ -38,8 +38,8 @@
 - [bootstrapping]  sampling size: 100, epochs: 100
 - [Configuration file] params/test_correlation.json
 <br/>
-<img src="./results/correlation_test_k_fold.png" width="600">
-<img src="./results/correlation_test_bootstrapping.png" width="600">
+<img alt="" src="./results/correlation_test_k_fold.png" width="600">
+<img alt="" src="./results/correlation_test_bootstrapping.png" width="600">
 <br/>
 - Under multi-collinearity, the trends for cross-validation and bootstrapping models were strong. However, AIC did not exhibit a similarly strong trend and showed artificially high performance under the assumption of a perfect correlation coefficient of 1.
 - The two models developed do not yield the same conclusions as AIC. In fact, the conclusions were often contradictory (e.g., lower scores being better for AIC).
@@ -59,10 +59,10 @@
 - [bootstrapping]  sampling size: 100, epochs: 100
 - [Configuration file] /params/test_multi.json
 <br/>
-<img src="./results/multi-test_k_fold.jpg" width="600">
-<img src="./results/multi-test_bootstrapping.jpg" width="600">
+<img alt="" src="./results/multi-test_k_fold.jpg" width="600">
+<img alt="" src="./results/multi-test_bootstrapping.jpg" width="600">
 <br/>
-- When the data was predictable but noisy, the cross-validation and bootstrapping models performed better than AIC. However, in more complex scenarios, such as with multi-collinearity or data bias, both models exhibited unstable metric scores.
+-  When the data was predictable but noisy, the cross-validation and bootstrapping models performed better than AIC. However, in more complex scenarios, such as with multi-collinearity or data bias, both models exhibited unstable metric scores.
 - Since both methods aim to equalize performance across folds or samples, they may not be appropriate indicators for model selection if the data distribution is highly unstable.
 <br/>
 <br/>
@@ -81,7 +81,7 @@
 > params/
 - When running the mail script test.py, the user can specify the desired settings by selecting the json format settings file that exists in the location.
 - Regarding parameter settings, specifications are provided in 'params/param_example.txt' and sample images are as follows.
-<img src="./params/param_sample.jpg">
+<img alt="" src="./params/param_sample.jpg">
 <br/>
 - However, the parameters related to the actual model are limited and the specifications are as follows.
 >>  - "test": 
