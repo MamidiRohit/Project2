@@ -1,11 +1,4 @@
-# Implementing Gradient Boosting Trees:
-
-## Group Members:
-Name: Gurjot Singh Kalsi     CWID: A20550984
-
-Name: Siva Vamsi Kolli   CWID: A20560901
-
-Name: Sai Teja Reddy Janga     CWID: A20554588
+# Gradient Boosting Trees:
 
 ## Model Description:
 Gradient Boosting Trees (GBT) are an ensemble learning method that builds a sequence of decision trees to improve predictive accuracy. The key idea behind GBT is to train decision trees iteratively, where each new tree attempts to correct the errors (residuals) made by the previous trees. By combining the predictions of many weak learners (shallow decision trees), GBT can create a strong predictive model.
@@ -58,32 +51,6 @@ Our implementation provides several parameters that users can adjust to fine-tun
 3. **max_depth (default: 3)**:
    - The maximum depth of each decision tree.
    - Limiting the depth prevents the trees from overfitting and reduces the model’s complexity.
-
-### Usage Example:
-```python
-from gradient_boosting import GradientBoostingRegressor
-from sklearn.datasets import make_regression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-
-# Generate synthetic data
-X, y = make_regression(n_samples=1000, n_features=10, noise=0.1, random_state=42)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Initialize and train the model
-model = GradientBoostingRegressor(n_estimators=200, learning_rate=0.05, max_depth=4)
-model.fit(X_train, y_train)
-
-# Make predictions and evaluate
-y_pred = model.predict(X_test)
-mse = mean_squared_error(y_test, y_pred)
-rmse = np.sqrt(mse)
-r2 = r2_score(y_test, y_pred)
-
-print(f"Mean Squared Error: {mse:.4f}")
-print(f"Root Mean Squared Error: {rmse:.4f}")
-print(f"R² Score: {r2:.4f}")
-```
 
 ## Challenges:
 While developing the Gradient Boosting Tree model, we encountered several challenges:
