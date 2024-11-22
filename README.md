@@ -169,21 +169,22 @@ Features (X_columns) and target (y_column): Columns to use from any dataset.
 - ii. Bootstrap AIC score:
     ![Customer Test Image](customer_aic_bootstrap.jpeg)
 - iii. K-fold cross validation AIC distribution:
-    ![Customer Test Image](customer_ aic_distr_k_fold.jpeg)
+    ![Customer Test Image](customer_aic_distr_k_fold.jpeg)
 - iv. Bootstrap AIC distribution:
-    ![Customer Test Image](customer_ aic_dis_bootstrap.jpeg)
+    ![Customer Test Image](customer_aic_dis_bootstrap.jpeg)
 - v. Bootstrap Output:
     ![Customer Test Image](customer_output.jpeg)
 
 ### 2. patient_data.csv:
 - Tests the model on a large dataset, and verifies if the predictions are reasonable.
 - i. K-fold cross validation AIC score:
-    ![Patient Test Image](patient_ aic_k_fold.jpeg)
+    ![Patient Test Image](patient_aic_k_fold.jpeg)
 - ii. Bootstrap AIC score:
-    ![Patient Test Image](patient_ aic_bootstrap.jpeg)
+    ![Patient Test Image](patient_aic_bootstrap.jpeg)
 - iii. K-fold cross validation AIC distribution:
-    ![Patient Test Image](patient_ aic_dis_k_fold.jpeg)
+    ![Patient Test Image](patient_aic_dis_k_fold.jpeg)
 - iv. Bootstrap AIC distribution:
-    ![Patient Test Image](patient_ aic_dis_bootstrap.jpeg)
-- v. Bootstrap AIC distribution:
+    ![Patient Test Image](patient_aic_dis_bootstrap.jpeg)
+- v. Bootstrap Output:
     ![Patient Test Image](patient_output.jpeg)
+
