@@ -172,6 +172,7 @@ class ModelSelection:
 ```
 
 #Example of a simple linear regression model
+```python
 class SimpleLinearModel:
     def fit(self, X, y):
         self.coef_ = np.linalg.pinv(X) @ y
@@ -207,6 +208,7 @@ predictions = model.predict(X)
 mse = np.mean((y - predictions) ** 2)
 print(f"Mean Squared Error: {mse:.4f}")
 print("First 10 Predictions:", predictions[:10])
+```
 
 •	For other datasets
 Ensure the correct dataset is loaded and is in the correct directory.
