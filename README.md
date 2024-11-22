@@ -13,9 +13,6 @@ ILYA
 
 In this project, we have implemented generic k-fold cross-validation and bootstrapping methods for model selection, which test how well a model is likely to perform on new data. We have also included the Akaike Information Criterion (AIC) to compare models. This model evaluates the performance of regression models and compares it with the AIC.
 
-## How to run the code
-
-### Using a Notebook File
 
 #### Prerequisites
 - Install Python and required libraries: `numpy`, `matplotlib`, `sklearn`.
@@ -23,9 +20,18 @@ In this project, we have implemented generic k-fold cross-validation and bootstr
 - Navigate to your project folder where the `requirements.txt` file is located.
 - Run the following command to install all the libraries listed in `requirements.txt`:
 
+
 ```bash
 pip install -r requirements.txt
 ```
+- python version >=3.9
+
+
+
+## How to run the code
+
+### Using a Notebook File
+
 
 #### Steps to Execute
 1. Open the terminal at the project folder.
@@ -65,6 +71,20 @@ pip install -r requirements.txt
     - Residual distribution plot.
     - Error comparison across methods.
     - Bootstrapping confidence intervals.
+
+## Difference Between Bootstrapping and K-Fold Cross-Validation
+
+### Bootstrapping
+Bootstrapping is a resampling technique that involves repeatedly drawing samples from a dataset with replacement. Each sample is used to train the model, and the performance is evaluated on the remaining data. This process is repeated many times (e.g., 150 iterations), and the results are averaged to estimate the model's performance.
+
+
+### K-Fold Cross-Validation
+K-Fold Cross-Validation involves dividing the dataset into `k` equal-sized folds. The model is trained on `k-1` folds and tested on the remaining fold. This process is repeated `k` times, with each fold used exactly once as the test set. The results are averaged to estimate the model's performance.
+
+
+##
+
+
 
 ## Key Questions and Answers
 
