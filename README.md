@@ -22,6 +22,7 @@ This document provides two sections:
 To use the Boosting Tree Model, import the required classes:
 
 ```
+import numpy as np
 from boosting_tree.BoostingTreeModel import BoostingTreeModel, MyRSquared, MyMSE
 ```
 
@@ -38,16 +39,16 @@ To train the Boosting Tree model, use the `fit` method. It requires:
 
 ```python
 import numpy as np
-from boosting_tree.BoostingTreeModel import BoostingTreeModel
+from boosting_tree.BoostingTreeModel import BoostingTreeModel, MyRSquared, MyMSE
 
-# Generate example data
-X = np.random.rand(100, 3)  # 100 samples, 3 features
-y = 3 * X[:, 0] - 2 * X[:, 1] + 0.5 * X[:, 2] + np.random.normal(0, 0.1, 100)
+# Sample Data
+X = np.random.rand(100, 3)
+y = 2 * X[:, 0] + X[:, 1] - 1.5 * X[:, 2] + np.random.normal(0, 0.05, 100)
 
-# Initialize the model
-model = BoostingTreeModel(num_trees=20, learning_rate=0.1, max_depth=3, tol=1e-5, subsample=0.8)
+# Model Initialization
+model = BoostingTreeModel(num_trees=50, learning_rate=0.05, max_depth=4, tol=1e-4, subsample=0.7)
 
-# Train the model
+# Train the Model
 results = model.fit(X, y)
 ```
 
@@ -59,10 +60,8 @@ The predict method makes predictions for new data points. It takes the following
 * **X**: A 2D NumPy array with the same number of features as the training data.
 
 ```python
-# Example usage
-new_data = np.array([[0.2, 0.4, 0.1]])
-predictions = model.predict(new_data)
-print(predictions)
+# Predict
+y_pred = results.predict(X)
 ```
 
 
@@ -70,18 +69,16 @@ print(predictions)
 To evaluate model performance, use the MyMSE and MyRSquared classes. Both classes provide static methods for calculating metrics.
 Example:
 ```python
-from boosting_tree.BoostingTreeModel import BoostingTreeModel, MyRSquared, MyMSE
-
 # Calculate Mean Squared Error
 mse = MyMSE.calculate(y, y_pred)
-print("Mean Squared Error:", mse)
-
 # Calculate R-squared
 r_squared = MyRSquared.calculate(y, y_pred)
-print("R-squared:", r_squared)
+
+print(f"Mean Squared Error: {mse:.4f}")
+print(f"R-squared: {r_squared:.4f}")
 ```
 
-Sample runnable script:
+Sample runnable full script:
 ```python
 import numpy as np
 from boosting_tree.BoostingTreeModel import BoostingTreeModel, MyRSquared, MyMSE
