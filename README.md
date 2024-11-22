@@ -43,7 +43,6 @@ model.fit(x_train, y_train)
 
 model.predict(x_test)
 ```
-<br/>
 Also, you can use it without the parameters:<br/>
 ```
 from Gradient_Dcision_Tree import GradientBoostingTree
@@ -54,7 +53,7 @@ y_train = 'your y training data set'
 x_test = 'your x test data set'
 y_test = 'your y test data set'
 
-model = GradientBoostingTree(n_estimators=100, rate=0.1, max_depth=3, min_samples_split=2, tol=10)
+model = GradientBoostingTree()
 model.fit(x_train, y_train)
 
 model.predict(x_test)
