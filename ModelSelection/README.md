@@ -68,7 +68,7 @@ Basic Usage:
 
 CODE:
 
-
+```python
 import numpy as np
 
 class ModelSelection:
@@ -169,6 +169,8 @@ class ModelSelection:
             return self.bootstrap(X, y, **kwargs)
         else:
             raise ValueError("Unsupported method. Choose 'k_fold' or 'bootstrap'.")
+```
+
 #Example of a simple linear regression model
 class SimpleLinearModel:
     def fit(self, X, y):
