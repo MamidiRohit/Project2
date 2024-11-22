@@ -1,6 +1,7 @@
 
 # Project 2 - Boosting Trees :
 Implementing the gradient-boosting tree algorithm (with the usual fit-predict interface)
+
 Submitted by The Boosted Bandits:
 1. Anushka Sarath - A20576979
 2. B P Gayathri Ananya - A20588605
@@ -41,7 +42,7 @@ where
 __Variance__:
 To calulate the variance we are using numpy.var() function. It measures the spread of data around its mean. Its formula is:
 
-![Variance](./images/Variance.jpg)
+![Variance](./images/variance.jpg)
 
 where
 - y(i) represents individual data points.
@@ -206,9 +207,9 @@ where y(i) is the actual value, y(i) hat is the predicted value and n is the num
 
 where y(i) is the actual value, y(i) hat is the predicted value and y bar is the mean of observations.
 
-### 1.3 Steps to run the code
+## 1.3 Steps to run the code
 
-## Activating the Virtual Environment
+### Activating the Virtual Environment
 
 1. **For Windows**:
    - Navigate to the directory where the virtual environment is located:
@@ -217,7 +218,7 @@ where y(i) is the actual value, y(i) hat is the predicted value and y bar is the
      ```
    - Activate the virtual environment:
      ```bash
-     .\new_env\Scripts\activate
+     .\ml_env\Scripts\activate
      ```
 2. **For macOS/Linux**:
    - Navigate to the directory where the virtual environment is located:
@@ -226,9 +227,23 @@ where y(i) is the actual value, y(i) hat is the predicted value and y bar is the
      ```
    - Activate the virtual environment:
      ```bash
-     source new_env/bin/activate
+     source ml_env/bin/activate
      ```
 Once the environment is activated, you can proceed to install the necessary dependencies and run the scripts.
+
+### Running the Test Files
+
+* **To test using theLaptop Prices dataset:**
+   ```bash
+   python -m tests.test_gradient_boosting_laptops
+
+* **To test using the Netflix Stock Prediction dataset:**
+  ```bash
+   python -m tests.test_netflix_regressor
+
+* **To test using the Random dataset:**
+  ```bash
+   python -m tests.test_random_regression
 
 ## 2. Testing
 How did you test your model to determine if it is working reasonably correctly?
