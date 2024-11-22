@@ -15,14 +15,14 @@ This document provides two sections:
 
 ---
 
-## Instructions on How to Use the Boosting Tree Model
+## Basic Instructions on How to Use the Boosting Tree Model
 
 **Importing the Model**
 
 To use the Boosting Tree Model, import the required classes:
 
 ```
-from boosting_tree import BoostingTreeModel, MyMSE, MyRSquared, DecisionTreeRegressorCustom
+from boosting_tree.BoostingTreeModel import BoostingTreeModel, MyRSquared, MyMSE
 ```
 
 ---
@@ -38,7 +38,7 @@ To train the Boosting Tree model, use the `fit` method. It requires:
 
 ```python
 import numpy as np
-from boosting_tree import BoostingTreeModel
+from boosting_tree.BoostingTreeModel import BoostingTreeModel
 
 # Generate example data
 X = np.random.rand(100, 3)  # 100 samples, 3 features
@@ -70,7 +70,7 @@ print(predictions)
 To evaluate model performance, use the MyMSE and MyRSquared classes. Both classes provide static methods for calculating metrics.
 Example:
 ```python
-from boosting_tree import MyMSE, MyRSquared
+from boosting_tree.BoostingTreeModel import BoostingTreeModel, MyRSquared, MyMSE
 
 # Calculate Mean Squared Error
 mse = MyMSE.calculate(y, y_pred)
@@ -84,7 +84,7 @@ print("R-squared:", r_squared)
 Sample runnable script:
 ```python
 import numpy as np
-from boosting_tree import BoostingTreeModel, MyMSE, MyRSquared
+from boosting_tree.BoostingTreeModel import BoostingTreeModel, MyRSquared, MyMSE
 
 # Sample Data
 X = np.random.rand(100, 3)
@@ -106,8 +106,11 @@ r_squared = MyRSquared.calculate(y, y_pred)
 print(f"Mean Squared Error: {mse:.4f}")
 print(f"R-squared: {r_squared:.4f}")
 ```
+**Additional Evidence of How to Run the Code**
+Please look at the screenshoots located at the folder Additional Evidence
 
 **Additional Details**
+
 
 **Key Classes and Functions**
 
