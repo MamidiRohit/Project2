@@ -12,6 +12,9 @@ I tested my model with 4 test cases. The first three cases are randomly generate
 `
 GradientBoostingTree(n_estimators=100, rate=0.1, max_depth=3, min_samples_split=2, tol=10)
 `
+`n_estimators`: the number of estimators in the gradient boosting algorithm
+`rate`: the learning rate
+··
 
 
 * __Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?__<br />
