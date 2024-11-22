@@ -1,26 +1,23 @@
 # Project 2
 
-PROJECT 2
-MODEL SELECTION:
 Gradient Boosting Tree Implementation Analysis
 
-TEAM MEMBERS
+## TEAM MEMBERS
 1. Munish Patel - mpatel176@hawk.iit.edu (A20544034)
 2. Jaya Karthik Muppinidi - jmuppinidi@hawk.iit.edu (A20551726)
 3. Meghana Mahamkali - mmahamkali@hawk.iit.edu (A20564182)
 4. Nirusha Mantralaya Ramesh - nmantralayaramesh@hawk.iit.edu (A20600814)
 
-CONTRIBUTIONS
+## CONTRIBUTIONS
 ALGORITHM DEVELOPMENT AND DATA PROCESSING (MUNISH,NIRUSHA)
 MODEL IMPLIMENTATION AND TESTING FRAMEWORK(MEGHANA,KARTHIK)
 
-REQUIREMENTS
+## REQUIREMENTS
 PYTHON 3.7+
 NUMPY
 SCKIT
 
-PROJECT OVERVIEW 
-
+## PROJECT OVERVIEW 
 
 Core Components
 1. GradientBoostingTreeRegressor Class
