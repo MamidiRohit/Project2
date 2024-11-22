@@ -15,7 +15,7 @@ I tested my model with 4 test cases. The first three cases are randomly generate
 `rate`: the learning rate <br/>
 `max depth`: the maximum depth of the tree. The value is inputted to `DcisionTreeRegressor` to control the maximum depth of an estimator <br/>
 `min_samples_split`: the splitting requirement of minimum samples and is imported into `DcisionTreeRegressor`<br/>
-`tol`: tolerance. It is an `int` value and controls the early stopping. For each new estimator, the model calculates the loss (mean square error) by the previous residual and predicted residual. If the loss is less than the current best loss, i.e. the model is still improving, the model will update the optimal loss and reset "tol" to the parameter we set. Otherwise, `tol` is decremented by 1 and an early stop occurs when `tol` is 0. <br/>
+`tol`: tolerance. It is an `int` value and controls the early stopping. For each new estimator, the model calculates the loss (mean square error) by the previous residual and predicted residual. If the loss is less than the current best loss, i.e. the model is still improving, the model will update the optimal loss and reset "tol" to the parameter we set. Otherwise, `tol` is decremented by 1 and an early stop occurs when `tol` is 0.
 
 ***function***<br/>
 `fit(self, X, Y)`<br/>
