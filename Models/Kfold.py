@@ -37,5 +37,8 @@ class CrossVal:
                                                   y_preds))
             r2.append(Metrics.r_squared(y_val, 
                                         y_preds))
+            aic.append(Metrics.aic(y_val, 
+                                   y_preds, 
+                                   X_val))
             
-        return np.mean(mse), np.mean(r2)
+        return np.mean(mse), np.mean(r2), np.mean(aic)
