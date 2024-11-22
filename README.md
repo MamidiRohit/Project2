@@ -169,7 +169,7 @@ Features (X_columns) and target (y_column): Columns to use from any dataset.
 - ii. Bootstrap AIC score:
     ![Customer Test Image](customer_aic_bootstrap.png)
 - iii. K-fold cross validation AIC distribution:
-    ![Customer Test Image](customer_aic_dis_bootstrap.png)
+    ![Customer Test Image](customer_aic_distr_k_fold.png)
 - iv. Bootstrap AIC distribution:
     ![Customer Test Image](customer_aic_dis_bootstrap.png)
 - v. Bootstrap Output:
