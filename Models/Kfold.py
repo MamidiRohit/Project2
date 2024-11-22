@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
-import os
-import sys
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+import sys 
+sys.path.insert(1,"E:\IIT CHICAGO\SEMESTER_1\MACHINE LEARNING\PROJECT_2")
 
 from Models.LinearRegression import LinearRegressionModel
 from Models.LinearRegression import Metrics
@@ -38,8 +38,7 @@ class CrossVal:
                                                   y_preds))
             r2.append(Metrics.r_squared(y_val, 
                                         y_preds))
-            aic.append(Metrics.aic(y_val, 
-                                   y_preds, 
-                                   X_val))
-            
+            aic.append(Metrics.aic(y_val,
+                                     y_preds, 
+                                     X_val))
         return np.mean(mse), np.mean(r2), np.mean(aic)
