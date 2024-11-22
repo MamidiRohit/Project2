@@ -13,8 +13,10 @@ The Gradient Boost Model (GBM) is a custom implementation of a powerful machine 
 
 **Key Features of the Model**
 **Gradient-Based Optimization:** Minimizes the loss function iteratively by learning from gradients of residuals (errors).
+**Custom Implementation:** Built entirely from scratch without relying on high-level libraries.
 **Flexible Use Cases:** Handles both classification and regression tasks effectively.
 **Automatic Preprocessing:** Includes mechanisms to handle missing values, encode categorical variables, and standardize numerical features for better model performance.
+**Resilient to Edge Cases:** Tested on pathological datasets for robustness.
 
 #### When Should It Be Used?
 The GBM model is highly versatile and should be used in scenarios such as:
@@ -331,6 +333,30 @@ if __name__ == "__main__":
 
     test_pathological_cases()
 ```
+## How to Run the Code
+**Step 1: Clone the Repository**
+
+git clone https://github.com/YourRepoName/Project2.git
+cd Project2
+
+**Step 2: Install Dependencies**
+Ensure you have Python 3.8+ and required libraries installed. Install dependencies using:
+
+pip install -r requirements.txt
+
+**Step 3: Run Tests with Real-World Data**
+Use the following command to test the model on a dataset:
+python test_gradient_boost.py --file_path="path/to/dataset.csv"
+
+Ex: python test_gradient_boost.py --file_path="dog_breeds.csv"
+
+**Step 4: Run Synthetic Data Tests**
+To test the model on synthetic datasets, run:
+python test_synthetic_data.py
+
+**Step 5: Run All Tests Using Pytest**
+To execute all tests, including real-world data and pathological cases:
+pytest test_gradient_boost.py
 
 ### Running tests with Pytest
 Once you've modified the file path, you can use pytest to run all tests, including real-world data tests and pathological case tests.
