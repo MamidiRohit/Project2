@@ -100,11 +100,59 @@ Performance Characteristics
 * Early stopping can significantly reduce actual runtime
 
 
-Put your README below. Answer the following questions.
+## Answers to the following questions:
+1. What does the model you have implemented do and when should it be used?
 
-* What does the model you have implemented do and when should it be used?
-* How did you test your model to determine if it is working reasonably correctly?
-* What parameters have you exposed to users of your implementation in order to tune performance? (Also perhaps provide some basic usage examples.)
-* Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?
+  - Gradient Boosting Regressor model is implemented that predict continuous, numerical values using successive decision trees constructed to minimize residual errors. 
+  - The negative gradient of the loss function is used to train each tree so that prediction get better over iterations. 
+  - For tasks with complex, non-linear relationships on the data, the models are especially effective for regression tasks.
+  - Also, these parameters provide fine grain bias variance tradeoffs for control over model complexity and learning speed: tree depth, learning rate, and no. of estimators. 
+  - The models have found good application for tasks such as forecasting, pricing optimization and other predictive analytics where high accuracy is key.
 
+2. How did you test your model to determine if it is working reasonably correctly?
+   
+  - We evaluated our model by training it on a dataset that predicts suggested job roles.
+  - The models were evaluated on provided datasets by means of metrics such as Mean Squared Error (MSE) and R2 score to quantify prediction accuracy.
+  - Scaling using MinMaxScaler or RobustScaler was applied as preprocessing technique to allow compatibility with the model, and to increase performance on the test data.
+  - Additionally the implementations also had an early stopping mechanism to avoid overfitting by stopping training when improvements reduced.
+  - With verification these testing methods confirmed that the models yield robust and accurate predictions where the dataset lies.
 
+3. What parameters have you exposed to users of your implementation in order to tune performance? (Also perhaps provide some basic usage examples.)
+   
+    Exposed Parameters:
+  - ```n_estimators```: Number of boosting iterations.
+  - ```learning_rate```: Step size for updating predictions.
+  - ```max_depth```: Maximum depth of individual trees.
+  - ```random_state```: Seed for reproducibility.
+
+    Example usage:
+  -```
+      model = GradientBoostingTreeRegressor(n_estimators=200, learning_rate=0.05, max_depth=5, random_state=42)
+      model.fit(X_train, y_train)
+      predictions = model.predict(X_test) ```
+    
+4. Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?
+
+  - Challenges:
+    * This can be used to handle categorical data without preprocessing (yes, it can be done but with a simple step of label encoding).
+    * As shown for example with scaling using RobustScaler or MinMaxScaler, not performing well on noisy datasets or outliers without robust preprocessing.
+  - Workarounds:
+    * Naturally extend the implementation to support categorical features (one hot encoding).
+    * Integrate additional regularization techniques or automated outlier detection that generates further robustness to noise.
+    * These are not fundamental problems, if further development can address them.
+
+## Steps to run the code
+
+1. **Set Up the Environment**:
+   - Make sure you have the data .csv files in the same directory as the .ipynb file.
+   - Install dependencies with the following command:
+     ```bash
+     pip install numpy matplotlib scikit-learn joblib scipy
+     ```
+   - Ensure you are using **Python 3.8+** and running the code in **Google Colab**.
+
+2. **Execution**
+   - Clone the existing repository from the github or download the python script.
+   - Open the script in the Google Colab, you can achieve this by copy pasting the content or you can also directly upload it in Colab interface.
+   - Run/Execute the code.
+  
