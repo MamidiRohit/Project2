@@ -3,7 +3,7 @@ Student: Yuxuan Qian (A20484572)
 
 ## Boosting Trees
 * What does the model you have implemented do and when should it be used?
-  The gradient boosting tree I have implemented is one of machine learning methods that can predict the regression. 
+The gradient boosting tree I have implemented is one of the machine learning methods that can predict the regression. 
   
 * How did you test your model to determine if it is working reasonably correctly?
   
