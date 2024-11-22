@@ -3,9 +3,11 @@
 Implementing the gradient-boosting tree algorithm (with the usual fit-predict interface)
 
 Submitted by The Boosted Bandits:
-1. Anushka Sarath - A20576979
+1. Anushka Sarath - A20576979 
 2. B P Gayathri Ananya - A20588605
 3. Gladys Gince Skariah - A20576603
+
+All the team members collaborated equally to implement the project.
 
 ## 1. Introduction 
 
