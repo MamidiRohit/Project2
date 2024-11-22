@@ -129,8 +129,14 @@ Please look at the screenshoots located at the folder Additional Evidence
 | `subsample` | float | 0.5 | Fraction of samples used for training. |
 
 
-** Notes: **
+**Notes**
 In the folder NotebookTest, you can find notebooks for visualizations.
+For the purpose of data export, tests 4 and 5 are exclusively available in Notebook format. 
+Test4_BTModel_EnergyEfficieny.ipynb
+Test 4 in Energy Efficiency Dataset
+Test5_BTModelWineQuality.ipynb
+Additional comments about results were made on the Notebooks
+
 
 ---
 **Answers to Project 2**
@@ -196,4 +202,14 @@ Another area to explore would be fine-tuning the model to work better on linear 
 The Elements of Statistical Learning (Chapter 10, Boosting) 
 
 From Mining of Massive Datasets (Chapter 10, Gradient Descent) 
+
+
+Datasets
+California Housing Prices
+Pace, R. K., & Barry, R. (1997). Sparse spatial autoregressions. Statistics and Probability Letters, 33(3), 291-297. https://doi.org/10.1016/S0167-7152(96)00140-X
+
+Wine
+Aeberhard, S. & Forina, M. (1992). Wine [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5PC7J.
+
+
 
