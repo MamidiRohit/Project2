@@ -2,7 +2,6 @@
 ## Project 2 
 
 # Group Members - Contribution
-
 * Venkata Naga Lakshmi Sai Snigdha Sri Jata - A20560684 - 33.33%
 * Sharan Rama Prakash Shenoy - A20560684 - 33.33%
 * Adarsh Chidirala - A20561069 - 33.33%
