@@ -59,10 +59,15 @@ Run the script
  
 Step 4:
 Ensure all the datasets are properly loaded and called
+
 Note: Update paths in the script, if required.
+
 Basic Usage:
+
 •	For Synthetic Data, you can run this code directly
+
 CODE:
+
 import numpy as np
 
 class ModelSelection:
