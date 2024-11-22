@@ -8,14 +8,14 @@ Implement the gradient-boosting tree algorithm (with the usual fit-predict inter
 
 Put your README below. Answer the following questions.
 
-#Project 2
+# Project 2
 
-#Group Name: A20560777
+# Group Name: A20560777
 
-#Group Members:
+# Group Members:
 Pooja Pranavi Nalamothu (CWID: A20560777)
 
-#Model Selection
+# Model Selection
 
 1.	Do your cross-validation and bootstrapping model selectors agree with a simpler model selector like AIC in simple cases (like linear regression)?
 Yes. For basic problems like linear regression, cross validation and boot strap techniques are found to select the models which are equally selected by AIC in most of the cases. They both try to assess the model’s suitability for classifying unknown data. Holds its measures on prediction errors of cross-validation while AIC assesses the goodness of the fit and charges the model complexity. According to Li et al., when the assumptions of AIC (like errors’ normally distributed nature) are valid, the results match perfectly. However, cross validation can be more robust when assumptions that lead to it are not met.
@@ -162,7 +162,7 @@ class ModelSelection:
             return self.bootstrap(X, y, **kwargs)
         else:
             raise ValueError("Unsupported method. Choose 'k_fold' or 'bootstrap'.")
-# Example of a simple linear regression model
+#Example of a simple linear regression model
 class SimpleLinearModel:
     def fit(self, X, y):
         self.coef_ = np.linalg.pinv(X) @ y
@@ -170,30 +170,30 @@ class SimpleLinearModel:
     def predict(self, X):
         return X @ self.coef_
 
-# Mean squared error loss function
+#Mean squared error loss function
 def mean_squared_error(y_true, y_pred):
     return np.mean((y_true - y_pred) ** 2)
 
-# Create synthetic data
+#Create synthetic data
 np.random.seed(42)
 X = np.random.rand(100, 3)
 y = X @ np.array([1.5, -2.0, 1.0]) + np.random.randn(100) * 0.1
 
-# Initialize model and model selector
+#Initialize model and model selector
 model = SimpleLinearModel()
 selector = ModelSelection(model, mean_squared_error)
 
-# Perform k-fold cross-validation
+#Perform k-fold cross-validation
 k_fold_loss = selector.evaluate_model(X, y, method='k_fold', k=5)
 print("K-Fold Cross-Validation Loss:", k_fold_loss)
 
-# Perform bootstrap
+#Perform bootstrap
 bootstrap_loss = selector.evaluate_model(X, y, method='bootstrap', B=100)
 print("Bootstrap Loss:", bootstrap_loss)
 
 model.fit(X, y)
 
-# Evaluate
+#Evaluate
 predictions = model.predict(X)
 mse = np.mean((y - predictions) ** 2)
 print(f"Mean Squared Error: {mse:.4f}")
