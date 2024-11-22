@@ -19,6 +19,7 @@ class CrossVal:
         foldSize = int(len(y)/ self.k)
         mse = []
         r2 = []
+        aic = []
     
         for i in range(self.k):
             val_indis = indis[i*foldSize:(i+1) * foldSize]
