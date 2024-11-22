@@ -60,7 +60,8 @@ These parameters allow users to adapt the methods to their specific datasets and
 ## How to Run
 1. Clone this repository
 2. Install required Python libraries (`matplotlib` for plotting) from cmd.
-3. Replace file_path: Path to the CSV file in model.py
-4. Replace target_column: Name of the target column in model.py
+3. If you want test with some other dataset then replace the following values :
+         Replace file_path: Path to the CSV file
+         Replace target_column: Name of the target column (For eample in heart.csv it is target)
 6. Then run model.py file
 
