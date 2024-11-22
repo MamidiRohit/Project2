@@ -1,62 +1,79 @@
 # Project 2
+
 ### Implemented model
 * generic k-fold cross-validation and bootstrapping model selection methods.
+
 ### Creator Description
 - Name: Haeun Suh
 - HawkID: A20542585
 - Class: CS584-04 Machine Learning(Instructor: Steve Avsec)
 - Email: hsuh7@hawk.iit.edu
+  
 #### [Question 1] Do your cross-validation and bootstrapping model selectors agree with a simpler model selector like AIC in simple cases (like linear regression)?
 - For simple datasets, it was observed that cross-validation and bootstrapping models generally reach the same conclusions as simpler methods like AIC.
 - However, on more complex datasets, particularly those with random elements or multi-collinearity, the results were somewhat inconsistent.
 - Below is a comparison of the average metric scores from cross-validation and bootstrapping with AIC scores for the same tests.
+  
 ##### Size test:
 - Model: Simple Linear Regression
 - Metrics: R^2
 - [K-fold] k = 5, shuffling = Yes
 - [bootstrapping]  sampling size: 100, epochs: 100
 - [Configuration file] /params/test_size.json
-<img alt="" src="./results/size_test_k_fold.png" width="600">
-<img alt="" src="./results/size_test_bootstrapping.png" width="600">
+` `
+<img alt="" src="./results/size_test_k_fold.png" width="600"/>
+<img alt="" src="./results/size_test_bootstrapping.png" width="600"/>
+
 - AIC tends to increase proportionally with the dataset size. However, the average metric scores for cross-validation and bootstrapping are relatively irregular, with gentler slopes in their trend lines, regardless of the dataset size.
 - The k-value applied to the model may have contributed to an underestimation of the dataset size. As a result, these methods do not reach the same conclusions as AIC.
 - Below is another test to evaluate the impact of correlation.
+  
 ##### Correlation test:
 - Model: Simple Linear Regression
 - Metrics: R^2
 - [K-fold] k = 5, shuffling = Yes
 - [bootstrapping]  sampling size: 100, epochs: 100
 - [Configuration file] params/test_correlation.json
+` `
 <img alt="" src="./results/correlation_test_k_fold.png" width="600">
 <img alt="" src="./results/correlation_test_bootstrapping.png" width="600">
+
 - Under multi-collinearity, the trends for cross-validation and bootstrapping models were strong. However, AIC did not exhibit a similarly strong trend and showed artificially high performance under the assumption of a perfect correlation coefficient of 1.
 - The two models developed do not yield the same conclusions as AIC. In fact, the conclusions were often contradictory (e.g., lower scores being better for AIC).
 - In datasets with multi-collinearity or heavily biased structures, cross-validation and bootstrapping model selectors may not align with simpler model selectors like AIC.
+  
 #### [Question 2] In what cases might the methods you've written fail or give incorrect or undesirable results?
 - According to the test results mentioned above, there is a high possibility of incorrect conclusions if the test data is too large, has multi-collinearity, or has a biased structure.
 - In particular, according to the test results of testing multiple factors together as shown below, performance fluctuations were most severe when multi-collinearity existed.
+  
 ##### Multi-factor test:
 - Model: Simple Linear Regression
 - Metrics: R^2
 - [K-fold] k = 5, shuffling = Yes
 - [bootstrapping]  sampling size: 100, epochs: 100
 - [Configuration file] /params/test_multi.json
+` `
 <img alt="multi-test_k_fold" src="./results/multi-test_k_fold.jpg" width="600">
 <img alt="multi-test_bootstrapping" src="./results/multi-test_bootstrapping.jpg" width="600">
+
 -  When the data was predictable but noisy, the cross-validation and bootstrapping models performed better than AIC. However, in more complex scenarios, such as with multi-collinearity or data bias, both models exhibited unstable metric scores.
 - Since both methods aim to equalize performance across folds or samples, they may not be appropriate indicators for model selection if the data distribution is highly unstable.
 - In summary, if the data distribution is overly complex and biased, the two developed models may not be suitable for model selection.
+  
 #### [Question 3] What could you implement given more time to mitigate these cases or help users of your methods?
 - To address these limitations, additional improvements could include:
 > - Adding regularization techniques (e.g., Ridge, Lasso, ElasticNet) to handle multi-collinearity.
 > - Implementing preprocessing methods, such as Principal Component Analysis (PCA), for datasets with high correlation coefficients.
 > - Providing automated warnings or recommendations for datasets with bias, multi-collinearity, or extreme size imbalances.
+
 #### [Question 4] What parameters have you exposed to your users in order to use your model selectors.
 - For user convenience, all parameter settings, including data generation conditions, are included in:
 > params/
 - When running the mail script test.py, the user can specify the desired settings by selecting the json format settings file that exists in the location.
 - Regarding parameter settings, specifications are provided in 'params/param_example.txt' and sample images are as follows.
+` `
 <img alt="param_sample" src="./params/param_sample.jpg">
+
 - However, the parameters related to the actual model are limited and the specifications are as follows.
 >>  - "test": 
 >>    - "general": 
@@ -68,6 +85,7 @@
 >>    - "bootstrapping": 
 >>      - "size": [50],  # The size of the training dataset for each bootstrap sample.
 >>      -  "epochs": [100]  # The number of bootstrapping iterations to perform.
+
 - Regarding k-fold cross validation, the direct variables are as follows.
 >>  - model: The statistical model to test.
 >>  - metric: The metric function to measure the model's performance.
@@ -75,7 +93,7 @@
 >>  - y: The target labels for training.
 >>  - k: The number of folds to divide the data into.
 >>  - shuffle: Whether to shuffle the data before splitting into folds.
-<br/>
+
 - Regarding Bootstrapping model, the direct variables are as follows.
 >> - model: The statistical model to test.
 >>  - metric: The metric function to measure the model's performance.
