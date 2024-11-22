@@ -10,16 +10,52 @@ CWID: A20560901
 Name: Sai Teja Reddy Janga     
 CWID: A20554588
 
+--------------
+
+## Instructions to Run the Code:
+
+### Prerequisites:
+1. Install python in your code editor environment using the script "pip install python". To Install Jupyter in your Python environment use the script "pip install notebook pip install jupyter".
+2. To install neccessary libraries run the script "pip install numpy sklearn matplotlib seaborn".
+
+### Running the Code:
+1. Clone the repository or download the code files.
+2. Open Code editor Navigate to the project directory.
+3. To run the python file: 
+   - Run the script "python GBT_Implementation.py".
+   - The code will automatically:
+      - Generate and test on synthetic data.
+      - Run experiments on California Housing dataset.
+      - Display performance metrics.
+      - Show visualization plots.
+4. To run the jupyter file: 
+   - Option 1: Run All
+      - Click the "Run All" button at the top of the notebook Or press Ctrl+Alt+R (Windows/Linux) or Cmd+Alt+R (Mac).
+   - Option 2: Run Individual Cells
+      - Click the play button next to each cell Or press Shift+Enter when inside a cell.
+
+--------------
+
 ## Model Description:
 Gradient Boosting Trees (GBT) are an ensemble learning method that builds a sequence of decision trees to improve predictive accuracy. The key idea behind GBT is to train decision trees iteratively, where each new tree attempts to correct the errors (residuals) made by the previous trees. By combining the predictions of many weak learners (shallow decision trees), GBT can create a strong predictive model.
 
 ### How Gradient Boosting Works:
-1. The algorithm starts with an initial model that predicts a constant value (usually the mean of the target variable for regression).
-2. At each iteration, the algorithm:
+1. The algorithm starts with an initial model that predicts a constant value (the mean of the target variable as initial prediction for regression).
+2. At each iteration, the algorithm Sequentially adds scaled predictions from each tree:
    - Calculates the residuals, which are the differences between the true values and the current model’s predictions.
    - Fits a new decision tree to the residuals.
    - Updates the model by adding the scaled predictions from the new tree.
 3. The final model is the sum of the initial prediction and the predictions from all the trees.
+
+Our GBT model makes predictions through the following process:
+
+```python
+def predict(self, X):
+    pred = np.full(X.shape[0], self.init_pred)  # Start with mean prediction
+    for tree in self.models:
+        pred += self.learning_rate * tree.predict(X)  # Add each tree's contribution
+    return pred
+```
 
 ### When to Use Gradient Boosting Trees:
 - GBT is highly effective when there are complex, non-linear relationships between the input features and the target variable.
@@ -73,29 +109,14 @@ Our implementation provides several parameters that users can adjust to fine-tun
    - Limiting the depth prevents the trees from overfitting and reduces the model’s complexity.
 
 ### Usage Example:
+
+1. Basic usage: 
+
 ```python
-from gradient_boosting import GradientBoostingRegressor
-from sklearn.datasets import make_regression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-
-# Generate synthetic data
-X, y = make_regression(n_samples=1000, n_features=10, noise=0.1, random_state=42)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Initialize and train the model
-model = GradientBoostingRegressor(n_estimators=200, learning_rate=0.05, max_depth=4)
+# Default parameters
+model = GradientBoostingRegressor()
 model.fit(X_train, y_train)
-
-# Make predictions and evaluate
-y_pred = model.predict(X_test)
-mse = mean_squared_error(y_test, y_pred)
-rmse = np.sqrt(mse)
-r2 = r2_score(y_test, y_pred)
-
-print(f"Mean Squared Error: {mse:.4f}")
-print(f"Root Mean Squared Error: {rmse:.4f}")
-print(f"R² Score: {r2:.4f}")
+predictions = model.predict(X_test)
 ```
 
 ## Challenges:
