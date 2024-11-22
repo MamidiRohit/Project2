@@ -77,6 +77,7 @@ if __name__ == "__main__":
     mse_cv, r2_cv = cv.kFold(X, y)
     print(f"\nAverage k-Fold CV MSE: {mse_cv:.4f}")
     print(f"Average k-Fold CV R-Squared: {r2_cv:.4f}")
+    print(f"Average k-Fold CV Aic Score: {aic_cv:.4f}")
 
     # Bootstrapping
     print("\nBootstrapping Results:")
@@ -84,3 +85,4 @@ if __name__ == "__main__":
     mse_bs, r2_bs = bs_model.bootstrap(X, y)
     print(f"\nAverage Bootstrap MSE: {mse_bs:.4f}")
     print(f"Average Bootstrap R-Squared: {r2_bs:.4f}")
+    print(f"Average Bootstrap Aic Score: {aic_bs:.4f}")
