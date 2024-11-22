@@ -8,11 +8,15 @@ Implement the gradient-boosting tree algorithm (with the usual fit-predict inter
 
 Put your README below. Answer the following questions.
 
-Project 2
-Group Name: A20560777
-Group Members:
+#Project 2
+
+#Group Name: A20560777
+
+#Group Members:
 Pooja Pranavi Nalamothu (CWID: A20560777)
-Model Selection
+
+#Model Selection
+
 1.	Do your cross-validation and bootstrapping model selectors agree with a simpler model selector like AIC in simple cases (like linear regression)?
 Yes. For basic problems like linear regression, cross validation and boot strap techniques are found to select the models which are equally selected by AIC in most of the cases. They both try to assess the model’s suitability for classifying unknown data. Holds its measures on prediction errors of cross-validation while AIC assesses the goodness of the fit and charges the model complexity. According to Li et al., when the assumptions of AIC (like errors’ normally distributed nature) are valid, the results match perfectly. However, cross validation can be more robust when assumptions that lead to it are not met.
 2.	In what cases might the methods you've written fail or give incorrect or undesirable results?
@@ -194,6 +198,7 @@ predictions = model.predict(X)
 mse = np.mean((y - predictions) ** 2)
 print(f"Mean Squared Error: {mse:.4f}")
 print("First 10 Predictions:", predictions[:10])
+
 •	For other datasets
 Ensure the correct dataset is loaded and is in the correct directory.
 Define X and y for the corresponding features and target variables.
