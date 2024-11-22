@@ -15,7 +15,7 @@
 
 ---
 ---
-## Team Name: THALA
+## Team Name: THALA 7
 ---
 ## Hosted Streamlit App
 
