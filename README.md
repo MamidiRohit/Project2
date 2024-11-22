@@ -84,20 +84,16 @@
 <img src="./params/param_sample.jpg">
 <br/>
 - However, the parameters related to the actual model are limited and the specifications are as follows.
->> "test": {
-        "general": {
-            "model": "LinearRegression",  # [Options] "LinearRegression" (default), "LogisticRegression".
-            "metric": "MSE"  # [Options] "MSE" (default), "Accuracy score", "R2".
-        },
-        "k_fold_cross_validation": {
-            "k": [5],  # Number of folds for k-fold cross-validation.
-            "shuffle": true  # Whether to shuffle the data before splitting into folds.
-        },
-        "bootstrapping": {
-            "size": [50],  # The size of the training dataset for each bootstrap sample.
-            "epochs": [100]  # The number of bootstrapping iterations to perform.
-        }
-}
+>>  - "test": 
+>>    - "general": 
+>>      - "model": "LinearRegression",  # [Options] "LinearRegression" (default), "LogisticRegression".
+>>      - "metric": "MSE"  # [Options] "MSE" (default), "Accuracy score", "R2".
+>>    - "k_fold_cross_validation":
+>>      - "k": [5],  # Number of folds for k-fold cross-validation.
+>>      - "shuffle": true  # Whether to shuffle the data before splitting into folds.
+>>    - "bootstrapping": 
+>>      - "size": [50],  # The size of the training dataset for each bootstrap sample.
+>>      -  "epochs": [100]  # The number of bootstrapping iterations to perform.
 - Regarding k-fold cross validation, the direct variables are as follows.
 >>  - model: The statistical model to test.
 >>  - metric: The metric function to measure the model's performance.
