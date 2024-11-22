@@ -1,3 +1,5 @@
+
+
 ## TEAM NAME
 ILYA
 
@@ -7,21 +9,13 @@ ILYA
 - Nishant Khandhar - A20581012
 - Amogh Vastrad - A20588808
 
+## Project Overview
+
+In this project, we have implemented generic k-fold cross-validation and bootstrapping methods for model selection, which test how well a model is likely to perform on new data. We have also included the Akaike Information Criterion (AIC) to compare models. This model evaluates the performance of regression models and compares it with the AIC.
+
 ## How to run the code
 
 ### Using a Notebook File
-
-#### Prerequisites
-- Install Python and required libraries: `numpy`, `matplotlib`.
-
-#### Steps to Execute
-1. Open the terminal at the project folder.
-2. Run the command: `jupyter notebook Project2.ipynb`
-3. Run all cells sequentially.
-4. View the model evaluation outputs (e.g., MSE scores, AIC values) and plots for insights into model performance and residuals.
-5. It contains visualizations.
-
-### Using Python Class
 
 #### Prerequisites
 - Install Python and required libraries: `numpy`, `matplotlib`, `sklearn`.
@@ -32,6 +26,21 @@ ILYA
 ```bash
 pip install -r requirements.txt
 ```
+
+#### Steps to Execute
+1. Open the terminal at the project folder.
+2. Run the command: `jupyter notebook Project2.ipynb`
+3. Run all cells sequentially.
+4. View the model evaluation outputs (e.g., MSE scores, AIC values) and plots for insights into model performance and residuals.
+5. It contains visualizations.
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+### Using Python Class
+
+
 
 #### Steps to Execute
 1. Go to the `src` folder.
