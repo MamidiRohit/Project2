@@ -7,33 +7,38 @@ ILYA
 - Nishant Khandhar - A20581012
 - Amogh Vastrad - A20588808
 
-
-
 ## How to run the code
 
 ### Using a Notebook File
 
 #### Prerequisites
-- Install Python and required libraries: `numpy`, `matplotlib`. 
+- Install Python and required libraries: `numpy`, `matplotlib`.
 
 #### Steps to Execute
 1. Open the terminal at the project folder.
 2. Run the command: `jupyter notebook Project2.ipynb`
 3. Run all cells sequentially.
 4. View the model evaluation outputs (e.g., MSE scores, AIC values) and plots for insights into model performance and residuals.
-5. It contains visualizations
+5. It contains visualizations.
 
 ### Using Python Class
 
 #### Prerequisites
 - Install Python and required libraries: `numpy`, `matplotlib`, `sklearn`.
+- Open your terminal or command prompt.
+- Navigate to your project folder where the `requirements.txt` file is located.
+- Run the following command to install all the libraries listed in `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
 
 #### Steps to Execute
 1. Go to the `src` folder.
 2. Execute the command: `python .\pythonModelTest.py`
 
-
 ![alt text](image.png)
+
 ## Outputs
 
 1. **Cross-Validation:**
@@ -51,7 +56,6 @@ ILYA
     - Residual distribution plot.
     - Error comparison across methods.
     - Bootstrapping confidence intervals.
-
 
 ## Key Questions and Answers
 
@@ -84,4 +88,4 @@ ILYA
 - Requires `numpy`, `matplotlib`, `Jupyter`, `sklearn`
 
 ## More data
-- if you had time check data folder for various plot and results
+- If you have time, check the `data` folder for various plots and results.
