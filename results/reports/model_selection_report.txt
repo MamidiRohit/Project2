@@ -1,0 +1,75 @@
+Model Selection Report
+======================
+
+K-Fold Cross-Validation Results:
+Model: Random Forest (n_splits=5)
+  - Best Score: 0.9738
+  - Mean Validation Score: 0.9656
+  - Std Dev: 0.0120
+
+Model: Logistic Regression (n_splits=5)
+  - Best Score: 0.9638
+  - Mean Validation Score: 0.9623
+  - Std Dev: 0.0020
+
+Model: SVM (n_splits=5)
+  - Best Score: 0.9811
+  - Mean Validation Score: 0.6861
+  - Std Dev: 0.3746
+
+Model: K-NN (n_splits=5)
+  - Best Score: 0.9750
+  - Mean Validation Score: 0.9743
+  - Std Dev: 0.0009
+
+Model: Decision Tree (n_splits=5)
+  - Best Score: 0.8614
+  - Mean Validation Score: 0.7055
+  - Std Dev: 0.1550
+
+Model: Random Forest (n_splits=10)
+  - Best Score: 0.9789
+  - Mean Validation Score: 0.9693
+  - Std Dev: 0.0111
+
+Model: Logistic Regression (n_splits=10)
+  - Best Score: 0.9655
+  - Mean Validation Score: 0.9633
+  - Std Dev: 0.0027
+
+Model: SVM (n_splits=10)
+  - Best Score: 0.9839
+  - Mean Validation Score: 0.6919
+  - Std Dev: 0.3769
+
+Model: K-NN (n_splits=10)
+  - Best Score: 0.9777
+  - Mean Validation Score: 0.9763
+  - Std Dev: 0.0013
+
+Model: Decision Tree (n_splits=10)
+  - Best Score: 0.8481
+  - Mean Validation Score: 0.6949
+  - Std Dev: 0.1572
+
+Bootstrap Results:
+Model: Random Forest
+  - Mean Score: 0.9898
+  - Std Dev: 0.0022
+
+Model: Logistic Regression
+  - Mean Score: 0.9721
+  - Std Dev: 0.0039
+
+Model: SVM
+  - Mean Score: 0.9911
+  - Std Dev: 0.0020
+
+Model: K-NN
+  - Mean Score: 0.9771
+  - Std Dev: 0.0027
+
+Model: Decision Tree
+  - Mean Score: 0.9420
+  - Std Dev: 0.0060
+
