@@ -3,7 +3,8 @@
 ## Model Selection
 
 ### Program Design
-![alt text](images\image.png)
+
+![alt text](images/image.png)
 
 ### Results Overview
 | Metric                | **Linear Regression**       | **Ridge Regression**       |
@@ -15,7 +16,9 @@
 | SSR                   | 80.6585                    | 80.6853                    |
 | Verification (Coefficients) | True                     | True                       |
 | Verification (AIC)    | True                       | True                       |
-![alt text](images\Figure_1.png)
+
+
+![alt text](images/Figure_1.png)
 
 ### How to Run the Code
 
