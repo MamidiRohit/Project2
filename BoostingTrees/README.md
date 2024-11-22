@@ -8,11 +8,11 @@ Implement the gradient-boosting tree algorithm (with the usual fit-predict inter
 
 Put your README below. Answer the following questions.
 
-Project 2
-Group Name: A20560777
-Group Members:
+# Project 2
+# Group Name: A20560777
+# Group Members:
 Pooja Pranavi Nalamothu (CWID: A20560777)
-Gradient Boosting Tree
+# Gradient Boosting Tree
 1.	What does the model you have implemented do, and when should it be used?
 Gradient Boosting Tree (GBT) is an algorithm used in supporting machine learning for regression problems. It develops an additive model that is constructed sequentially through using predictions from decisions trees which each step aims at capturing residuals of the trees employed earlier on. This approach makes it flexible for use when dealing with large amounts of datasets, and good for recognizing non-linear patterns.
 When to use it:
@@ -82,6 +82,7 @@ Note: Update paths in the script, if required.
 Basic Usage:
 •	For Synthetic Data, you can run this code directly
 CODE:
+```python
 import numpy as np
 
 class DecisionTreeRegressor:
@@ -231,9 +232,10 @@ class GradientBoostingTree:
             predictions += self.learning_rate * tree.predict(X)
 
         return predictions
-
+```
 
 # Example Usage
+```python
 if __name__ == "__main__":
     # Import necessary libraries
     import numpy as np
@@ -266,10 +268,15 @@ if __name__ == "__main__":
     print(f"Mean Squared Error: {mse:.4f}")
 
     print("Predictions for new data:", predictions[:10])  # Display first 10 predictions
-
+```
 •	For other datasets
+
 Ensure the correct dataset is loaded and is in the correct directory.
+
 Define X and y for the corresponding features and target variables.
+
 Once you've modified the file path, you can use pytest to run all tests, including real-world datasets and synthetic dataset
+
 •	Open a terminal in the directory containing your test script.
+
 •	Run Pytest with the following command: pytest test_datasetname.py
