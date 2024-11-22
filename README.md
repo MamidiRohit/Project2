@@ -62,3 +62,13 @@ model.predict(x_test)
 
 
 * __Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?__<br />
+
+
+
+
+
+
+
+
+
+
