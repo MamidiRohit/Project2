@@ -49,7 +49,7 @@ Follow these steps to set up and run the project:
 
 Make sure that the script `project2.py` and any required dataset files are correctly placed in your project directory.
 
-#### Steps to Run the Code on Windows
+#### 3. Steps to Run the Code on Windows
 
 Follow these instructions to set up and execute the project on a Windows system:
 
