@@ -28,7 +28,7 @@ def test_k_fold():
     generator = ProfessorData(m=[2, -1, 3, 0, 0], N=100, b=0, scale=0.5)
     X, y = generator.linear_data_generator()
     cv = CrossVal(k=5)
-    mse, r2 = cv.kFold(X, y)
+    mse, r2, aic = cv.kFold(X, y)
     assert mse < 1.0, "MSE from k-fold cross-validation is too high"
     assert 0.8 <= r2 <= 1.0, "R-Squared from k-fold cross-validation is out of expected range"
 
@@ -36,7 +36,7 @@ def test_bootstrapping():
     generator = ProfessorData(m=[2, -1, 3, 0, 0], N=100, b=0, scale=0.5)
     X, y = generator.linear_data_generator()
     bootstrap = Bootstrapping(n_iter=10)
-    mse, r2 = bootstrap.bootstrap(X, y)
+    mse, r2, aic= bootstrap.bootstrap(X, y)
     assert mse < 1.0, "MSE from bootstrapping is too high"
     assert 0.8 <= r2 <= 1.0, "R-Squared from bootstrapping is out of expected range"
 
