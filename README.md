@@ -125,17 +125,16 @@ To determine whether cross-validation and bootstrapping model selectors agree wi
 
 ### 2. In what cases might the methods you've written fail or give incorrect or undesirable results?
 Failures or undesirable results may occur under these conditions:
-**Small Datasets:** Cross-validation and bootstrapping can give unreliable AIC scores when the dataset is too small.
-**Non-balance Data:** Models trained on non-balance datasets might make biased predictions which affects the AIC calculations.
+**Small Datasets:** k-fold Cross-validation and bootstrapping can give unreliable AIC scores when the dataset is too small.
+**Non-balance Data:** Models training on the non-balance datasets, might make biased predictions which affects the AIC calculations.
 **Connected Predictions:** Strong connections between predictions can lead to wrong estimates, affecting AIC evaluations.
 **Wrong Model Assumptions:** AIC relies on specific model assumptions (e.g., linear regression assumes Gaussian errors). If these assumptions are wrong, AIC might not show the true model fit.
-**Overfitting with Bootstrapping:** Repeated sampling with replacement might make bootstrapped datasets favor complex models too much, leading to high AIC values.
+**Overfitting with Bootstrapping:** Repeated sampling with replacement might  make bootstrapped datasets favor complex models too much, leading to high AIC values.
 
 ### 3. What could you implement given more time to mitigate these cases or help users of your methods?
 
-1. Use Ridge and Lasso penalties during cross-validation: Regularization adds a penalty to the model's complexity to reduce overfitting. Ridge regression adds an L2 penalty (squared magnitude_value  of coefficients), while Lasso regression adds an L1 penalty (absolute value of coefficients).
+1. Use Ridge and Lasso penalties during cross-validation: Regularization adds a penalty to the model's complexity to reduce overfitting. Ridge regression adds an L2 penalty , while Lasso regression adds an L1 penalty.
 Use RidgeCV and LassoCV from scikit-learn: These classes perform cross-validation to find the better regularization parameter (alpha) for Ridge and Lasso regression.
-Handle Imbalanced Data:
 
 2. Use categorized sampling for k-fold cross-validation: Categorized k-fold ensures that each fold has the equal proportion of class labels as the original dataset, which shows imbalanced datasets.
 Implement balanced bootstrapping: Bootstrapping involves sampling with a stategy of replacement. Balanced bootstrapping ensures that each class is represented equally in each sample.
