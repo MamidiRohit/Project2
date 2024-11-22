@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
   
     cv = CrossVal(k=args.k)
-    mse_cv, r2_cv = cv.kFold(X, y)
+    mse_cv, r2_cv, aic_cv = cv.kFold(X, y)
     print(f"\nAverage k-Fold CV MSE: {mse_cv:.4f}")
     print(f"Average k-Fold CV R-Squared: {r2_cv:.4f}")
     print(f"Average k-Fold CV Aic Score: {aic_cv:.4f}")
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     # Bootstrapping
     print("\nBootstrapping Results:")
     bs_model = Bootstrapping(n_iter=args.n_iter)
-    mse_bs, r2_bs = bs_model.bootstrap(X, y)
+    mse_bs, r2_bs , aic_bs= bs_model.bootstrap(X, y)
     print(f"\nAverage Bootstrap MSE: {mse_bs:.4f}")
     print(f"Average Bootstrap R-Squared: {r2_bs:.4f}")
     print(f"Average Bootstrap Aic Score: {aic_bs:.4f}")
