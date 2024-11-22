@@ -4,10 +4,10 @@
 ILYA
 
 ## TEAM
-- Rakesh Reddy - A20525389
-- Geeta Hade - A20580824
-- Nishant Khandhar - A20581012
-- Amogh Vastrad - A20588808
+- Rakesh Reddy - A20525389   (Worked on models output and test file, file structure, took care of readme format and content, project delivery)
+- Geeta Hade - A20580824  (done initial math and research on how to build models, took care of readme content)
+- Nishant Khandhar - A20581012 (heavily invested time on building code for the Kfold (we faced an issue in it so he took care of it), visualizations )
+- Amogh Vastrad - A20588808  (he overlooked and researched the model performance and performed coding for notebook file)
 
 ## Project Overview
 
