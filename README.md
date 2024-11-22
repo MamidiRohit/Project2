@@ -114,3 +114,9 @@ All figures are saved as `.png` files in the `figures/` directory.
 ### **Summary**
 
 This program provides robust model evaluation using K-Fold Cross-Validation and Bootstrap Resampling. It ensures flexibility for various datasets and offers detailed logs, reports, and visualizations, helping users make informed model selection decisions.
+
+
+### **Team members**
+### **Krishna Manideep Malladi (A20550891)**
+### **Manvitha Byrineni (A20550783)**
+### **Udaya sree Vankdavath (A20552992)**
