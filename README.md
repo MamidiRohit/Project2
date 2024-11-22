@@ -178,7 +178,7 @@ Features (X_columns) and target (y_column): Columns to use from any dataset.
 ### 2. patient_data.csv:
 - Tests the model on a large dataset, and verifies if the predictions are reasonable.
 - i. K-fold cross validation AIC score:
-    ![Patient Test Image](patient_ aic_k_fold.png)
+    ![Patient Test Image](patient_aic_k_fold.png)
 - ii. Bootstrap AIC score:
     ![Patient Test Image](patient_aic_bootstrap.png)
 - iii. K-fold cross validation AIC distribution:
