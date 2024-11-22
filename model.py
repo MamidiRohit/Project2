@@ -176,7 +176,7 @@ if __name__ == "__main__":
     target_column = "target"  # Replace with your target column name
 
     # Load data from CSV
-    X, y = load_csv("mlp\small_test.csv", "y")
+    X, y = load_csv("file_path", "target_column")
 
     # Create a Linear Regression model
     model = LinearRegression()
