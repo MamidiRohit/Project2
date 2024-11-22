@@ -86,23 +86,23 @@ Ensure that all paths are correct and relevant files are located in the specifie
 
 
 
-### Introduction
-## Heart Arthemia Prediction Using Model Selection using 
+## Introduction
+### Heart Arthemia Prediction Using Model Selection using 
 
 
 
-### Usage of Model Selection
+## Usage of Model Selection
 
-## 1. Do your cross-validation and bootstrapping model selectors agree with a simpler model selector like AIC in simple cases (like linear regression)?
-
-
-## 2. In what cases might the methods you've written fail or give incorrect or undesirable results?
+### 1. Do your cross-validation and bootstrapping model selectors agree with a simpler model selector like AIC in simple cases (like linear regression)?
 
 
-## 3. What could you implement given more time to mitigate these cases or help users of your methods?
+### 2. In what cases might the methods you've written fail or give incorrect or undesirable results?
 
 
-## 4. What parameters have you exposed to your users in order to use your model selectors.
+### 3. What could you implement given more time to mitigate these cases or help users of your methods?
+
+
+### 4. What parameters have you exposed to your users in order to use your model selectors.
 
 <!-- 
 ### Code Visualization:
