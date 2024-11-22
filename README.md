@@ -12,9 +12,8 @@ I tested my model with 4 test cases. The first three cases are randomly generate
 `
 GradientBoostingTree(n_estimators=100, rate=0.1, max_depth=3, min_samples_split=2, tol=10)
 `<br/>
-
-`n_estimators`: the number of estimators in the gradient boosting algorithm
-`rate`: the learning rate
+`n_estimators`: the number of estimators in the gradient boosting algorithm <br/>
+`rate`: the learning rate <br/>
 ``
 
 
