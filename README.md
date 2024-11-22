@@ -133,3 +133,7 @@ The methods may fail or give incorrect results in the following cases:
 3. **`n_iterations`**: Number of bootstrap iterations (default = 100).
 4. **`test_size`**: Proportion of OOB samples (default = 0.3).
 5. **`random_seed`**: Seed for reproducibility (optional).
+
+## Extra Credits
+
+- The **BONUS CREDIT/visualization_notebook.py** script provides enhanced data visualizations and performance analysis for the implemented linear regression model using k-fold cross-validation and bootstrapping.
