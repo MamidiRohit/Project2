@@ -56,7 +56,7 @@ def grid_search_max_depth(X, y, max_depth_values, n_estimators=100, learning_rat
 
 if __name__ == "__main__":
     # 1. Load and Preprocess Dataset
-    dataset_path = "data/diabetes_dataset.csv"
+    dataset_path = "data/boston_housing.csv"
     X, y = load_dataset(dataset_path)
     X, y = preprocess_data(X, y)
 

@@ -12,7 +12,7 @@ setup(
     description="Implementation of Gradient Boosting and Model Selection (K-Fold CV, Bootstrapping)",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/gradient_boosting_model_selection",  # Replace with your GitHub URL
+    url="https://github.com/mishrasharanya/CS584_Project2",  # Replace with your GitHub URL
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[

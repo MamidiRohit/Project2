@@ -30,7 +30,7 @@ def preprocess_data(X, y):
     y_std = np.std(y)
     y_scaled = (y - y_mean) / y_std
 
-    return X_scaled, y_scaled
+    return X_scaled, y_scaled, y_mean, y_std
 
 def evaluate_model(y_true, y_pred):
     """
@@ -56,11 +56,11 @@ def plot_results(y_true, y_pred):
 
 if __name__ == "__main__":
     # 1. Load Dataset
-    dataset_path = "data/diabetes_dataset.csv"
+    dataset_path = "data/boston_housing.csv"
     X, y = load_dataset(dataset_path)
 
     # 2. Preprocess Data
-    X, y = preprocess_data(X, y)
+    X, y, y_mean, y_std = preprocess_data(X, y)
 
     # 3. Split Data into Training and Testing Sets
     train_size = int(0.8 * len(X))
@@ -69,20 +69,23 @@ if __name__ == "__main__":
 
     # 4. Train Gradient Boosting Model
     print("Training Gradient Boosting Model...")
-    model = GradientBoostingTree(n_estimators=100, learning_rate=0.1, max_depth=3)
+    model = GradientBoostingTree(n_estimators=100, learning_rate=0.1, max_depth=2)
     model.fit(X_train, y_train)
     print("Model training complete!")
 
-    # 5. Make Predictions
-    y_pred = model.predict(X_test)
+    # 5. Make Predictions (scaled)
+    y_pred_scaled = model.predict(X_test)
 
-    # 6. Evaluate the Model
-    mse, mae, r2 = evaluate_model(y_test, y_pred)
+    # 6. Scale back predictions to original y scale
+    y_pred = y_pred_scaled * y_std + y_mean
+
+    # 7. Evaluate the Model
+    mse, mae, r2 = evaluate_model(y_test * y_std + y_mean, y_pred)  # Scale back y_test to original scale
     print("\nModel Evaluation:")
     print(f"Mean Squared Error (MSE): {mse:.4f}")
     print(f"Mean Absolute Error (MAE): {mae:.4f}")
     print(f"R² Score: {r2:.4f}")
 
-    # 7. Plot Results
+    # 8. Plot Results
     print("\nPlotting Actual vs. Predicted Results...")
-    plot_results(y_test, y_pred)
+    plot_results(y_test * y_std + y_mean, y_pred)  # Scale back y_test to original scale
