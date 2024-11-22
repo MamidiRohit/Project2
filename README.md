@@ -28,7 +28,7 @@ _parameter_: <br/>
 `X`: x test data<br/><br/>
 _Usage Example:_ <br/>
 1. Download the file called `Gradient_Dcision_Tree.py` <br/>
-2. When using, use the following codes: <br/>
+2. Using the following codes: <br/>
 ```
 from Gradient_Dcision_Tree import GradientBoostingTree
 
