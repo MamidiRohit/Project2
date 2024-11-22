@@ -36,10 +36,20 @@ To ensure the correct implementation of the Gradient Boosting Tree algorithm, we
    - We generated synthetic regression data using Scikit-Learn’s `make_regression` function.
    - We trained the custom Gradient Boosting model on this data and evaluated its performance using the Mean Squared Error (MSE), Root Mean Squared Error (RMSE), R^2 Score (R^2) metrics.
    - The predictions from our model were compared with those from Scikit-Learn’s `GradientBoostingRegressor` to verify that our implementation produces similar results.
+   - The model's performance on synthetic data demonstrates a good fit, as indicated by the following metrics:
+      - Mean Squared Error (MSE): 1241.21 — This measures the average squared difference between predicted and actual values. Lower values indicate better model performance.
+      - Root Mean Squared Error (RMSE): 35.23 — This is the square root of MSE, providing an interpretable measure of error in the same units as the target variable.
+      - R² Score: 0.9264 — This indicates that approximately 92.64% of the variance in the synthetic data is explained by the model, showing strong predictive capability.
+   - These metrics suggest the model effectively captures the underlying patterns in the synthetic data with minimal error.
 
 2. **Real-World Dataset**:
    - We tested the model on a publicly available dataset (e.g., the California Housing dataset).
    - We split the data into training and testing sets, then evaluated the model’s accuracy and MSE, RMSE, R^2 scores to confirm its generalization capability.
+   - The model's evaluation on the California housing dataset indicates the following performance:
+      - Mean Squared Error (MSE): 0.2375 — The average squared difference between predicted and actual housing values, showing a relatively low level of error.
+      - Root Mean Squared Error (RMSE): 0.4874 — The square root of the MSE, providing an interpretable error measure in the same units as the housing prices.
+      - R² Score: 0.8187 — Approximately 81.87% of the variance in the housing prices is explained by the model, indicating a strong predictive        relationship but leaving room for improvement.
+   - The model performs well on the California housing data, explaining a substantial portion of the variance with minimal prediction error. However, the lower R² score compared to synthetic data suggests the real-world data's complexity might require further tuning or additional features to improve accuracy.
 
 3. **Edge Cases**:
    - We tested the model on datasets with varying numbers of features and sample sizes to check for robustness.
