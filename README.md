@@ -1,10 +1,9 @@
 ### Team Members
 
-1. Satya Mani Srujan Dommeti  
-2. Arjun Singh  
-3. Akshitha Reddy Kuchipatla  
-4. Vamsi Krishna  
-
+Satya Mani Srujan Dommeti #A20594429
+Arjun Singh #A20577962
+Akshitha Reddy Kuchipatla #A20583607
+Vamsi Krishna #A20543669
 
 
 # Model Implementation
