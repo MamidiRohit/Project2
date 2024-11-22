@@ -1,6 +1,6 @@
 
 # Project 2
-## Boosting Trees
+# Boosting Trees
 # Group Member - Dev Kumar(A20546714)
 # Implement the gradient-boosting tree algorithm (with the usual fit-predict interface) as described in Sections 10.9-10.10 of Elements of Statistical Learning (2nd # # # Edition). Answer the questions below as you did for Project 1.
 
@@ -22,13 +22,13 @@ Answer - To assess the model’s performance, I ran a series of experiments usin
 * What parameters have you exposed to users of your implementation in order to tune performance? (Also perhaps provide some basic usage examples.)
 Answer - The model provides several key parameters for user customization. The learning rate controls each tree's contribution to the final model, balancing training speed and accuracy. The `n_estimators` parameter sets the number of decision trees in the ensemble. The `max_depth` limits the depth of individual trees, helping to prevent overfitting, while the `min_samples_leaf` ensures that each leaf contains enough samples, enhancing generalization. The `subsample` ratio introduces randomness by training each tree on a subset of the data, improving robustness. The `loss` function allows users to choose the type of loss function, such as mean squared error for regression or log-loss for classification. Regularization options, such as alpha for L1 regularization in quantile regression and `min_impurity_decrease` to avoid splitting nodes with minimal gain, provide additional control over the model’s behavior.
 
-# Usage Example:
-# Example for regression
+* Usage Example:
+* Example for regression
 gbt = GradientBoostingTree(n_estimators=100, learning_rate=0.1, max_depth=3)
 gbt.fit(X_train, y_train)
 predictions = gbt.predict(X_test)
 
-# Example for classification
+* Example for classification
 gbt = GradientBoostingTree(loss='log_loss', n_estimators=50, learning_rate=0.05, max_depth=2)
 gbt.fit(X_train, y_train)
 predictions = gbt.predict(X_test)
