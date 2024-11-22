@@ -5,6 +5,9 @@
 **Group Members:**
 - ssaurav@hawk.iit.edu (FNU Saurav) - A20536122
 - psavant@hawk.iit.edu (Pallavi Savant) - A20540976
+- ssinha20@hawk.iit.edu(Satwik Sinha)-A20547790
+- akutre@hawk.iit.edu (Aditya Ramchandra Kutre)-A20544809
+- tyerra@hawk.iit.edu(Tejaswi Yerra) -A20545536
 
 
 ## Project Overview
