@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
-from models.gradient_reg import GradientBoostingRegressor
+from models.gradient_boosting_regressor import GradientBoostingRegressor
 
 def load_netflix_data(file_path):
     """
@@ -10,13 +10,11 @@ def load_netflix_data(file_path):
     """
     data = pd.read_csv(file_path)
 
-    # Ensure required columns exist
     required_columns = ["Open", "High", "Low", "Close"]
     for col in required_columns:
         if col not in data.columns:
             raise ValueError(f"Missing required column: {col}")
 
-    # Extract features and target
     data = data.dropna()  # Drop missing values
     X = data[["Open", "High", "Low"]].values  # Features
     y = data["Close"].values  # Target
@@ -29,9 +27,9 @@ def test_netflix_regressor(file_path):
     """
     X, y = load_netflix_data(file_path)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-    gbr = GradientBoostingRegressor(n_estimators=300, learning_rate=0.1, max_depth=3, min_samples_split=2)
+    gbr = GradientBoostingRegressor(n_estimators=20, learning_rate=0.1, max_depth=3, min_samples_split=2)
 
     # Train the model
     print("Training Gradient Boosting Regressor...")

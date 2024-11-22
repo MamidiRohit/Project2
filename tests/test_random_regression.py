@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
-from models.gradient_reg import GradientBoostingRegressor  
+from models.gradient_boosting_regressor import GradientBoostingRegressor  
 
 # Generate Random Regression Dataset
 def generate_random_data(n_samples=1000, n_features=5, noise=0.1, random_state=42):

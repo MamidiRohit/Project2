@@ -1,5 +1,5 @@
 import numpy as np
-from models.gradient_reg import DecisionTree, GradientBoostingRegressor
+from models.gradient_boosting_regressor import DecisionTree, GradientBoostingRegressor
 
 def test_decision_tree_errors():
     # Test cases for DecisionTree initialization
@@ -64,4 +64,3 @@ def test_gradient_boosting_errors():
 if __name__ == "__main__":
     test_decision_tree_errors()
     test_gradient_boosting_errors()
-
