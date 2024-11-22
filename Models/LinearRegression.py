@@ -31,7 +31,7 @@ class Metrics:
         return 1 - (ss_left / ss_total)
     
     @staticmethod
-    def aic(y_true, y_pred, model, X):
+    def aic(y_true, y_pred, X):
         
         n = len(y_true)
         
