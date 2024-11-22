@@ -20,7 +20,7 @@ $$
 
 As described in Sections 10.9-10.10 of Elements of Statistical Learning (2nd Edition) :
 <p align="center">
-    <img src="algo.png" alt="10.10.3" style="width:600px;"/>
+    <img src="img/algo.png" alt="10.10.3" style="width:600px;"/>
 </p>
 
 
@@ -105,7 +105,7 @@ model = GradientBoostingTree(n_estimators=5, learning_rate=0.01, max_depth=2)
 The output was clearnly **underfit**:
 
 <p align="center">
-    <img src="under.png" alt="underfiting" style="width:600px;"/>
+    <img src="img/under.png" alt="underfiting" style="width:600px;"/>
 </p>
 
 And here is an exemple of **overfiting**:
@@ -114,7 +114,7 @@ model = GradientBoostingTree(n_estimators=70, learning_rate=0.01, max_depth=5)
 ```
 
 <p align="center">
-    <img src="over.png" alt="underfiting" style="width:600px;"/>
+    <img src="img/over.png" alt="underfiting" style="width:600px;"/>
 </p>
 
 In conclusion, our model is still sensible to bad tuning, given more time we could have make an estimator giving to the user estimation of what would be good parameters depending on his data.
@@ -141,5 +141,5 @@ y_pred_test = model.predict(X_test)
 
 
 <p align="center">
-    <img src="NL.png" alt="underfiting" style="width:600px;"/>
+    <img src="img/NL.png" alt="underfiting" style="width:600px;"/>
 </p>
