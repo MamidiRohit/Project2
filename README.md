@@ -8,11 +8,14 @@
 
 | Name                       | Student ID  | Contribution Files                                   | Contribution % |
 |----------------------------|-------------|----------------------------------------------------|----------------|
-| Sankar Ganesh Paramasivam  | A20553053   | `test_gradientboost.py`, `GradientBoost.py`        | 20%            |
-| Neelarapu Tejaswini        | A20592053   | `checker.py`, `GradientBoost.py`                  | 20%            |
-| Vijaya Sai Dasari          | A20540356   | `test_gradientboost.py`, `GradientBoost.py`        | 20%            |
-| Aravinth Ananth            | A20537468   | `gridsearch.py`, `GradientBoost.py`               | 20%            |
+| Sankar Ganesh Paramasivam  | A20553053   | `test_gradientboost.py`, `GradientBoost.py`        | 25%            |
+| Neelarapu Tejaswini        | A20592053   | `checker.py`, `GradientBoost.py`                  | 25%            |
+| Vijaya Sai Dasari          | A20540356   | `test_gradientboost.py`, `GradientBoost.py`        | 25%            |
+| Aravinth Ananth            | A20537468   | `gridsearch.py`, `GradientBoost.py`               | 25%            |
 
+---
+---
+## Team Name: THALA
 ---
 ## Hosted Streamlit App
 
