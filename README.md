@@ -88,4 +88,4 @@ pip install -r requirements.txt
 - Requires `numpy`, `matplotlib`, `Jupyter`, `sklearn`
 
 ## More data
-- If you have time, check the `data` folder for various plots and results.
+- if you had time check data folder for various plot and results
