@@ -79,6 +79,7 @@ pip install -r requirements.txt
     - **Regression Models:** Regularization parameter `alpha` (for Ridge), default: 1.0.
 
 ## Additional Features
+- Synthetic data generator
 - Synthetic data generator for flexible testing.
 - Residual analysis and visualization tools for insights.
 - Extendable framework for adding new model selectors.
