@@ -42,8 +42,8 @@ model.fit(x_train, y_train)
 model.predict(x_test)
 ```
 <br/>
-Also, you can use without the parameters:
-```
+Also, you can use it without the parameters:
+
 from Gradient_Dcision_Tree import GradientBoostingTree
 
 x_train = 'your x training data set'
@@ -56,8 +56,7 @@ model = GradientBoostingTree()
 model.fit(x_train, y_train)
 
 model.predict(x_test)
-```
+
 
 
 * __Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?__<br />
-
