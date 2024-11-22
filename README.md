@@ -75,11 +75,11 @@ pip install -r requirements.txt
 ## Difference Between Bootstrapping and K-Fold Cross-Validation
 
 ### Bootstrapping
-Bootstrapping is a resampling technique that involves repeatedly drawing samples from a dataset with replacement. Each sample is used to train the model, and the performance is evaluated on the remaining data. This process is repeated many times (e.g., 150 iterations), and the results are averaged to estimate the model's performance.
-
+Bootstrapping is a powerful resampling method where we repeatedly draw samples from our dataset with replacement. Each sample is used to train the model, and its performance is evaluated on the remaining data. By repeating this process many times (e.g., 150 iterations), we can average the results to get a reliable estimate of the model's performance.
 
 ### K-Fold Cross-Validation
-K-Fold Cross-Validation involves dividing the dataset into `k` equal-sized folds. The model is trained on `k-1` folds and tested on the remaining fold. This process is repeated `k` times, with each fold used exactly once as the test set. The results are averaged to estimate the model's performance.
+K-Fold Cross-Validation is a technique where we split the dataset into `k` equal-sized folds. The model is trained on `k-1` folds and tested on the remaining fold. This process is repeated `k` times, ensuring each fold is used once as the test set. By averaging the results, we can estimate the model's performance more accurately.
+
 
 
 ##
@@ -89,23 +89,22 @@ K-Fold Cross-Validation involves dividing the dataset into `k` equal-sized folds
 ## Key Questions and Answers
 
 1. **Do Cross-Validation and Bootstrapping agree with AIC?**
-    - Yes, all three methods largely agree in this implementation.
-    - Example: Cross-validation and bootstrapping indicate a lower MSE for the selected model. AIC, with a low value (-6247.93), aligns with the performance metrics, confirming the model selection.
+    - Yes, in our project, we found that all three methods generally agree. For instance, both cross-validation and bootstrapping show lower MSE scores for the chosen model. The AIC value of -6247.93 supports this by indicating a good model fit, aligning well with the performance metrics from cross-validation and bootstrapping.
 
 2. **In what cases might these methods fail?**
-    - **Cross-Validation:** Fails for small datasets where splits lead to insufficient training data.
-    - **Bootstrapping:** Assumes data is i.i.d.; fails for dependent datasets like time series.
-    - **AIC:** Assumes normally distributed residuals; results may mislead for non-linear models.
+    - **Cross-Validation:** May not perform well with very small datasets where the training data in each fold is insufficient to build a reliable model.
+    - **Bootstrapping:** Assumes that the data points are independently and identically distributed (i.i.d.); it may not be suitable for datasets with dependencies, such as time series data.
+    - **AIC:** Assumes that the residuals of the model are normally distributed; it may provide misleading results for models with non-linear relationships or non-normal residuals.
 
-3. **What could mitigate these issues?**
-    - Implement stratified k-fold for imbalanced datasets.
-    - Use block bootstrapping for dependent data.
-    - Extend AIC to include models with corrected versions like AICc.
+3. **How can we address these challenges?**
+    - For imbalanced datasets, consider using stratified k-fold cross-validation to ensure each fold has a representative distribution of the target variable.
+    - For datasets with dependencies, such as time series data, use block bootstrapping to maintain the inherent structure and relationships within the data.
+    - To improve the reliability of AIC, especially for small sample sizes, use corrected versions like AICc (Akaike Information Criterion corrected).
 
-4. **What parameters are exposed?**
-    - **Cross-Validation:** `k` (number of folds), default: 5.
-    - **Bootstrapping:** `num_iterations` (default: 100), seed for reproducibility.
-    - **Regression Models:** Regularization parameter `alpha` (for Ridge), default: 1.0.
+4. **What parameters can you customize in our project?**
+    - **Cross-Validation:** You can set the number of folds (`k`), with a default value of 5.
+    - **Bootstrapping:** You can specify the number of iterations (`num_iterations`), which defaults to 100, and set a seed for reproducibility.
+    - **Regression Models:** You can adjust the regularization parameter (`alpha`) for Ridge regression, with a default value of 1.0.
 
 ## Additional Features
 - Synthetic data generator
