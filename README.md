@@ -20,8 +20,6 @@ This project implements two model selection techniques:
 
 Both methods are implemented for general-purpose models that provide `fit()` and `predict()` methods.
 
----
-
 ## Code Files
 1. **`main.py`**:
    - Demonstrates the usage of the implemented k-fold cross-validation and bootstrapping methods.
@@ -35,8 +33,6 @@ Both methods are implemented for general-purpose models that provide `fit()` and
    - Contains implementations for:
      - **k-Fold Cross-Validation**: Evaluates model performance using \( k \)-fold splitting.
      - **Bootstrapping**: Evaluates model performance using random sampling with replacement.
-     
----
 
 ## Functions Overview
 
@@ -47,8 +43,6 @@ Both methods are implemented for general-purpose models that provide `fit()` and
 | **`LinearRegression.fit`**   | Fits a linear regression model to the given training data using the Normal Equation. Calculates weights and intercept for the model. |
 | **`LinearRegression.predict`** | Predicts target values for the given input data based on the weights and intercept obtained from the `fit` method. |
 | **`main.py`**                | Combines all components to generate synthetic data, perform k-fold cross-validation and bootstrapping, and print the results. |
-
----
 
 ## How to Run the Code
 
@@ -66,8 +60,6 @@ Both methods are implemented for general-purpose models that provide `fit()` and
     5-Fold Cross-Validation Error (MSE): 0.9938904780907099
     Bootstrap Error (MSE): 1.0599287186388127
     ```
-
----
 
 ## Key Questions
 
@@ -138,6 +130,3 @@ The methods may fail or give incorrect results in the following cases:
 3. **`n_iterations`**: Number of bootstrap iterations (default = 100).
 4. **`test_size`**: Proportion of OOB samples (default = 0.3).
 5. **`random_seed`**: Seed for reproducibility (optional).
-
----
-
