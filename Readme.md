@@ -1,10 +1,14 @@
 # Project 2 
-By Usha Devaraju
+BY
+A20539949-Usha Devaraju
+A20548244-Roopashri Kommana
+A20550565-Sai Sandeep Neerukonda
 
 # Gradient Boosting for Regression
 
 This repository contains a custom implementation of a Gradient Boosting model for regression tasks, using decision trees as base learners. The model is designed to be versatile and easily adjustable to fit various regression problems.
 
+1.What does the model you have implemented do and when should it be used?
 ## Model Description
 
 The Gradient Boosting model implemented here constructs an ensemble of decision trees in a sequential manner, where each tree is built to correct the errors made by the previous ones. The model is particularly useful for datasets where relationships between features and the target variable are complex and non-linear.
@@ -16,6 +20,7 @@ This model should be used when:
 - Handling datasets with complex and non-linear relationships.
 - Situations where other simpler models (like linear regression) are insufficient.
 
+2.How did you test your model to determine if it is working reasonably correctly?
 ## Testing the Model
 
 The model has been rigorously tested using the California Housing dataset, which is a standard dataset for evaluating regression models. The testing involves:
@@ -24,6 +29,7 @@ The model has been rigorously tested using the California Housing dataset, which
 - Training the Gradient Boosting model on the training data.
 - Evaluating its performance using Mean Squared Error (MSE) on the test set.
 
+3.What parameters have you exposed to users of your implementation in order to tune performance? (Also perhaps provide some basic usage examples.
 ## Exposed Parameters
 
 Users can tune the following parameters to optimize the model's performance:
@@ -81,6 +87,7 @@ The script will:
 - **Train and test the Gradient Boosting model.**
 - **Output the Mean Squared Error (MSE) of the predictions.**
 
+4.Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?
 ## Potential Issues and Workarounds
 
 The model may encounter difficulties with specific types of inputs such as:
