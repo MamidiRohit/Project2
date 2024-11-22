@@ -18,10 +18,14 @@ I tested my model with 4 test cases. The first three cases are randomly generate
 `tol`: tolerance. It is an `int` value and controls the early stopping. For each new estimator, the model calculates the loss (mean square error) by the previous residual and predicted residual. If the loss is less than the current best loss, i.e. the model is still improving, the model will update the optimal loss and reset "tol" to the parameter we set. Otherwise, `tol` is decremented by 1 and an early stop occurs when `tol` is 0.<br/><br/>
 ***function***<br/>
 `fit(self, X, Y)`<br/>
-_parameter_ <br/>
+Fit model.<br/>
+_parameter_: <br/>
 `X`: x train data<br/>
-`Y`: y train data<br/>
-
+`Y`: y train data<br/><br/>
+`predict(X)`<br/>
+Predict using gradient boosting. <br/>
+_parameter_: <br/>
+`X`: x test data<br/><br/>
 _Usage Example:_ <br/>
 1. Download the file called `Gradient_Dcision_Tree.py` <br/>
 2. When using, use the following codes: <br/>
