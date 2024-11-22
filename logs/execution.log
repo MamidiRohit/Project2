@@ -1,0 +1,87 @@
+2024-11-21 22:30:01,953 - INFO - Execution started.
+2024-11-21 22:30:01,960 - INFO - Dataset loaded successfully.
+2024-11-21 22:30:01,960 - INFO - Evaluating models with n_splits=5
+2024-11-21 22:30:04,701 - INFO - Random Forest (n_splits=5): Best Score = 0.9738, Mean Validation Score = 0.9656, Std Dev = 0.0120
+2024-11-21 22:30:04,701 - INFO - Training Performance: Mean Train Score = 0.9999
+2024-11-21 22:30:04,811 - INFO - Logistic Regression (n_splits=5): Best Score = 0.9638, Mean Validation Score = 0.9623, Std Dev = 0.0020
+2024-11-21 22:30:04,811 - INFO - Training Performance: Mean Train Score = 0.9968
+2024-11-21 22:30:08,246 - INFO - SVM (n_splits=5): Best Score = 0.9811, Mean Validation Score = 0.6861, Std Dev = 0.3746
+2024-11-21 22:30:08,246 - INFO - Training Performance: Mean Train Score = 0.8812
+2024-11-21 22:30:08,366 - INFO - K-NN (n_splits=5): Best Score = 0.9750, Mean Validation Score = 0.9743, Std Dev = 0.0009
+2024-11-21 22:30:08,366 - INFO - Training Performance: Mean Train Score = 0.9835
+2024-11-21 22:30:08,443 - INFO - Decision Tree (n_splits=5): Best Score = 0.8614, Mean Validation Score = 0.7055, Std Dev = 0.1550
+2024-11-21 22:30:08,443 - INFO - Training Performance: Mean Train Score = 0.7670
+2024-11-21 22:30:08,443 - INFO - Evaluating models with n_splits=10
+2024-11-21 22:30:09,950 - INFO - Random Forest (n_splits=10): Best Score = 0.9789, Mean Validation Score = 0.9693, Std Dev = 0.0111
+2024-11-21 22:30:09,950 - INFO - Training Performance: Mean Train Score = 0.9999
+2024-11-21 22:30:10,101 - INFO - Logistic Regression (n_splits=10): Best Score = 0.9655, Mean Validation Score = 0.9633, Std Dev = 0.0027
+2024-11-21 22:30:10,101 - INFO - Training Performance: Mean Train Score = 0.9966
+2024-11-21 22:30:17,853 - INFO - SVM (n_splits=10): Best Score = 0.9839, Mean Validation Score = 0.6919, Std Dev = 0.3769
+2024-11-21 22:30:17,853 - INFO - Training Performance: Mean Train Score = 0.8883
+2024-11-21 22:30:17,990 - INFO - K-NN (n_splits=10): Best Score = 0.9777, Mean Validation Score = 0.9763, Std Dev = 0.0013
+2024-11-21 22:30:17,990 - INFO - Training Performance: Mean Train Score = 0.9845
+2024-11-21 22:30:18,122 - INFO - Decision Tree (n_splits=10): Best Score = 0.8481, Mean Validation Score = 0.6949, Std Dev = 0.1572
+2024-11-21 22:30:18,122 - INFO - Training Performance: Mean Train Score = 0.7630
+2024-11-21 22:30:18,122 - INFO - Running Bootstrap for model: Random Forest
+2024-11-21 22:30:18,122 - INFO - Iteration 0/100 for Random Forest
+2024-11-21 22:30:19,901 - INFO - Iteration 10/100 for Random Forest
+2024-11-21 22:30:21,735 - INFO - Iteration 20/100 for Random Forest
+2024-11-21 22:30:23,503 - INFO - Iteration 30/100 for Random Forest
+2024-11-21 22:30:25,297 - INFO - Iteration 40/100 for Random Forest
+2024-11-21 22:30:27,052 - INFO - Iteration 50/100 for Random Forest
+2024-11-21 22:30:28,822 - INFO - Iteration 60/100 for Random Forest
+2024-11-21 22:30:30,660 - INFO - Iteration 70/100 for Random Forest
+2024-11-21 22:30:32,434 - INFO - Iteration 80/100 for Random Forest
+2024-11-21 22:30:34,208 - INFO - Iteration 90/100 for Random Forest
+2024-11-21 22:30:35,971 - INFO - Completed Bootstrap for model: Random Forest. Mean Score: 0.9898
+2024-11-21 22:30:35,971 - INFO - Running Bootstrap for model: Logistic Regression
+2024-11-21 22:30:35,972 - INFO - Iteration 0/100 for Logistic Regression
+2024-11-21 22:30:36,608 - INFO - Iteration 10/100 for Logistic Regression
+2024-11-21 22:30:37,278 - INFO - Iteration 20/100 for Logistic Regression
+2024-11-21 22:30:37,938 - INFO - Iteration 30/100 for Logistic Regression
+2024-11-21 22:30:38,613 - INFO - Iteration 40/100 for Logistic Regression
+2024-11-21 22:30:39,244 - INFO - Iteration 50/100 for Logistic Regression
+2024-11-21 22:30:39,898 - INFO - Iteration 60/100 for Logistic Regression
+2024-11-21 22:30:40,536 - INFO - Iteration 70/100 for Logistic Regression
+2024-11-21 22:30:41,204 - INFO - Iteration 80/100 for Logistic Regression
+2024-11-21 22:30:41,877 - INFO - Iteration 90/100 for Logistic Regression
+2024-11-21 22:30:42,563 - INFO - Completed Bootstrap for model: Logistic Regression. Mean Score: 0.9721
+2024-11-21 22:30:42,563 - INFO - Running Bootstrap for model: SVM
+2024-11-21 22:30:42,563 - INFO - Iteration 0/100 for SVM
+2024-11-21 22:30:43,764 - INFO - Iteration 10/100 for SVM
+2024-11-21 22:30:44,974 - INFO - Iteration 20/100 for SVM
+2024-11-21 22:30:46,125 - INFO - Iteration 30/100 for SVM
+2024-11-21 22:30:47,290 - INFO - Iteration 40/100 for SVM
+2024-11-21 22:30:48,462 - INFO - Iteration 50/100 for SVM
+2024-11-21 22:30:49,648 - INFO - Iteration 60/100 for SVM
+2024-11-21 22:30:50,858 - INFO - Iteration 70/100 for SVM
+2024-11-21 22:30:52,072 - INFO - Iteration 80/100 for SVM
+2024-11-21 22:30:53,258 - INFO - Iteration 90/100 for SVM
+2024-11-21 22:30:54,453 - INFO - Completed Bootstrap for model: SVM. Mean Score: 0.9911
+2024-11-21 22:30:54,453 - INFO - Running Bootstrap for model: K-NN
+2024-11-21 22:30:54,453 - INFO - Iteration 0/100 for K-NN
+2024-11-21 22:30:54,565 - INFO - Iteration 10/100 for K-NN
+2024-11-21 22:30:54,644 - INFO - Iteration 20/100 for K-NN
+2024-11-21 22:30:54,725 - INFO - Iteration 30/100 for K-NN
+2024-11-21 22:30:54,803 - INFO - Iteration 40/100 for K-NN
+2024-11-21 22:30:54,882 - INFO - Iteration 50/100 for K-NN
+2024-11-21 22:30:54,959 - INFO - Iteration 60/100 for K-NN
+2024-11-21 22:30:55,041 - INFO - Iteration 70/100 for K-NN
+2024-11-21 22:30:55,121 - INFO - Iteration 80/100 for K-NN
+2024-11-21 22:30:55,203 - INFO - Iteration 90/100 for K-NN
+2024-11-21 22:30:55,283 - INFO - Completed Bootstrap for model: K-NN. Mean Score: 0.9771
+2024-11-21 22:30:55,283 - INFO - Running Bootstrap for model: Decision Tree
+2024-11-21 22:30:55,283 - INFO - Iteration 0/100 for Decision Tree
+2024-11-21 22:30:55,419 - INFO - Iteration 10/100 for Decision Tree
+2024-11-21 22:30:55,551 - INFO - Iteration 20/100 for Decision Tree
+2024-11-21 22:30:55,683 - INFO - Iteration 30/100 for Decision Tree
+2024-11-21 22:30:55,817 - INFO - Iteration 40/100 for Decision Tree
+2024-11-21 22:30:55,954 - INFO - Iteration 50/100 for Decision Tree
+2024-11-21 22:30:56,087 - INFO - Iteration 60/100 for Decision Tree
+2024-11-21 22:30:56,219 - INFO - Iteration 70/100 for Decision Tree
+2024-11-21 22:30:56,353 - INFO - Iteration 80/100 for Decision Tree
+2024-11-21 22:30:56,485 - INFO - Iteration 90/100 for Decision Tree
+2024-11-21 22:30:56,618 - INFO - Completed Bootstrap for model: Decision Tree. Mean Score: 0.9420
+2024-11-21 22:30:56,618 - INFO - Best Model (K-Fold): SVM with Score: 0.9839
+2024-11-21 22:30:56,618 - INFO - Best Model (Bootstrap): SVM with Score: 0.9911
+2024-11-21 22:30:57,372 - INFO - All visualizations saved successfully.
