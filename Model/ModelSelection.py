@@ -71,42 +71,65 @@ def grid_search_max_depth(X, y, max_depth_values, n_estimators=100, learning_rat
 
     return best_max_depth, best_score
 
-# def bootstrap(self, B=100):
-#         """
-#         Perform bootstrapping for model evaluation.
-#         Args:
-#             B (int): Number of bootstrap iterations.
-#         Returns:
-#             mse_samples (list): Mean squared errors for each bootstrap sample.
-#             mse_mean (float): Mean of the mean squared errors across all bootstrap samples.
-#         """
-#         n = len(self.y)
-#         mse_samples = []
-
-#         for _ in range(B):
-#             indices = np.random.choice(np.arange(n), size=n, replace=True)
-#             X_sample, y_sample = self.X[indices], self.y[indices]
-
-#             beta = np.linalg.pinv(X_sample.T @ X_sample) @ X_sample.T @ y_sample
-#             y_pred = self.X @ beta
-#             mse_samples.append(np.mean((self.y - y_pred) ** 2))
-
-#         return mse_samples, np.mean(mse_samples)
-
-def calculate_aic(X, y):
+def bootstrap(model, X, y, B=100):
     """
-    Calculate the Akaike Information Criterion (AIC) for a linear regression model.
+    Perform bootstrapping for model evaluation.
+    
+    Args:
+        model: The model to evaluate.
+        X (numpy.ndarray): Feature matrix.
+        y (numpy.ndarray): Target vector.
+        B (int): Number of bootstrap iterations.
+    
+    Returns:
+        mse_samples (list): Mean squared errors for each bootstrap sample.
+        mse_mean (float): Mean of the mean squared errors across all bootstrap samples.
+    """
+    n = len(y)
+    mse_samples = []
+
+    for _ in range(B):
+        # Generate bootstrap sample indices
+        indices = np.random.choice(np.arange(n), size=n, replace=True)
+        X_sample, y_sample = X[indices], y[indices]
+
+        # Fit the model on the bootstrap sample
+        model.fit(X_sample, y_sample)
+        
+        # Predict on the original data
+        y_pred = model.predict(X)
+
+        # Calculate MSE for this bootstrap sample
+        mse = np.mean((y - y_pred) ** 2)
+        mse_samples.append(mse)
+
+    return mse_samples, np.mean(mse_samples)
+
+
+def calculate_aic(X, y, model):
+    """
+    Calculate the Akaike Information Criterion (AIC) for a Gradient Boosting model.
     
     Args:
         X (numpy.ndarray): Feature matrix.
         y (numpy.ndarray): Target vector.
+        model (GradientBoostingTree): The trained gradient boosting model.
     
     Returns:
-        aic (float): AIC score for the linear regression model.
+        aic (float): AIC score for the gradient boosting model.
     """
-    n, p = X.shape
-    beta = np.linalg.pinv(X.T @ X) @ X.T @ y
-    y_pred = X @ beta
+    n = X.shape[0]
+    
+    # Get predictions from the model
+    y_pred = model.predict(X)
+    
+    # Calculate Residual Sum of Squares (RSS)
     rss = np.sum((y - y_pred) ** 2)
-    aic = n * np.log(rss / n) + 2 * p
+    
+    # Approximate number of parameters (k)
+    k = model.n_estimators * (2 ** model.max_depth - 1)  # Rough estimate of parameters
+    
+    # Calculate AIC using the formula: AIC = n * log(RSS/n) + 2*k
+    aic = n * np.log(rss / n) + 2 * k
+    
     return aic

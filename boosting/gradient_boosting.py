@@ -1,18 +1,18 @@
 import numpy as np
-import pandas as pd
 
 class GradientBoostingTree:
-    def __init__(self, n_estimators, learning_rate, max_depth):
+    def __init__(self, n_estimators=100, learning_rate=0.1, max_depth=3):
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
         self.max_depth = max_depth
         self.models = []
+        self.initial_pred = None
 
     def fit(self, X, y):
         n_samples = X.shape[0]
-        y_pred = np.full(n_samples, np.mean(y))
         self.initial_pred = np.mean(y)
-        
+        y_pred = np.full(n_samples, self.initial_pred)
+
         for _ in range(self.n_estimators):
             residuals = y - y_pred
             tree = DecisionTreeRegressor(max_depth=self.max_depth)
@@ -25,6 +25,7 @@ class GradientBoostingTree:
         for tree in self.models:
             y_pred += self.learning_rate * tree.predict(X)
         return y_pred
+
 
 class DecisionTreeRegressor:
     def __init__(self, max_depth=3):
@@ -79,8 +80,6 @@ class DecisionTreeRegressor:
         return best_split
 
     def _compute_mse(self, y):
-        if len(y) == 0:
-            return 0
         return np.mean((y - np.mean(y)) ** 2)
 
     def _predict_single(self, x, tree):
