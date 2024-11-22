@@ -1,0 +1,61 @@
+{
+    "description": "Single test setting: verification test",
+    "test": {
+        "general": {
+            "activate": {"k_fold_CV": true, "bootstrapping": true},
+            "model": "LinearRegression",
+            "metric": "R2",
+            "data": "file"
+        },
+        "k_fold_cross_validation": {
+            "k": [5],
+            "shuffle": true
+        },
+        "bootstrapping": {
+            "size": [50],
+            "epochs": [100]
+        },
+        "analysis": {
+            "visualize": {
+                "k_fold_CV":{
+                    "label_X": [],
+                    "activate": false
+                },
+                "bootstrapping": {
+                    "label_X": [],
+                    "activate": false
+                }
+            },
+            "write": {
+                "k_fold_CV": {
+                    "activate": false,
+                    "header": [],
+                    "file_path": "./results/k_fold.csv"
+                },
+                "bootstrapping": {
+                    "activate": false,
+                    "header": [],
+                    "file_path": "./results/bootstrap.csv"
+                }
+            }
+        }
+    },
+    "data": {
+        "file": [
+            {
+                "file_path": "./data/housing.csv",
+                "test_ratio": 0.25
+            }
+        ],
+        "generate": [
+            {
+                "size": 200,
+                "dimension": 10,
+                "correlation": 0,
+                "noise_std": 0.01,
+                "random_state": 42,
+                "test_ratio": 0.25
+            }
+        ]
+    }
+}

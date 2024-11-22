@@ -1,0 +1,141 @@
+{
+    "description": "Batch test setting: size test",
+    "test": {
+        "general": {
+            "activate": {"k_fold_CV": true, "bootstrapping": true},
+            "model": "LinearRegression",
+            "metric": "R2",
+            "data": "generate"
+        },
+        "k_fold_cross_validation": {
+            "k": [5],
+            "shuffle": true
+        },
+        "bootstrapping": {
+            "size": [100],
+            "epochs": [100]
+        },
+        "analysis": {
+            "visualize": {
+                "k_fold_CV":{
+                    "label_X": ["size", 0],
+                    "activate": true
+                },
+                "bootstrapping": {
+                    "label_X": ["size", 0],
+                    "activate": true
+                }
+            },
+            "write": {
+                "k_fold_CV": {
+                    "activate": true,
+                    "header": ["size", "dimension", "correlation","noise_std",",K-value","shuffled", "Average", "AIC"],
+                    "file_path": "./results/k_fold_size.csv"
+                },
+                "bootstrapping": {
+                    "activate": true,
+                    "header": ["size", "dimension", "correlation","noise_std", "sample_size","epochs","Average", "AIC"],
+                    "file_path": "./results/bootstrap_size.csv"
+                }
+            }
+        }
+    },
+    "data": {
+        "file": [
+            {
+                "file_path": "small_test.csv",
+                "test_ratio": 0.25
+            }
+        ],
+        "generate": [
+            {
+                "size": 100,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 200,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 400,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 600,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 800,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 1000,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 1200,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 1400,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+            {
+                "size": 1600,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+                        {
+                "size": 1800,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            },
+                        {
+                "size": 2000,
+                "dimension": 20,
+                "correlation": 0,
+                "noise_std": 0.5,
+                "random_state": 42,
+                "test_ratio": 0.25
+            }
+        ]
+    }
+}

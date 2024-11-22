@@ -1,0 +1,134 @@
+# All user parameters can be adjusted from this file.
+
+"""
+ Test configuration
+"""
+
+params = {
+    "description": "Configuration settings for testing various model selection methods.",  # Description of the test configuration
+    "test": {
+        "general": {
+            "activate": {
+                "k_fold_CV": true,  # Set to True to perform k-fold cross-validation.
+                "bootstrapping": true  # Set to True to perform bootstrapping.
+            },
+            "model": "LinearRegression",  # [Options] "LinearRegression" (default), "LogisticRegression".
+            "metric": "MSE",  # [Options] "MSE" (default), "Accuracy score", "R2".
+            "data": "generate",  # [Options] "file", "generate".
+            "visualize": false,  # Set to True to visualize k-fold cross-validation results (currently not implemented).
+            "write": false, # Set to True to write k-fold cross-validation results (currently not implemented).
+            "file_path": "./data/result(k_fold_CV).csv" # File path to write data.
+        },
+        "k_fold_cross_validation": {
+            "k": [5],  # Number of folds for k-fold cross-validation.
+            "shuffle": true  # Whether to shuffle the data before splitting into folds.
+        },
+        "bootstrapping": {
+            "size": [50],  # The size of the training dataset for each bootstrap sample.
+            "epochs": [100]  # The number of bootstrapping iterations to perform.
+        },
+        "analysis": {
+            "visualize": { # visualization configuration
+                "k_fold_CV": {
+                    # [Options] "size": 0, "dimension": 1, "correlation": 2, "noise_std": 3, K-value": 4
+                    "label_X": ["size", 0], # Selected feature to visualize
+                    "activate": true # Set to True to visualize k-fold cross-validation.
+                },
+                "bootstrapping": {
+                    # [Options] "size": 0, "dimension": 1, "correlation": 2, "noise_std": 3, "sample_size": 4, "epoch": 5
+                    "label_X": ["size", 0], # Selected feature to visualize
+                    "activate": false # Set to True to visualize bootstrapping.
+                }
+            },
+            "write": { # file write configuration
+                "k_fold_CV": {
+                    "activate": true, # Set to True to write a result file for k-fold cross-validation.
+                    "header": ["size", "dimension", "correlation","noise_std",",K-value","shuffled", "Average", "AIC"],  # Header for file.
+                    "file_path": "./results/k_fold.csv" # Original file path
+                },
+                "bootstrapping": {
+                    "activate": false, # Set to True to write a result file for bootstrapping.
+                    "header": ["size", "dimension", "correlation","noise_std", "sample_size","epochs","Average", "AIC"],  # Header for file.
+                    "file_path": "./results/bootstrap.csv"  # Original file path.
+                }
+            }
+        }
+    },
+    # For each data parameter "file", "generate": Single mode -> set 1 element Multiple mode -> set N elements
+    "data": {
+        # User-defined parameters for data import settings.
+        "file": [
+            {
+                "file_path": "small_test.csv",  # File path to load data.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
+            },
+        ],
+        # User-defined parameters for synthetic data generation settings.
+        "generate": [
+            {  # Default dataset with a strict linear relationship (no noise or correlation).
+                "size": 100,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0,  # Correlation coefficient between features (0 means no correlation).
+                "noise_std": 0.0,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
+            },
+            {  # Larger dataset with a strict linear relationship (no noise or correlation).
+                "size": 500,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0,  # Correlation coefficient between features.
+                "noise_std": 0.0,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
+            },
+            {  # Default dataset with added noise (no correlation between features).
+                "size": 100,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0,  # Correlation coefficient between features.
+                "noise_std": 0.01,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
+            },
+            {  # Larger dataset with added noise (no correlation between features).
+                "size": 500,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0,  # Correlation coefficient between features.
+                "noise_std": 0.01,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
+            },
+            {  # Default dataset with a high correlation between features (no noise).
+                "size": 100,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0.9,  # High correlation coefficient between features.
+                "noise_std": 0.0,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
+            },
+            {  # Larger dataset with a high correlation between features (no noise).
+                "size": 500,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0.9,  # High correlation coefficient between features.
+                "noise_std": 0.0,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
+            },
+            {  # Default dataset with high correlation and added noise.
+                "size": 100,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0.9,  # High correlation coefficient between features.
+                "noise_std": 0.01,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
+            },
+            {  # Larger dataset with high correlation and added noise.
+                "size": 500,  # Number of samples to generate.
+                "dimension": 10,  # Number of features in the dataset.
+                "correlation": 0.9,  # High correlation coefficient between features.
+                "noise_std": 0.01,  # Noise level to assess model robustness.
+                "random_state": 42,  # Random seed for reproducibility.
+                "test_ratio": 0.25  # Proportion of the dataset used for the test set.
+            }
+        ]
+    }
+}

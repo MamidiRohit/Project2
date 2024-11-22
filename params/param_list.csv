@@ -1,0 +1,7 @@
+Json file name, Description
+"param_single.json", "one-time test, using file to execute, no visualization, no file writing"
+"param_multi.json", "batch test, create data to execute, no visualization, file writing for both model"
+"param_k_fold.json", "batch test, create data to execute, no visualization, file writing for k-fold CV model"
+"param_bootstrap.json", "batch test, create data to execute, no visualization, file writing for bootstrap model"
+"test_size.json", "batch test, create data to execute, visualization for all, file writing for both model"
+"test_correlation.json", "batch test, create data to execute, visualization for all, file writing for both model"

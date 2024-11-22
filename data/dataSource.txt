@@ -1,0 +1,15 @@
+
+[File #1] Boston Housing
+[description] Concerns housing values in suburbs of Boston
+[LINK] https://www.kaggle.com/datasets/schirmerchad/bostonhoustingmlnd
+
+[File #2] Iris Flower Dataset
+[description] Iris flower data set used for multi-class classification.
+
+* Modified species as numerical values:
+    0: Iris-setosa 1: Iris-versicolor 2: Iris-virginica
+[LINK] https://www.kaggle.com/datasets/arshid/iris-flower-dataset
+
+[File #3] Red Wine Quality
+[description] Simple and clean practice dataset for regression or classification modelling
+[LINK] https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009
