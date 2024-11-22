@@ -128,6 +128,10 @@ Please look at the screenshoots located at the folder Additional Evidence
 | `tol` | float | 1e-5 | Tolerance for early stopping. |
 | `subsample` | float | 0.5 | Fraction of samples used for training. |
 
+
+** Notes: **
+In the folder NotebookTest, you can find notebooks for visualizations.
+
 ---
 **Answers to Project 2**
 
