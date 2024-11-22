@@ -1,10 +1,9 @@
 ### Team Members
 
-Satya Mani Srujan Dommeti #A20594429
-Arjun Singh #A20577962
-Akshitha Reddy Kuchipatla #A20583607
-Vamsi Krishna #A20543669
-
+1. Satya Mani Srujan Dommeti #A20594429
+2. Arjun Singh  #A20577962
+3. Akshitha Reddy Kuchipatla #A20583607 
+4. Vamsi Krishna  #A20543669
 
 # Model Implementation
 This project includes the implementation of both linear regression and ridge regression. The models are designed to run concurrently, allowing the selection of the one that performs best based on the given dataset. To ensure robust performance assessment, k-fold cross-validation and bootstrapping techniques were applied. Additionally, the Akaike Information Criterion (AIC) was used to evaluate the quality and effectiveness of each model.
