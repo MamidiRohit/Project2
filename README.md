@@ -1,8 +1,10 @@
+
 ## Team members:
 ## Amruta Sanjay Pawar- A20570864
 ## Raghav Shah- A20570886
 ## Shreedhruthi Boinpally- A20572883
-# Linear Regression with Evaluation Metrics
+
+# Model Selection
 
 This project demonstrates the implementation of a custom linear regression model in Python and evaluates its performance using K-Fold Cross-Validation, Bootstrapping, and Akaike Information Criterion (AIC). The project uses a dataset named `heart.csv` for testing and validation.
 
