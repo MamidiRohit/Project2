@@ -32,11 +32,11 @@ _Usage Example:_ <br/>
 ```
 from Gradient_Dcision_Tree import GradientBoostingTree
 
-x_train = 'your x training data set'
-y_train = 'your y training data set'
+x_train = 'your x training dataset'
+y_train = 'your y training dataset'
 
-x_test = 'your x test data set'
-y_test = 'your y test data set'
+x_test = 'your x test dataset'
+y_test = 'your y test dataset'
 
 model = GradientBoostingTree(n_estimators=100, rate=0.1, max_depth=3, min_samples_split=2, tol=10)
 model.fit(x_train, y_train)
@@ -47,11 +47,11 @@ Also, you can use it without the parameters:<br/>
 ```
 from Gradient_Dcision_Tree import GradientBoostingTree
 
-x_train = 'your x training data set'
-y_train = 'your y training data set'
+x_train = 'your x training dataset'
+y_train = 'your y training dataset'
 
-x_test = 'your x test data set'
-y_test = 'your y test data set'
+x_test = 'your x test dataset'
+y_test = 'your y test dataset'
 
 model = GradientBoostingTree()
 model.fit(x_train, y_train)
@@ -60,13 +60,4 @@ model.predict(x_test)
 ```
 
 * __Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?__<br />
-
-
-
-
-
-
-
-
-
-
+Test case 4 predicted the value of US housing prices. The model spent the most time training (4m 23s). The reasons are not only that the data is large (total is 5000 and train data is 4000), but also that the model needs more time to build an estimator (decision tree) and combine multiple estimators. Although I think there is still space for improvement in my code to save time, it still reflects that one of the disadvantages of the gradient boosting algorithm is that processing large datasets is time-consuming. If I have more time, I believe that I will find improving ways to save time in the gradient boosting algorithm.
