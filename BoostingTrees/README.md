@@ -1,13 +1,5 @@
 # Project 2
 
-Select one of the following two options:
-
-## Boosting Trees
-
-Implement the gradient-boosting tree algorithm (with the usual fit-predict interface) as described in Sections 10.9-10.10 of Elements of Statistical Learning (2nd Edition). Answer the questions below as you did for Project 1.
-
-Put your README below. Answer the following questions.
-
 # Group Name: A20560777
 # Group Members:
 Pooja Pranavi Nalamothu (CWID: A20560777)
