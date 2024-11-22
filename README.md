@@ -1,5 +1,5 @@
 
-#  Gradient Boosting Tree Algorithm 
+#  Gradient Boosting Tree Algorithm for regression 
 ### Project - 2
 
 
