@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class MyMSE :
     @staticmethod
     def calculate ( y_true ,y_pred ) :
