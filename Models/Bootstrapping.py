@@ -40,11 +40,14 @@ class Bootstrapping:
 
             mse_score = Metrics.mean_squared_error(y_val,y_preds)
             r2_score= Metrics.r_squared(y_val,y_preds)
+            aic_score = Metrics.aic(y_val, y_preds, X_val)
 
             mse.append(mse_score)
             
             r2.append(r2_score)
 
-            print(f"Iteration {i + 1}/{self.n_iter} - MSE: {mse_score:.4f}, R-Squared: {r2_score:.4f}")
+            aic.append(aic_score)
 
-        return np.mean(  mse), np.mean(  r2)
+            print(f"Iteration {i + 1}/{self.n_iter} - MSE: {mse_score:.4f}, R-Squared: {r2_score:.4f}, AIC: {aic_score:.4f}")
+
+        return np.mean(  mse), np.mean(  r2), np.mean(aic)
