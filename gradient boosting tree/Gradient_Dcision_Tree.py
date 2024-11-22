@@ -124,7 +124,8 @@ class GradientBoostingTree():
         self.depth = max_depth
         self.min_samples_split = min_samples_split
         # int value to record the number of no improvement 
-        self.tol = tol
+        if type(tol) is not int:
+            raise TypeError("Only integers are allowed for tol parameter")
 
         # store each function
         self.trees = []
