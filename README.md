@@ -1,3 +1,4 @@
+## Team members:
 ## Amruta Sanjay Pawar- A20570864
 ## Raghav Shah- A20570886
 ## Shreedhruthi Boinpally- A20572883
@@ -57,7 +58,7 @@ These parameters allow users to adapt the methods to their specific datasets and
 ## How to Run
 1. Clone this repository
 2. Install required Python libraries (`matplotlib` for plotting) from cmd.
-3. Replace with your CSV file path in model.py
-4. Replace with your target column name in model.py
-5. Then run model.py file
+3. Replace file_path: Path to the CSV file in model.py
+4. Replace target_column: Name of the target column in model.py
+6. Then run model.py file
 
