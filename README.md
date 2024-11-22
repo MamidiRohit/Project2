@@ -17,9 +17,12 @@ This document provides two sections:
 
 ## Basic Instructions on How to Use the Boosting Tree Model
 
+
 **Importing the Model**
 
-To use the Boosting Tree Model, import the required classes:
+Inside Project2-Panama folder go to boosting_tree package and import the BoostingTreeModel.py class. 
+
+To use the BoostingTreeModel.py, import the required classes into your python environment as follows:
 
 ```
 import numpy as np
@@ -199,17 +202,24 @@ Another area to explore would be fine-tuning the model to work better on linear 
 
 **References** 
 
-The Elements of Statistical Learning (Chapter 10, Boosting) 
 
-From Mining of Massive Datasets (Chapter 10, Gradient Descent) 
+Books
+
+Hastie, T., Tibshirani, R., & Friedman, J. (2009). The Elements of Statistical Learning: Data Mining, Inference, and Prediction (2nd ed.). Springer. (Chapter 10, Boosting)
+
+Leskovec, J., Rajaraman, A., & Ullman, J. D. (2020). Mining of Massive Datasets (3rd ed.). Cambridge University Press. (Chapter 10, Gradient Descent)
 
 
 Datasets
+
 California Housing Prices
 Pace, R. K., & Barry, R. (1997). Sparse spatial autoregressions. Statistics and Probability Letters, 33(3), 291-297. https://doi.org/10.1016/S0167-7152(96)00140-X
 
 Wine
 Aeberhard, S. & Forina, M. (1992). Wine [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5PC7J.
+
+Energy Efficiency Dataset
+Tsanas, A., & Xifara, A. (2012). Accurate quantitative estimation of energy performance of residential buildings using statistical machine learning tools. Energy and Buildings, 49, 560-567. https://doi.org/10.1016/j.enbuild.2012.03.003
 
 
 
